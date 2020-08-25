@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{config.url}}/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="pesquisa.js"></script>
+</head>
+<body>
+<div class="cliente">
+    <div class="banner">
+        <div class="botaoLoja">
+            <a class="btn" href="{{config.url}}">Loja</a>
+        </div>
+        <div class="imgLogo">
+            <img src="{{config.url}}/img/logo.png" alt="logo">
+        </div>
+        <div class="botaoLogout">
+            <a class="btn" href="{{config.url}}/home/logout">Sair</a>
+        </div>
+    </div>
+
+    <div class="corpoCliente">
+        <div class="opcoes">
+            <div class="opcao">
+                <div class="title">
+                <h1 class="PrimeiraOpcao">Minha Conta</h1>
+                <hr>
+                </div>
+            </div>
+
+            <div class="opcao">
+                <div class="title">
+                <h1>Meus Pedidos</h1>
+                <hr>
+                </div>  
+            </div>
+
+            <div class="opcao">
+                <div class="title">
+                <h1>NAO SEI</h1>
+                <hr>
+                </div>  
+            </div>
+
+        </div>
+        
+        <div class="conteudo">
+            
+        <!--MINHA CONTA-->
+        <div class="text">
+            <div class="topoCliente">
+                <div class="fotoCliente">
+                    <img src="img\{{cliente.img}}" name="foto">
+                    <h2>Alterar Foto</h2>
+                </div>
+                <div class="NES">
+                    <div class="dadosCliente">
+                    <h1>NOME:</h1>
+                    <input type="text" required name="nome" placeholder="{{cliente.usuario}}">
+                    </div>
+                    <div class="dadosCliente">
+                    <h1>EMAIL:</h1>
+                    <input type="text" required  name="email" placeholder="{{cliente.email}}">
+                    </div>
+                <!--   
+                    <div class="dadosCliente">
+                    <h1>SENHA:</h1>
+                    <input type="text"  name="senha" placeholder="*********">
+                    </div>
+                -->
+                </div>
+                 
+                <div class="btnsCliente">
+                    <div><h2 class="btn">ATUALIZAR NOME</h2></div>
+                    <div><h2 class="btn">ALTERAR SENHA </h2></div>
+                    <div><h2 class="btn">MEUS CARRINHO</h2></div>
+                </div>
+            </div>
+            <h2>Meu Endereço</h2>   
+            <div class="enderecoCliente">       
+                <div class="contentIndereço">
+                    <div class="dadosCliente">
+                    <h1>LOGRADOURO</h1>
+                    <input type="text" required name="nome" value="{{endereco.cep}}">
+                    </div>
+                    <div class="dadosCliente">
+                    <h1>NUMERO:</h1>
+                    <input type="text" required  name="email" value="{{endereco.numero}}">
+                    </div>
+                    <div class="dadosCliente">
+                    <h1>COMPLEMENTO:</h1>
+                    <input type="text"  name="senha" value="{{endereco.complemento}}">
+                    </div>
+                    <div class="dadosCliente">
+                    <h1>BAIRRO:</h1>
+                    <input type="text"  name="senha" value="{{endereco.bairro}}">
+                    </div>    
+                </div>
+                <div class="contentIndereço">
+                    <div class="dadosCliente">
+                    <h1>CEP:</h1>
+                    <input type="text" required name="nome" value="{{endereco.cep}}">
+                    </div>
+                    <div class="dadosCliente">
+                    <h1>CIDADE:</h1>
+                    <input type="text" required  name="email" value="{{endereco.cidade}}">
+                    </div>
+                    <div class="dadosCliente">
+                    <h1>ESTADO:</h1>
+                    <input type="text"  name="senha" value="{{endereco.estado}}">
+                    </div>  
+                    <div class="dadosCliente">
+                    <h1>PAIS:</h1>
+                    <input type="text"  name="senha" value="{{endereco.pais}}">
+                    </div>
+                </div>
+            </div> 
+            <div class="btn">Atualizar Endereço</div>     
+        </div>
+    
+        <!--MEUS PEDIDOS-->
+        <div class="text">
+            <h2>Peddddos</h2>
+           
+        </div>
+
+        <!--NAO SEI-->
+        <div class="text">
+            <h2>Pedidosddd</h2>
+                  
+        </div>
+                
+        </div>
+
+    </div>
+
+    <hr>
+
+</div>
+
+<footer class="footer">
+    <div class="rodape">
+        <div class="rodape-email">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+        <div class="rodape-waths">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+        <div class="rodape-cnpj">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+<!--JQUERY-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+<!--MATERIALIZE JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>        
+
+<!--JAVASCRIPT-->
+<script>
+
+    $(document).ready(function(){
+        //MENU MOBILE//
+        $(".button-collapse").sideNav();
+        //MODAL
+        $(".modal").modal();
+        //ESCONDER MENU AO CLICAR
+        $(".hide-menu").click(function(){
+            $(".button-collapse").sideNav("hide");
+        });
+
+    }); 
+
+    var trigger = Array.from(document.querySelectorAll('.title'));
+    trigger.forEach(function(el,index,all){
+        el.addEventListener('click',function(){
+            let container=document.querySelector('.conteudo');
+            let content = Array.from(document.querySelectorAll('.conteudo .text'));
+            content.forEach(function(el){
+                el.style.display="none";
+            });
+            content[index].style.display="block";
+            
+        });
+    });
+    $(document).ready(function() {
+    $('.PrimeiraOpcao').trigger("click");
+});
+
+</script>
+
+
+
+</html>
+

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{config.url}}/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<header>
+<!--BANNER-->
+<div class="banner">
+    <div class="img-banner">
+        <img src="{{config.url}}/img/logo.png" alt="logo">
+    </div>
+   
+    <div class="usuarios">
+        <div class="usuario">
+            {% if user == '' %}
+            <span class="material-icons">account_circle</span>
+            <h2><a class="modal-trigger" href="#modalLogin">Logar</a> ou <a class="modal-trigger" href="#modalCadastro">Cadastrar</a></h2>
+            {% else %}
+            <h2>Bem Vindo! {{user.user}}</h2>
+            <a href="{{config.url}}/home/logout">Logout</a> 
+            {% endif %}
+        </div>
+        <div class="carrinhos">
+            <div class="carrinho">
+                <a href="{{config.url}}/carrinho"><span class="material-icons">local_grocery_store</span></a>
+                <div class="botaoCarrinho">
+                <ul id="dropdown2" class="dropdown-content">
+                    {% if user.id == 1 %}
+                    <li><a href="{{config.url}}/admin">ADMIN</a></li>
+                    {% endif %}
+                    <li><a href="{{config.url}}/cliente">Conta</a></li>
+                    <li><a href="{{config.url}}/carrinho">Carrinho</a></li>
+                    <li><a href="{{config.url}}/home/logout">Logout</a></li>
+                  </ul>
+                  {% if user != '' %}
+                  <a class="btn dropdown-button" data-beloworigin="true" href="#!" data-activates="dropdown2">Menu<i class="material-icons right">arrow_drop_down</i></a>
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</header>
+<body>
+<!--BANNER-FOOTER-->
+<div class="banner-footer">
+    <div class="preco">
+        <h1>Bom Preço</h1>
+    </div>
+    <div class="entrega">
+        <h1>Bom Preço</h1>
+    </div>
+    <div class="atendimento">
+        <h1>Bom Preço</h1>
+    </div>
+    </div>
+    
+<!--CORPO-->
+<div class="corpo">
+    <div class="categorias">
+        <!--BUSCA-->
+        <div class="busca">         
+                <form action="" method="POST">
+                    <input type="text" name="pesquisa" value="Pesquisar..." id="pesquisa" autocomplete="off">
+                    <button><span class="material-icons">search</span></button>
+                </form>
+                
+                <div class="results"></div>
+        </div>
+        
+        <!--CATEGORIA-->
+        <h2>Categorias</h2>
+        <div class="categoria">
+            <div class="nav">
+                <ul>
+                {% for categoria in categorias %}
+                <hr>
+                <li><a href="{{config.url}}/produto/categoria/{{categoria.categoria}}">{{categoria.categoria}}</a></li>
+             
+                {% endfor %}
+                </ul>
+                <hr>
+            </div>
+        </div>   
+    </div>
+    <!--PRODUTO-->
+    <div class="produtos">
+        <!----------DESTAQUE--------->
+        {% for destaque in destaques %}
+        <div class="produto">
+            <div class="block">
+            <img src="{{config.url}}/img/{{destaque.img}}" alt="produto">
+          <a href="{{config.url}}/produto/id/{{destaque.id}}"><h1>{{destaque.nome}}</h1></a>
+            <p>R${{destaque.preco}}</p>
+            <a href="{{config.url}}/produto/id/{{destaque.id}}" class="btn">ADQUIRIR</a>
+            </div>
+        </div>
+        {% endfor %}
+        <!----------POST.PRODUTO---------->
+        {% if produto != '' %}
+            <div class="postProduto">
+                <div class="imagem">
+                    <img src="{{config.url}}/img/{{produto.img}}" alt="foto-produto">
+                </div>
+                <div class="info">
+                    <div class="titulo-produto">
+                        <h2>{{produto.nome}}</h2>
+                    </div>
+                    <div class="valor">
+                        <h3>R${{produto.preco}}</h3><h2>uni.</h2>
+                    </div>
+                    <div class="quantidade">
+                        <h2>quantidade:</h2>
+                        <form action="{{config.url}}/carrinho/InserirProduto" method="POST">                          
+                            <input type="number" name="quantidade" max="{{produto.quantidade}}" min="1" value="1"> 
+                            <input type="hidden" name="produto_id" value="{{produto.id}}">                   
+                    </div>
+                    <div class="pedido">
+                        <button type="submit">ADICIONAR AO CARRINHO</button>              
+                      
+                        </form>
+                    </div>
+                </div>
+                <div class="descricao-produto">
+                    <h1>{{produto.descricao}}</h1>
+                </div>
+                
+            </div>
+            
+            {% endif %}
+    </div>
+    <!--PUBLICIDADE-->
+    <div class="publicidades">
+        <h2>555</h2>
+        <div class="publicidade">
+        </div>
+    </div>
+    </div>
+
+
+
+
+<!--MODAIS-->
+ <!--MODAL LOGIN-->
+ <div id="modalLogin" class="modal">
+    <div class="modal-content">
+    <h4>LOGIN</h4>
+    <form action="{{config.url}}/login" method="POST">
+        <h2>Usuario:</h2>
+        <input type="text" name="usuario" placeholder="Email ou Usuario">
+        <h2>Senha:</h2>
+        <input type="password" name="senha" placeholder="******">
+        <button>ENTRAR</button>
+    </form>
+    <h2>{{msg.msg}}</h2>
+    </div>
+
+    <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Voltar</a>
+    </div>
+    </div>
+    <!--MODAL CADASTRO-->
+    <div id="modalCadastro" class="modal">
+        <div class="modal-content">
+        <h4>LOGIN</h4>
+        <form action="{{config.url}}/cliente/cadastrarCliente" method="POST">
+            <h2>Usuario:</h2>
+            <input type="text" name="nome" placeholder="Nome de Usuario">
+            <h2>Email:</h2>
+            <input type="text" name="email" placeholder="Seu Email">
+            <h2>Senha:</h2>
+            <input type="password" name="senha" placeholder="******">
+            <button>CADASTRAR</button>
+        </form>
+        <h2>{{msg.MsgErroLogin}}</h2>
+        </div>
+
+        <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Voltar</a>
+        </div>
+        </div>
+</body>
+
+<!--RODAPE-->
+<footer class="footer">
+    <div class="rodape">
+        <div class="rodape-email">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+        <div class="rodape-waths">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+        <div class="rodape-cnpj">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+
+    </div>
+
+</footer>
+
+<!--JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--MATERIALIZE JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>         
+<!--JAVASCRIPT-->
+<script src="{{config.url}}/js/script.js"></script>
+<!--JAVASCRIPT PAGSEGURO-->
+<script type="text/javascript" src="{{config.scriptPagseguro}}"></script>
+             
+</html>
+

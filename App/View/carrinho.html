@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" conteudoAba="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{config.url}}/style/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+
+    <header>
+<!--BANNER-->
+<div class="banner">
+    <div class="img-banner">
+        <img src="{{config.url}}/img/logo.png" alt="logo">
+    </div>
+   
+    <div class="usuarios">
+        <div class="usuario">
+            {% if user == '' %}
+            <span class="material-icons">account_circle</span>
+            <h2><a class="modal-trigger" href="#modalLogin">Logar</a> ou <a class="modal-trigger" href="#modalCadastro">Cadastrar</a></h2>
+            {% else %}
+            <h2>Bem Vindo! {{user.user}}</h2>
+            <a href="{{config.url}}/home/logout">Logout</a> 
+            {% endif %}
+        </div>
+    </div>
+    </div>
+</header>
+<body>
+<!--CORPO CARRINHO-->
+<div class="corpoCarrinho">
+    <div class="topo">
+        <h2>Carrinho:</h2>
+        <a href="{{config.url}}/" class="btn">Voltar</a>
+    </div>
+    <!--PRODUTOS-->
+    <div class="produtosCarrinho">
+        <div class="detalhesProdutos">
+            <div>Produto</div>
+            <div>Preço</div>
+            <div>Quantidade</div>
+            <div>SubTotal</div>
+            <div>Deletar</div>
+        </div>
+        <hr>
+        <!--CARRINHO VAZIO-->
+        {% if produtos == '' %}
+        <div class="ProdutoCarrinho">
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+            <div>-</div>
+        </div>
+        <hr>
+        <!--CARRINHO !VAZIO-->
+        {% else %}
+        {% for produto in produtos %}
+        <div class="ProdutoCarrinho">
+            <div><img src="{{config.url}}/img/{{produto.img}}" alt="produto">{{produto.produto}}</div>
+            <div>{{produto.preco}}</div>
+            <div>{{produto.qntCarrinho}}</div>
+            <div>{{produto.subTotal}}</div>
+            <form action="{{config.url}}/carrinho/deletarProdutoCarrinho/" method="POST">
+            <div><button class="btn">X</button></div>
+            <input type="hidden" name="posicaoProduto" value="{{produto.posicao}}">
+            <input type="hidden" name="carrinhoId" value="{{produto.carrinhoId}}">
+            </form>
+            
+        </div>
+        <hr>
+        {% endfor %}
+        {% endif %}
+    
+    </div>
+    <!--FORMULARIO DO PEDIDO-->
+    <form name="formPagamento" action="" id="formPagamento">
+    <!--INFORMAÇOES DO PEDIDO-->
+    <input type="hidden" name="paymentMethod" id="paymentMethod" value="creditCard">
+        <input type="hidden" name="receiverEmail" id="receiverEmail" value="{{config.emailLoja}}">
+        <input type="hidden" name="currency" id="currency" value="{{config.moedaPagamento}}">
+        <input type="hidden" name="extraAmount" id="extraAmount" value="">
+        <input type="hidden" name="itemId1" id="itemId1" value="0001">
+        <input type="hidden" name="itemDescription1" id="itemDescription1" value="Curso de PHP Orientado a Objetos">
+        <input type="hidden" name="itemAmount1" id="itemAmount1" value="600.00">
+        <input type="hidden" name="itemQuantity1" id="itemQuantity1" value="1">
+        <input type="hidden" name="notificationURL" id="notificationURL" value="{{config.urlNotificacao}}">
+        <input type="hidden" name="reference" id="reference" value="1001">
+    <!--FRETE-->
+    <div class="detalhesPedido">
+        <div class="box">       
+            <button type="button" class="collapsible"><h2>Calcular Frete</h2></button>
+            
+            <div class="conteudoAba">
+            <div class="busca">         
+                <form action="" method="POST">
+                    <input type="text" name="pesquisa" value="Pesquisar..." id="pesquisa" autocomplete="off">
+                    <button><span class="material-icons">search</span></button>
+                </form>
+                
+                <div class="results"></div>
+                <label>Frete</label>
+        <input type="radio" name="shippingType" value="1"> PAC
+        <input type="radio" name="shippingType" value="2"> SEDEX
+        <input type="radio" name="shippingType" value="3"> Sem frete<br><br>
+        <label>Valor Frete</label>
+        <input type="text" name="shippingCost" id="senderCPF" placeholder="Preço do frete. Ex: 2.10"><br><br>
+            </div>
+            </div>
+        </div>
+        <!--ENDEREÇO ENTREGA-->
+        <div class="box">  
+            <button type="button" class="collapsible"><h2>Endereço De Entrega</h2></button>
+        <div class="conteudoAba">
+            <h2>Endereço de Entrega</h2>
+            <label>Entrega</label>
+            <input type="hidden" name="shippingAddressRequired" id="shippingAddressRequired" value="true" required><br><br>
+            <label>Logradouro</label>
+            <input type="text" name="shippingAddressStreet" id="shippingAddressStreet" placeholder="Av. Rua"><br><br>
+            <label>Número</label>
+            <input type="text" name="shippingAddressNumber" id="shippingAddressNumber" placeholder="Número"><br><br>
+            <label>Complemento</label>
+            <input type="text" name="shippingAddressComplement" id="shippingAddressComplement" placeholder="Complemento"><br><br>
+            <label>Bairro</label>
+            <input type="text" name="shippingAddressDistrict" id="shippingAddressDistrict" placeholder="Bairro"><br><br>
+            <label>CEP</label>
+            <input type="text" name="shippingAddressPostalCode" id="shippingAddressPostalCode" placeholder="CEP sem traço"><br><br>
+            <label>Cidade</label>
+            <input type="text" name="shippingAddressCity" id="shippingAddressCity" placeholder="Cidade"><br><br>
+            <label>Estado</label>
+            <input type="text" name="shippingAddressState" id="shippingAddressState" placeholder="Sigla do Estado"><br><br>
+            <label>País</label>
+            <input type="hidden" name="shippingAddressCountry" id="shippingAddressCountry" value="BRL"><br><br>
+        </div>
+        </div>
+        
+        <!--FORMA DE PAGAMENTO-->
+        <div class="box">
+            <button type="button" class="collapsible"><h2>Forma de Pagamento</h2></button>
+        <div class="conteudoAba">
+   
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#boleto">BOLETO</a></li>
+                <li class="tab col s3"><a href="#debito">DEBITO</a></li>
+                <li class="tab col s3"><a href="#credito">CREDITO</a></li>
+            </ul>
+            <div id="boleto" class="col s12">Test 1</div>
+            <div id="debito" class="col s12">Test 2</div>
+            <div id="credito" class="col s12">
+
+        <!--DADOS DO CARTAO-->
+           <h2>Dados do Cartão</h2>
+        <label>Número do cartão</label>
+        <input type="text" name="numCartao" id="numCartao" required> 
+        <span class="bandeira-cartao"></span><br><br>
+        <label>CVV do cartão</label>
+        <input type="text" name="cvvCartao" id="cvvCartao" maxlength="3" required><br><br>
+        <input type="hidden" name="bandeiraCartao" id="bandeiraCartao">
+        <label>Mês de Validade</label>
+        <input type="text" name="mesValidade" id="mesValidade" maxlength="2" required><br><br>
+        <label>Ano de Validade</label>
+        <input type="text" name="anoValidade" id="anoValidade" maxlength="4" required><br><br>
+        <label>Quantidades de Parcelas</label>
+        <select name="qntParcelas" id="qntParcelas" class="select-qnt-parcelas">
+            <option value="">Selecione</option>
+        </select><br><br> 
+        <input type="hidden" name="valorParcelas" id="valorParcelas">
+        <label>CPF do dono do Cartão</label>
+        <input type="text" name="creditCardHolderCPF" id="creditCardHolderCPF" placeholder="CPF sem traço" required><br><br>
+        <label>Nome no Cartão</label>
+        <input type="text" name="creditCardHolderName" id="creditCardHolderName" placeholder="Nome igual ao escrito no cartão" required><br><br>
+        <input type="hidden" name="tokenCartao" id="tokenCartao">
+        <input type="hidden" name="hashCartao" id="hashCartao">
+        </div>
+        </div>
+   
+        </div>
+        <!--ORÇAMENTO-->
+        <div class="box">
+            <h2>Orçamento</h2>
+            <h1>Produtos:R${{ValorTotalProd}}</h1>
+            <h1>Frete:R$0</h1>
+            <h1>Total:R$0</h1>
+        </div>
+    </form>
+    </div>
+</div>
+
+<!--MODAIS-->
+ <!--MODAL LOGIN-->
+ <div id="modalLogin" class="modal">
+    <div class="modal-content">
+    <h4>LOGIN</h4>
+    <form action="{{config.url}}/login" method="POST">
+        <h2>Usuario:</h2>
+        <input type="text" name="usuario" placeholder="Email ou Usuario">
+        <h2>Senha:</h2>
+        <input type="password" name="senha" placeholder="******">
+        <button>ENTRAR</button>
+    </form>
+    <h2>{{msg.MsgErroLogin}}</h2>
+    </div>
+
+    <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Voltar</a>
+    </div>
+    </div>
+    <!--MODAL CADASTRO-->
+    <div id="modalCadastro" class="modal">
+        <div class="modal-content">
+        <h4>LOGIN</h4>
+        <form action="{{config.url}}/cliente/cadastrarCliente" method="POST">
+            <h2>Usuario:</h2>
+            <input type="text" name="nome" placeholder="Nome de Usuario">
+            <h2>Email:</h2>
+            <input type="text" name="email" placeholder="Seu Email">
+            <h2>Senha:</h2>
+            <input type="password" name="senha" placeholder="******">
+            <button>CADASTRAR</button>
+        </form>
+        <h2>{{msg.MsgErroLogin}}</h2>
+        </div>
+
+        <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Voltar</a>
+        </div>
+        </div>
+
+</body>
+<!--RODAPE-->
+<footer class="footer">
+    <div class="rodape">
+        <div class="rodape-email">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+        <div class="rodape-waths">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+        <div class="rodape-cnpj">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+    </div>
+</footer>
+
+
+<!--JQUERY-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--MATERIALIZE JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>        
+<!--JAVASCRIPT-->
+<script src="{{config.url}}/js/script.js"></script>
+<!--JAVASCRIPT PAGSEGURO-->
+<script type="text/javascript" src="{{config.scriptPagseguro}}"></script>
+
+
+</html>

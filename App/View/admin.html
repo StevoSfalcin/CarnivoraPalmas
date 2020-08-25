@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{config.url}}/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="pesquisa.js"></script>
+</head>
+<body>
+<div class="admin">
+    <div class="banner">
+        <div class="botaoLoja">
+            <a class="btn" href="http://portfolio/Ecommerce/">Loja</a>
+        </div>
+        <div class="imgLogo">
+            <img src="http://portfolio/Ecommerce/img/logo.png" alt="logo">
+        </div>
+        <div class="botaoLogout">
+            <a class="btn" href="http://portfolio/Ecommerce/home/logout">Sair</a>
+        </div>
+    </div>
+
+    <div class="corpoAdmin">
+        <div class="opcoes">
+            <div class="opcao">
+                <div class="title">
+                <h1 class="PrimeiraOpcao">Geral</h1>
+                <hr>
+                </div>
+            </div>
+
+            <div class="opcao">
+                <div class="title">
+                <h1>Pedidos</h1>
+                <hr>
+                </div>  
+            </div>
+
+            <div class="opcao">
+                <div class="title">
+                <h1>Estoque</h1>
+                <hr>
+                </div>  
+            </div>
+
+            <div class="opcao">
+                <div class="title">
+                <h1>Categorias</h1>
+                <hr>
+                </div>  
+            </div>
+
+        </div>
+        
+        <div class="conteudo">
+            
+        <!--GERAL-->
+        <div class="text">
+            <div class="topoGeral">
+                <div class="caixa faturamentoGeral">
+                    <h1>Faturamento</h1>
+                    <h2>R$13.582,23</h2>
+                    <h3>*Ultimos 30 dias</h3>
+                </div>
+                <div class="caixa pedidosEnviadosGeral">
+                    <h1>Pedidos Enviados</h1>
+                    <h2>35 Pedidos</h2>
+                    <h3>*Ultimos 30 dias</h3>
+                </div>
+                <div class="caixa estoqueGeral">
+                    <h1>Estoque</h1>
+                    <h2>182 Produtos</h2>                 
+                </div>
+            </div>
+            <div class="corpoGeral">
+                <div class="caixa maisVendidos">
+                    <h1>Mais Vendidos</h1>
+                    <table border="1" class="bordered">
+                        <tr>
+                            <th>A</th>
+                            <th>A</th>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>B</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="caixa indiceVendas">    
+                    <div class="maisVendidos">
+                    <h1>Mais Vendidos</h1>
+                    <table border="1" class="bordered">
+                        <tr>
+                            <th>A</th>
+                            <th>A</th>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>B</td>
+                        </tr>
+                    </table>
+                </div>             
+                </div>
+                
+            </div>
+        </div>
+        <!--PEDIDOS-->
+        <div class="text">
+            <div class="tituloConteudo">
+                <h2>Pedidos</h2>
+            </div>
+                
+        </div>
+    
+        <!--Produtos-->
+        <div class="text">
+            <div class="estoque">
+            <div class="tituloConteudo">
+            <h2>Produtos</h2>
+            </div>
+            <table border="1" class="bordered">
+                <tr>
+                    <th>Produto</th>
+                    <th class="testeee">Descriçao</th>
+                    <th>Valor</th>
+                    <th>Quantidade</th>
+                    <th>Categoria</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                    <th></th>
+                </tr>
+                {% for produto in produtos %}
+                <tr>
+                    <td>{{produto.nome}}</td> 
+                    <td>{{produto.descricao}}</td> 
+                    <td>R${{produto.preco}}</td>
+                    <td>{{produto.quantidade}}unidades</td>
+                    <td>{{produto.categoria}}</td>    
+                    <td><a class="waves-effect waves-light btn modal-trigger" href="#{{produto.id}}">Editar</a></td>
+                    <td><a class="waves-effect waves-light btn modal-trigger" href="#deletar{{produto.id}}">Deletar</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <!-- Modal Editar Produto-->
+            {% for produto in produtos %}
+            <div id="{{produto.id}}" class="modal">
+                <div class="modal-content">
+                  <h4>Editar Produto</h4>
+                  <form action="http://portfolio/Ecommerce/admin/atualizaProduto" enctype="multipart/form-data" method="POST">
+                      <div class="campoEditar">
+                      <h2>Nome: </h2>
+                      <input type="text" required value="{{produto.nome}}" name="nome">
+                      </div>  
+                      <div class="campoEditar">
+                      <h2>Descriçao: </h2>
+                      <input type="text" required value="{{produto.descricao}}" name="descricao">
+                      </div>
+                      <div class="campoEditar">
+                      <h2>Preço: </h2>
+                      <input type="text" required value="{{produto.preco}}" name="preco">
+                      </div>
+                      <div class="campoEditar">
+                      <h2>Quantidade: </h2>
+                      <input type="text" required value="{{produto.quantidade}}" name="quantidade">
+                      </div>
+                      <div class="campoEditar">
+                      <h2>Categoria: </h2>
+                      <input type="text" required value="{{produto.categoria}}" name="categoria">
+                      </div>
+                      <div class="campoEditar">
+                      <h2>Imagem: </h2>
+                      <input type="file" required name="arquivo">
+                      </div>
+                      <input type="hidden" value="{{produto.id}}" name="id">
+
+                      <input class="btn" type="submit" name="editarProduto" value="Editar Produto">
+                      
+                  </form>
+
+                </div>
+                <div class="modal-footer">
+                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Voltar</a>
+                </div>
+              </div>
+            {% endfor %}
+            </div>
+            <!--MODAL Deletar Produto-->
+            {% for produto in produtos %}
+            <div id="deletar{{produto.id}}" class="modal">
+                <div class="modal-content">
+                  <h4>Deletar Produto</h4>
+                  <h2>Voce tem certeza que deseja deletar esse produto?</h2>
+                  <a href="http://portfolio/Ecommerce/admin/deletarProduto/{{produto.id}}" class="waves-green btn">Sim(Deletar)</a>
+                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cancelar</a>
+
+                </div>
+                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Voltar</a>
+              </div>
+            {% endfor %}
+
+            <!--BOTAO ADIONAR PRODUTO-->
+            <a class="waves-effect waves-light btn modal-trigger" href="#adicionarProduto">Adicionar Produto</a>
+            <!--MODAL ADIONAR PRODUTO-->
+            <div id="adicionarProduto" class="modal">
+                <div class="modal-content">
+                  <h4>Adicionar Produto</h4>
+                  <form action="http://portfolio/Ecommerce/admin/adicionaProduto" enctype="multipart/form-data" method="POST">
+                    <div class="campoEditar">
+                    <h2>Nome: </h2>
+                    <input type="text" required  name="nome">
+                    </div>  
+                    <div class="campoEditar">
+                    <h2>Descriçao: </h2>
+                    <input type="text" required  name="descricao">
+                    </div>
+                    <div class="campoEditar">
+                    <h2>Preço: </h2>
+                    <input type="text" required  name="preco">
+                    </div>
+                    <div class="campoEditar">
+                    <h2>Quantidade: </h2>
+                    <input type="text" required  name="quantidade">
+                    </div>
+                    <div class="campoEditar">
+                    <h2>Categoria: </h2>
+                    <input type="text" required name="categoria">
+                    </div>
+                    <div class="campoEditar">
+                    <h2>Imagem: </h2>
+                    <input type="file" required name="arquivo">
+                    </div>
+
+                    <input class="btn" type="submit" name="criarProduto" value="Criar Produto">
+                    
+                </form>
+                </div>
+                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Voltar</a>
+              </div>
+        </div>
+
+        <!--CATEGORIAS-->
+        <div class="text">
+                <h2>Categorias</h2>
+                <table border="1" class="bordered">                   
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                    </tr>
+                    {% for categoria in categorias %}
+                    <tr>
+                        <td>{{categoria.categoria}}</td>
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#editar{{categoria.id}}">Editar</a></td>
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#deletarCat{{categoria.id}}">Deletar</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+                <!-- Modal Editar Categoria-->
+            {% for categoria in categorias %}
+            <div id="editar{{categoria.id}}" class="modal">
+                <div class="modal-content">
+                  <h4>Editar categoria</h4>
+                  <form action="http://portfolio/Ecommerce/admin/atualizaCategoria" enctype="multipart/form-data" method="POST">
+                      <div class="campoEditar">
+                      <h2>Nome: </h2>
+                      <input type="text" required value="{{categoria.categoria}}" name="categoria">
+                      </div>  
+                      <input type="hidden" value="{{categoria.id}}" name="id">
+                      <input type="hidden" value="{{categoria.categoria}}" name="nomeAtual">
+                    
+                      <button class="btn" type="submit" name="editarcategoria" value="Editar categoria">Editar</button>
+                      <a class="modal-action modal-close waves-effect btn">ddd</a>
+                      
+                  </form>
+
+                </div>
+        
+              </div>
+            {% endfor %}
+
+                <!--MODAL Deletar Categoria-->
+                {% for categoria in categorias %}
+                <div id="deletarCat{{categoria.id}}" class="modal">
+                    <div class="modal-content">
+                      <h4>Deletar Produto</h4>
+                      <h2>Voce tem certeza que deseja deletar esse produto?</h2>
+                      <form action="http://portfolio/Ecommerce/admin/deletarCategoria/{{categoria.id}}" method="POST">
+                      <input type="hidden" value="{{categoria.categoria}}" name="categoria">
+                      <button class="btn" type="submit" name="editarcategoria">Deletar</button>
+                      <a class="modal-action modal-close waves-effect btn">Cancelar</a>
+                      </form>
+
+                    </div>
+                    
+                  </div>
+                {% endfor %}
+
+            <!--BOTAO CRIAR CATEGORIA-->
+            <a class="waves-effect waves-light btn modal-trigger" href="#adicionarCategoria">Adicionar Categoria</a>
+            <!--MODAL CRIAR CATEGORIA-->
+            <div id="adicionarCategoria" class="modal">
+                <div class="modal-content">
+                  <h4>Adicionar Categoria</h4>
+                  <form action="http://portfolio/Ecommerce/admin/criarCategoria" enctype="multipart/form-data" method="POST">
+
+                    <div class="campoEditar">
+                    <h2>Nome: </h2>
+                    <input type="text" required  name="categoria">
+                    </div>  
+
+                    <input class="btn" type="submit" name="criarcategoria" value="Criar categoria">
+                    
+                </form>
+                </div>
+                  <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Voltar</a>
+              </div>
+               
+        </div>
+                
+            
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="rodape">
+        <div class="rodape-email">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+        <div class="rodape-waths">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+        <div class="rodape-cnpj">
+          <h2>carnivorapalmas@gmail.com</h2>
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+<!--JQUERY-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
+<!--MATERIALIZE JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>        
+
+<!--JAVASCRIPT-->
+<script>
+
+    $(document).ready(function(){
+        //MENU MOBILE//
+        $(".button-collapse").sideNav();
+        //MODAL
+        $(".modal").modal();
+        //ESCONDER MENU AO CLICAR
+        $(".hide-menu").click(function(){
+            $(".button-collapse").sideNav("hide");
+        });
+
+    }); 
+
+    var trigger = Array.from(document.querySelectorAll('.title'));
+    trigger.forEach(function(el,index,all){
+        el.addEventListener('click',function(){
+            let container=document.querySelector('.conteudo');
+            let content = Array.from(document.querySelectorAll('.conteudo .text'));
+            content.forEach(function(el){
+                el.style.display="none";
+            });
+            content[index].style.display="block";
+            
+        });
+    });
+    $(document).ready(function() {
+    $('.PrimeiraOpcao').trigger("click");
+});
+
+</script>
+
+
+
+</html>
+
