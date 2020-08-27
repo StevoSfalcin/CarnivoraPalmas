@@ -21,6 +21,7 @@ function sessionId() {
 
 function listarMeiosPag(){
   PagSeguroDirectPayment.getPaymentMethods({
+      amount:amount,
     success: function(retorno) {
         $('.meioPag').append('<div>Cartao Credito</div>');
         $.each(retorno.PaymentMethods.CREDIT_CARD.options,function(i, obj){
