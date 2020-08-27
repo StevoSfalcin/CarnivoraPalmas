@@ -10,7 +10,7 @@ function sessionId() {
       dataType: 'json',
       success: function (retorno) {
          console.log(retorno); 
-          PagSeguroDirectPayment.setSessionId(retorno.id);
+         PagSeguroDirectPayment.setSessionId(retorno.id);
           listarMeiosPag();
       },
       complete: function (retorno) {
