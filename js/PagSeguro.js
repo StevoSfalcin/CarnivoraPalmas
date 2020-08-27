@@ -29,7 +29,7 @@ function listarMeiosPag(){
 
     },
     error: function(retorno) {
-        console.log(retorno)
+   
     },
     complete: function(retorno) {
         console.log(444);
