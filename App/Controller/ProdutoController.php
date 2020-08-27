@@ -28,7 +28,7 @@ class ProdutoController{
         $template = $twig->load('home.html');
     
         $dadosRender = array();
-        $dadosRender['produto'] = $dados;
+        $dadosRender['destaques'] = $dados;
         $dadosRender['categorias'] = $dadosCat;
         $dadosRender['user'] = $_SESSION['user'] ?? ''  ;
         $dadosRender['config'] = array('url'=>URL,'scriptPagseguro'=>SCRIPT_PAGSEGURO);

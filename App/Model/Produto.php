@@ -19,7 +19,12 @@ class produto{
 		$sql = $con->prepare($sql);
 		$sql->bindValue(':busc', $cat);
 		$sql->execute();
-        $dados = $sql->fetchObject(); 
+        $dados = array();
+
+        while($row = $sql->fetchObject()){
+            $dados[] = $row;     
+        }
+            
         return $dados;
     }
 
