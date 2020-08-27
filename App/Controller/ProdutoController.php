@@ -14,7 +14,7 @@ class ProdutoController{
         $dadosRender['produto'] = $dados;
         $dadosRender['categorias'] = $dadosCat;
         $dadosRender['user'] = $_SESSION['user'] ?? ''  ;
-        $dadosRender['config'] = array('url'=>URL);
+        $dadosRender['config'] = array('url'=>URL,'scriptPagseguro'=>SCRIPT_PAGSEGURO);
 
         echo $template->render($dadosRender);
 
