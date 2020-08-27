@@ -23,18 +23,13 @@ function listarMeiosPag(){
     PagSeguroDirectPayment.getPaymentMethods({
         amount: amount,
         success: function (retorno) {
-        $('.meioPag').append('<div>Cartao Credito</div>');
-        $.each(retorno.PaymentMethods.CREDIT_CARD.options,function(i, obj){
-            $('.meioPag').append("<div class='imgBand'<img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'>'></div>");
-        });
-        $('.meioPag').append('<div>Boleto</div>');
-        
+
         console.log(retorno);
 
 
     },
     error: function(retorno) {
-        // Callback para chamadas que falharam.
+        console.log(retorno)
     },
     complete: function(retorno) {
         console.log(444);
