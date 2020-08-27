@@ -15,13 +15,13 @@
 <div class="admin">
     <div class="banner">
         <div class="botaoLoja">
-            <a class="btn" href="http://portfolio/Ecommerce/">Loja</a>
+            <a class="btn" href="{{config.url}}">Loja</a>
         </div>
         <div class="imgLogo">
-            <img src="http://portfolio/Ecommerce/img/logo.png" alt="logo">
+            <img src="{{config.url}}img/logo.png" alt="logo">
         </div>
         <div class="botaoLogout">
-            <a class="btn" href="http://portfolio/Ecommerce/home/logout">Sair</a>
+            <a class="btn" href="{{config.url}}home/logout">Sair</a>
         </div>
     </div>
 
@@ -151,7 +151,7 @@
             <div id="{{produto.id}}" class="modal">
                 <div class="modal-content">
                   <h4>Editar Produto</h4>
-                  <form action="http://portfolio/Ecommerce/admin/atualizaProduto" enctype="multipart/form-data" method="POST">
+                  <form action="{{config.url}}admin/atualizaProduto" enctype="multipart/form-data" method="POST">
                       <div class="campoEditar">
                       <h2>Nome: </h2>
                       <input type="text" required value="{{produto.nome}}" name="nome">
@@ -195,7 +195,7 @@
                 <div class="modal-content">
                   <h4>Deletar Produto</h4>
                   <h2>Voce tem certeza que deseja deletar esse produto?</h2>
-                  <a href="http://portfolio/Ecommerce/admin/deletarProduto/{{produto.id}}" class="waves-green btn">Sim(Deletar)</a>
+                  <a href="{{config.url}}admin/deletarProduto/{{produto.id}}" class="waves-green btn">Sim(Deletar)</a>
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cancelar</a>
 
                 </div>
@@ -209,7 +209,7 @@
             <div id="adicionarProduto" class="modal">
                 <div class="modal-content">
                   <h4>Adicionar Produto</h4>
-                  <form action="http://portfolio/Ecommerce/admin/adicionaProduto" enctype="multipart/form-data" method="POST">
+                  <form action="{{config.url}}admin/adicionaProduto" enctype="multipart/form-data" method="POST">
                     <div class="campoEditar">
                     <h2>Nome: </h2>
                     <input type="text" required  name="nome">
@@ -266,7 +266,7 @@
             <div id="editar{{categoria.id}}" class="modal">
                 <div class="modal-content">
                   <h4>Editar categoria</h4>
-                  <form action="http://portfolio/Ecommerce/admin/atualizaCategoria" enctype="multipart/form-data" method="POST">
+                  <form action="{{config.url}}admin/atualizaCategoria" enctype="multipart/form-data" method="POST">
                       <div class="campoEditar">
                       <h2>Nome: </h2>
                       <input type="text" required value="{{categoria.categoria}}" name="categoria">
@@ -290,7 +290,7 @@
                     <div class="modal-content">
                       <h4>Deletar Produto</h4>
                       <h2>Voce tem certeza que deseja deletar esse produto?</h2>
-                      <form action="http://portfolio/Ecommerce/admin/deletarCategoria/{{categoria.id}}" method="POST">
+                      <form action="{{config.url}}admin/deletarCategoria/{{categoria.id}}" method="POST">
                       <input type="hidden" value="{{categoria.categoria}}" name="categoria">
                       <button class="btn" type="submit" name="editarcategoria">Deletar</button>
                       <a class="modal-action modal-close waves-effect btn">Cancelar</a>
@@ -307,7 +307,7 @@
             <div id="adicionarCategoria" class="modal">
                 <div class="modal-content">
                   <h4>Adicionar Categoria</h4>
-                  <form action="http://portfolio/Ecommerce/admin/criarCategoria" enctype="multipart/form-data" method="POST">
+                  <form action="{{config.url}}admin/criarCategoria" enctype="multipart/form-data" method="POST">
 
                     <div class="campoEditar">
                     <h2>Nome: </h2>
@@ -350,42 +350,12 @@
 </body>
 <!--JQUERY-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    
-<!--MATERIALIZE JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>        
-
+    <!--MATERIALIZE JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>         
 <!--JAVASCRIPT-->
-<script>
+<script src="{{config.url}}/js/script.js"></script>      
 
-    $(document).ready(function(){
-        //MENU MOBILE//
-        $(".button-collapse").sideNav();
-        //MODAL
-        $(".modal").modal();
-        //ESCONDER MENU AO CLICAR
-        $(".hide-menu").click(function(){
-            $(".button-collapse").sideNav("hide");
-        });
 
-    }); 
-
-    var trigger = Array.from(document.querySelectorAll('.title'));
-    trigger.forEach(function(el,index,all){
-        el.addEventListener('click',function(){
-            let container=document.querySelector('.conteudo');
-            let content = Array.from(document.querySelectorAll('.conteudo .text'));
-            content.forEach(function(el){
-                el.style.display="none";
-            });
-            content[index].style.display="block";
-            
-        });
-    });
-    $(document).ready(function() {
-    $('.PrimeiraOpcao').trigger("click");
-});
-
-</script>
 
 
 

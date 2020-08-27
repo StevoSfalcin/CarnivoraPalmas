@@ -50,5 +50,37 @@ $.ajaxSetup ({
 });
 
 
+$(document).ready(function(){
+    //MENU MOBILE//
+    $(".button-collapse").sideNav();
+    //MODAL
+    $(".modal").modal();
+    //ESCONDER MENU AO CLICAR
+    $(".hide-menu").click(function(){
+        $(".button-collapse").sideNav("hide");
+    });
+
+}); 
+
+
+//TABS ADMIN
+
+var trigger = Array.from(document.querySelectorAll('.title'));
+trigger.forEach(function(el,index,all){
+    el.addEventListener('click',function(){
+        let container=document.querySelector('.conteudo');
+        let content = Array.from(document.querySelectorAll('.conteudo .text'));
+        content.forEach(function(el){
+            el.style.display="none";
+        });
+        content[index].style.display="block";
+        
+    });
+});
+$(document).ready(function() {
+$('.PrimeiraOpcao').trigger("click");
+});
+
+
 
 
