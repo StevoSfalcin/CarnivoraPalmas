@@ -22,14 +22,14 @@ function sessionId() {
 function listarMeiosPag(){
     PagSeguroDirectPayment.getPaymentMethods({
         amount: amount,
+
         success: function (retorno) {
 
-        console.log(retorno);
-        $('.meioPag').append('<h1>Cartao de Credito</h1>')
+            console.log(retorno);
+        $('.meioPag').append('<h1>Cartao de Credito</h1>');
         $each(retorno.PaymentMethod.CREDIT_CARD.option, function(i, obj){
             $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br/"+obj.imagens.MEDIUM.path+"'</div>");
         });
-
         $('.meioPag').append('<h1>BOLETO</h1>');
         $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br/"+retorno.PaymentMethod.BOLETO.options.BOLETO.imagens.path+"'</div>");
 
