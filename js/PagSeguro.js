@@ -9,11 +9,12 @@ function sessionId() {
       type: 'POST',
       dataType: 'json',
       success: function (retorno) {
-         console.log(retorno); 
+   
          PagSeguroDirectPayment.setSessionId(retorno.id);
-          listarMeiosPag();
+          
       },
       complete: function (retorno) {
+        listarMeiosPag();
         
       }
   });
@@ -22,12 +23,11 @@ function sessionId() {
 function listarMeiosPag(){
     PagSeguroDirectPayment.getPaymentMethods({
         amount: amount,
-
         success: function (retorno) {
 
             console.log(retorno);
         $('.meioPag').append('<h1>Cartao de Credito</h1>');
-        $each(retorno.PaymentMethod.CREDIT_CARD.option, function(i, obj){
+        $.each(retorno.PaymentMethod.CREDIT_CARD.option, function(i, obj){
             $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br/"+obj.imagens.MEDIUM.path+"'</div>");
         });
         $('.meioPag').append('<h1>BOLETO</h1>');
@@ -35,11 +35,11 @@ function listarMeiosPag(){
 
     },
     error: function(retorno) {
-        console.log(retorno);
+        
    
     },
     complete: function(retorno) {
-        console.log(444);
+        
     }
 });
 }

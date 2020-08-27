@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 class ProdutoController{
-    public function id($id){
+    public function codigo($id){
         $dados = \App\Model\Produto::selecionaPorId($id);
         $dadosCat = \App\Model\Home::categorias();
         $loader = new \Twig\Loader\FilesystemLoader('App/View/');

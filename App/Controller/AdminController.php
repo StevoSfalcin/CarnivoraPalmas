@@ -18,9 +18,7 @@ class AdminController{
 
         echo $template->render($dadosRender);
     }
-
     /******************** PRODUTOS *******************/
-
     public function adicionaProduto(){
     try{
         $dados = new \App\Model\admin();
@@ -34,12 +32,10 @@ class AdminController{
         $dados->setImg($_FILES['arquivo']);
         $dados->adicionaProduto();
         header('Location:'.URL.'/admin');
-
         }catch(\Exception $e){
             var_dump($e->getMessage());
         }
     }
-
     public function atualizaProduto(){
     try{
         $dados = new \App\Model\admin();
@@ -53,12 +49,10 @@ class AdminController{
         $dados->setImg($_FILES['arquivo']);
         $dados->atualizaProduto();
         header('Location:'.URL.'/admin');
-
         }catch(\Exception $e){
             var_dump($e->getMessage());
         }
     }
-
     public function deletarProduto($id){
         try{
         $admin = new \App\Model\admin();
@@ -69,9 +63,7 @@ class AdminController{
         var_dump($e->getMessage());
         }
     }
-
     /******************** CATEGORIAS *******************/
-
     public function criarCategoria(){
         try{
             $admin = new \App\Model\admin();
@@ -83,7 +75,6 @@ class AdminController{
             var_dump($e->getMessage());
         }
     }
-
     public function atualizaCategoria(){
         try{
             $admin = new \App\Model\admin();
@@ -92,12 +83,10 @@ class AdminController{
             $admin->atualizaCategoria();
             $admin->atualizaCategoriaProduto($_POST['nomeAtual']);
             header('Location:'.URL.'/admin');
-
         }catch(\Exception $e){
             var_dump($e->getMessage());
         }
     }
-
     public function deletarCategoria($id){
         try{
             $admin = new \App\Model\admin();
@@ -109,9 +98,5 @@ class AdminController{
         }catch(\Exception $e){
             var_dump($e->getMessage());
         }
-
     }
-
-
-
 }
