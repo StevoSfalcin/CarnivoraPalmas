@@ -15,7 +15,7 @@ class produto{
 
     public static function selecionaPorCat($cat){
         $con = \App\lib\Database\Conexao::connect();
-        $sql = "SELECT * FROM produtos WHERE id LIKE :busc";
+        $sql = "SELECT * FROM produtos WHERE categoria LIKE :busc";
 		$sql = $con->prepare($sql);
 		$sql->bindValue(':busc', $cat);
 		$sql->execute();
