@@ -20,15 +20,15 @@ function sessionId() {
 }
 
 function listarMeiosPag(){
-  PagSeguroDirectPayment.getPaymentMethods({
-      amount:amount,
-    success: function(retorno) {
+    PagSeguroDirectPayment.getPaymentMethods({
+        amount: amount,
+        success: function (retorno) {
         $('.meioPag').append('<div>Cartao Credito</div>');
         $.each(retorno.PaymentMethods.CREDIT_CARD.options,function(i, obj){
             $('.meioPag').append("<div class='imgBand'<img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'>'></div>");
         });
         $('.meioPag').append('<div>Boleto</div>');
-        $('.meioPag').append("<div class='imgBand'<img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'>'></div>");
+        
         console.log(retorno);
 
 
@@ -37,7 +37,7 @@ function listarMeiosPag(){
         // Callback para chamadas que falharam.
     },
     complete: function(retorno) {
-        // Callback para todas chamadas.
+        console.log(444);
     }
 });
 }
