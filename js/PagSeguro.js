@@ -26,8 +26,7 @@ function listarMeiosPag(){
         });
         //BOLETO
         $('.meioPag').append('<h1>BOLETO</h1>');
-        $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br"+retorno.paymentMethods.BOLETO.options.BOLETO.images.SMALL.path+"'></div>");
-        
+        $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br"+retorno.paymentMethods.BOLETO.options.BOLETO.images.SMALL.path+"'></div>");    
         //DEBITO
         $('.meioPag').append('<h1>DEBITO</h2>');
         $.each(retorno.paymentMethods.ONLINE_DEBIT.options,function(i, obj){
@@ -51,27 +50,53 @@ function senderHash(){
     });
 }
 //OBTER BANDEIRA DO CARTAO
-function bandCartao(){
-    $('#numCartao').on('keyup', function () {
-        var numCartao = $(this).val();
-        var lenghtNum = numCartao.length;
-        if(lenghtNum == 6){
-            PagSeguroDirectPayment.getBrand({
-                cardBin: numCartao,
-                success: function(retorno) {
-                  console.log(retorno);
-                },
-                error: function(retorno) {
-                  //tratamento do erro
-                },
-                complete: function(retorno) {
-                  //tratamento comum para todas chamadas
-                }
+
+$('#numCartao').on('keyup', function () {
+    var numCartao = $(this).val();
+    var lenghtNum = numCartao.length;
+    if(lenghtNum == 6){
+        PagSeguroDirectPayment.getBrand({
+            cardBin: numCartao,
+            success: function(retorno) {
+              var imgBand = retorno.brand.name;
+              recupParcelas(imgBand);
+            },
+            error: function(retorno) {
+              //tratamento do erro
+            },
+            complete: function(retorno) {
+              //tratamento comum para todas chamadas
+            }
+        });
+    }
+})
+
+function recupParcelas(imgBand){
+    PagSeguroDirectPayment.getInstallments({
+        amount: amount,
+        maxInstallmentNoInterest: 2,
+        brand: imgBand,
+        success: function(retorno){
+            console.log(retorno);
+            $.each(retorno.installments, function (ia, obja) {
+                $.each(obja,function(ib,objb) {
+                    var valorParcela = objb.installmentAmount.toFixed(2).replace(".",",");
+                   $('#qntParcelas').show().append("<option value='"+objb.quantity+"'data-parcelas='"+objb.installmentAmount+"'>"+objb.quantity+"Parcelas de R$"+valorParcela+"</option>");
+                });
             });
-        }
-    })
+       },
+        error: function(retorno) {
+            
+       },
+        complete: function(retorno){
+            // Callback para todas chamadas.
+       }
+});
 }
 
+$('#qntParcelas').change(function () {
+    $('#valorParcelas').val($('#qntParcelas').find(':selected').attr('data-parcelas'));
+});
 
 
 
