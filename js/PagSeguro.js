@@ -117,7 +117,7 @@ function hashCartao(){
         }
         var hash = response.senderHash; //Hash estará disponível nesta variável.
         $('#hasCartao').val(retorno.senderHash);
-        var dados = ('#formPagamento').serialize();
+        var dados = $("#formPagamento").serialize();
         console.log(dados);
     });
 }
