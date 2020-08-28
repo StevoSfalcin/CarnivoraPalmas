@@ -192,6 +192,25 @@
     <label>E-mail</label>
     <input type="email" name="senderEmail" id="senderEmail" placeholder="E-mail do comprador" value="c66860546910556664625@sandbox.pagseguro.com.br" required><br><br>
     </div>
+    <!--ENDEREÇO DO DONO DO CARTAO-->
+    <div class="dadosComprador">
+    <h2>Endereço do dono do cartão</h2>    
+    <label>Logradouro</label>
+    <input type="text" name="billingAddressStreet" id="billingAddressStreet" placeholder="Av. Rua" value="Av. Brig. Faria Lima" required><br><br>    
+    <label>Número</label>
+    <input type="text" name="billingAddressNumber" id="billingAddressNumber" placeholder="Número" value="1384" required><br><br>    
+    <label>Complemento</label>
+    <input type="text" name="billingAddressComplement" id="billingAddressComplement" placeholder="Complemento" value="5o andar"><br><br>    
+    <label>Bairro</label>
+    <input type="text" name="billingAddressDistrict" id="billingAddressDistrict" placeholder="Bairro" value="Jardim Paulistano"><br><br>    
+    <label>CEP</label>
+    <input type="text" name="billingAddressPostalCode" id="billingAddressPostalCode" placeholder="CEP sem traço" value="01452002" required><br><br>    
+    <label>Cidade</label>
+    <input type="text" name="billingAddressCity" id="billingAddressCity" placeholder="Cidade" value="Sao Paulo" required><br><br>    
+    <label>Estado</label>
+    <input type="text" name="billingAddressState" id="billingAddressState" placeholder="Sigla do Estado" value="SP" required><br><br>    
+    <input type="hidden" name="billingAddressCountry" id="billingAddressCountry" value="BRL">
+    </div>
     <!--ORÇAMENTO-->
     <div class="box">
         <h2>Orçamento</h2>
