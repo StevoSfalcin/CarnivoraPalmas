@@ -81,14 +81,14 @@
     <!--INFORMAÇOES DO PEDIDO-->
 
     <input type="hidden" name="paymentMethod" id="paymentMethod" value="creditCard">    
-    <input type="hidden" name="receiverEmail" id="receiverEmail" value="<?php echo EMAIL_LOJA; ?>">    
-    <input type="hidden" name="currency" id="currency" value="<?php echo MOEDA_PAGAMENTO; ?>">    
+    <input type="hidden" name="receiverEmail" id="receiverEmail" value="{{config.emailLoja}}">    
+    <input type="hidden" name="currency" id="currency" value="{{config.moedaPagamento}}">    
     <!--<input type="hidden" name="extraAmount" id="extraAmount" value="">-->    
     <input type="hidden" name="itemId1" id="itemId1" value="0001">    
     <input type="hidden" name="itemDescription1" id="itemDescription1" value="Curso de PHP Orientado a Objetos">    
     <input type="hidden" name="itemAmount1" id="itemAmount1" value="600.00">    
     <input type="hidden" name="itemQuantity1" id="itemQuantity1" value="1">    
-    <input type="hidden" name="notificationURL" id="notificationURL" value="<?php echo URL_NOTIFICACAO; ?>">    
+    <input type="hidden" name="notificationURL" id="notificationURL" value="{{config.urlNotificacao}}">    
     <input type="hidden" name="reference" id="reference" value="1001">
     <input type="hidden" name="amount" id="amount" value="600.00">
     <input type="hidden" name="noIntInstalQuantity" id="noIntInstalQuantity" value="2">
@@ -191,23 +191,6 @@
     <input type="text" name="senderPhone" id="senderPhone" placeholder="Somente número" value="56273440" required><br><br>
     <label>E-mail</label>
     <input type="email" name="senderEmail" id="senderEmail" placeholder="E-mail do comprador" value="c66860546910556664625@sandbox.pagseguro.com.br" required><br><br>
-    <h2>Endereço de Entrega</h2>
-    <input type="hidden" name="shippingAddressRequired" id="shippingAddressRequired" value="true">
-    <label>Logradouro</label>
-    <input type="text" name="shippingAddressStreet" id="shippingAddressStreet" placeholder="Av. Rua" value="Av. Brig. Faria Lima"><br><br>
-    <label>Número</label>
-    <input type="text" name="shippingAddressNumber" id="shippingAddressNumber" placeholder="Número" value="1384"><br><br>
-    <label>Complemento</label>
-    <input type="text" name="shippingAddressComplement" id="shippingAddressComplement" placeholder="Complemento" value="5o andar"><br><br>
-    <label>Bairro</label>
-    <input type="text" name="shippingAddressDistrict" id="shippingAddressDistrict" placeholder="Bairro" value="Jardim Paulistano"><br><br>
-    <label>CEP</label>
-    <input type="text" name="shippingAddressPostalCode" id="shippingAddressPostalCode" placeholder="CEP sem traço" value="01452002"><br><br>
-    <label>Cidade</label>
-    <input type="text" name="shippingAddressCity" id="shippingAddressCity" placeholder="Cidade" value="Sao Paulo"><br><br>
-    <label>Estado</label>
-    <input type="text" name="shippingAddressState" id="shippingAddressState" placeholder="Sigla do Estado" value="SP"><br><br>
-    </div>
     <!--ORÇAMENTO-->
     <div class="box">
         <h2>Orçamento</h2>
