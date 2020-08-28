@@ -1,11 +1,11 @@
 <?php
 
-include "config/config.php";
+include './configuracao.php';
 
+$Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-$dadosArray['email']= EMAIL_PAGSEGURO;
-$dadosArray['token']= TOKEN_PAGSEGURO;
+$DadosArray["email"]=EMAIL_PAGSEGURO;
+$DadosArray["token"]=TOKEN_PAGSEGURO;
 
 $DadosArray['paymentMode'] = 'default';
 $DadosArray['paymentMethod'] = $Dados['paymentMethod'];
@@ -54,18 +54,20 @@ $DadosArray['billingAddressCity'] = $Dados['billingAddressCity'];
 $DadosArray['billingAddressState'] = $Dados['billingAddressState'];
 $DadosArray['billingAddressCountry'] = $Dados['billingAddressCountry'];
 
-$buildQuery = http_build_query($dadosArray);
-$url = URL_PAGSEGURO."transactions";
+$buildQuery = http_build_query($DadosArray);
+$url = URL_PAGSEGURO . "transactions";
 
 $curl = curl_init($url);
-curl_setopt($curl,CURLOPT_HTTPHEADER,Array("Content-Type: application/x-www-form-urlencoded; charset=UTF-8"));
-curl_setopt($curl,CURLOPT_POST,true);
-curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,true);
-curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
-curl_setopt($curl,CURLOPT_POSTFIELDS,$buildQuery);
-$retorno - curl_exec($curl);
-$xml=simplexml_load_string($retorno);
+curl_setopt($curl, CURLOPT_HTTPHEADER, Array("Content-Type: application/x-www-form-urlencoded; charset=UTF-8"));
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $buildQuery);
+$retorno = curl_exec($curl);
+curl_close($curl);
+$xml = simplexml_load_string($retorno);
 
-header('Content-Type:aplication/json');
 
+$retorna = ['erro' => true, 'dados' => $xml];
+header('Content-Type: application/json');
 echo json_encode($retorna);

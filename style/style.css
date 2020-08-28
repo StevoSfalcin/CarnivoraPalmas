@@ -104,6 +104,7 @@ table td{text-align: center;}
 .box form input[type=text]{max-width: 80%;}
 .box button{background-color: white;border: none;width: 100%;}
 .conteudoAba{margin: 0;padding: 0;}
+.dadosComprador{display: none;}
 
 /******** CLIENTE **********/
 .cliente .banner{align-items: center;}
