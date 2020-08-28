@@ -44,7 +44,7 @@ function listarMeiosPag(){
 $('#numCartao').on('keyup', function () {
     var numCartao = $(this).val();
     var lenghtNum = numCartao.length;
-    if(lenghtNum == 6){
+    if(lenghtNum >= 6){
         PagSeguroDirectPayment.getBrand({
             cardBin: numCartao,
             success: function(retorno) {
