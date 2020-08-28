@@ -110,15 +110,15 @@ $("#formPagamento").on("submit", function (event) {
 })
 
 function hashCartao(){
-    PagSeguroDirectPayment.onSenderHashReady(function(response){
-        if(response.status == 'error') {
-            console.log(response.message);
+    PagSeguroDirectPayment.onSenderHashReady(function (retorno) {
+        if (retorno.status == 'error') {
+            console.log(retorno.message);
             return false;
+        } else {
+            $("#hashCartao").val(retorno.senderHash);
+            var dados = $("#formPagamento").serialize();
+            console.log(dados);
         }
-        var hash = response.senderHash; //Hash estará disponível nesta variável.
-        $("#hashCartao").val(retorno.senderHash);
-        var dados = $("#formPagamento").serialize();
-        console.log(dados);
     });
 }
 
