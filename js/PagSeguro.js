@@ -118,6 +118,22 @@ function hashCartao(){
             $("#hashCartao").val(retorno.senderHash);
             var dados = $("#formPagamento").serialize();
             console.log(dados);
+
+            $.ajax({
+                url:"procPag.php",
+                method:"POST",
+                data:dados,
+                dataType:"json",
+                success: function(retorno){
+                    console.log("sucesso"+retorno);
+
+                },
+                error:function(retorno){
+                    console.log(retorno)
+                }
+
+
+            })
         }
     });
 }
