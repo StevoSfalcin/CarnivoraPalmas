@@ -9,7 +9,7 @@ $DadosArray["token"]=TOKEN_PAGSEGURO;
 
 $DadosArray['paymentMode'] = 'default';
 $DadosArray['paymentMethod'] = $Dados['paymentMethod'];
-$DadosArray['receiverEmail'] = 'stevosfalcin@gmail.com';
+$DadosArray['receiverEmail'] = $Dados['receiverEmail'];
 $DadosArray['currency'] = $Dados['currency'];
 $DadosArray['extraAmount'] = $Dados['extraAmount'];
 $DadosArray['itemId1'] = $Dados['itemId1'];
