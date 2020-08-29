@@ -70,7 +70,7 @@ function obterParcelas(imgBand){
             console.log(retorno);
             $.each(retorno.installments, function (ia, obja) {
                 $.each(obja,function(ib,objb) {
-                    var valorParcela = objb.installmentAmount.toFixed(2).replace(".",",");
+                    var valorParcela = objb.installmentAmount.toFixed(2).replace(".", ",");
                     $('#qntParcelas').show().append("<option value='" + objb.quantity + "' data-parcelas='" + objb.installmentAmount + "'>" + objb.quantity + " parcelas de R$ " + valorParcela + "</option>");
                 });
             });
@@ -84,6 +84,7 @@ function obterParcelas(imgBand){
 });
 }
 
+//Enviar o valor parcela para o formulário
 $('#qntParcelas').change(function () {
     $('#valorParcelas').val($('#qntParcelas').find(':selected').attr('data-parcelas'));
 });
