@@ -71,7 +71,7 @@ function obterParcelas(imgBand){
             $.each(retorno.installments, function (ia, obja) {
                 $.each(obja,function(ib,objb) {
                     var valorParcela = objb.installmentAmount.toFixed(2).replace(".",",");
-                   $('#qntParcelas').show().append("<option value='"+objb.quantity+"'data-parcelas='"+objb.installmentAmount+"'>"+objb.quantity+" Parcelas de R$"+valorParcela+"</option>");
+                    $('#qntParcelas').show().append("<option value='" + objb.quantity + "' data-parcelas='" + objb.installmentAmount + "'>" + objb.quantity + " parcelas de R$ " + valorParcela + "</option>");
                 });
             });
        },
