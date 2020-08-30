@@ -15,6 +15,11 @@ function sessionId() {
       }
   });
 }
+//FORMA DE PAGAMENTO
+$("button").click(function() {
+    alert(this.id); // or alert($(this).attr('id'));
+    document.getElementById("metodoPag").value = (this.id);
+});
 //LISTAR MEIOS PAGAMENTOS
 function listarMeiosPag(){
     PagSeguroDirectPayment.getPaymentMethods({
@@ -32,6 +37,8 @@ function listarMeiosPag(){
         $('.meioPag').append('<h1>DEBITO</h2>');
         $.each(retorno.paymentMethods.ONLINE_DEBIT.options,function(i, obj){
             $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br"+obj.images.MEDIUM.path+"'></div>");
+            $('#nomeBanco').show().append("<option value='"+obj.name+"'>"+obj.displayName+"</option>");
+            $('.nomeBanco').hide();
         });
     },
     error: function(retorno) {     
