@@ -43,7 +43,7 @@ $DadosArray['paymentMethod'] = $Dados['paymentMethod'];
 $DadosArray['currency'] = $Dados['currency'];
 $DadosArray['extraAmount'] = $Dados['extraAmount'];
 
-$DadosArray['receiverEmail'] = EMAIL_LOJA;
+$DadosArray['receiverEmail'] = 'stevosfalcin@gmail.com';
 $DadosArray['notificationURL'] = URL_NOTIFICACAO;
 $DadosArray['reference'] = $Dados['reference'];
 
