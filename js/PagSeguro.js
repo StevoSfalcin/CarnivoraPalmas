@@ -18,8 +18,11 @@ function sessionId() {
 //FORMA DE PAGAMENTO
 $("#tabsPag li").click(function() {
   var valor = $(this).attr('id');
-  document.getElementById("paymentMethod").value = valor;
+  document.getElementById("#paymentMethod").value = valor;
+  $('#valorParcelas').val(valor);
 });
+
+
 //LISTAR MEIOS PAGAMENTOS
 function listarMeiosPag(){
     PagSeguroDirectPayment.getPaymentMethods({
