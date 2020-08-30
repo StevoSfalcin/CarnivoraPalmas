@@ -21,33 +21,34 @@ $("#tabsPag li").click(function() {
   $('#paymentMethod').val(valor);
 });
 
-
 //LISTAR MEIOS PAGAMENTOS
-function listarMeiosPag(){
+function listarMeiosPag() {
     PagSeguroDirectPayment.getPaymentMethods({
         amount: amount,
         success: function (retorno) {
-        //CREDITO
-        $('.meioPag').append('<h2>CREDITO</h2>');
-        $.each(retorno.paymentMethods.CREDIT_CARD.options,function(i,obj){
-            $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br"+obj.images.SMALL.path+"' alt='BanderiaCartao'></div>");
-        });
-        //BOLETO
-        $('.meioPag').append('<h1>BOLETO</h1>');
-        $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br"+retorno.paymentMethods.BOLETO.options.BOLETO.images.SMALL.path+"'></div>");    
-        //DEBITO
-        $('.meioPag').append('<h1>DEBITO</h2>');
-        $.each(retorno.paymentMethods.ONLINE_DEBIT.options,function(i, obj){
-            $('.meioPag').append("<div class='bandPag'><img src='https://stc.pagseguro.uol.com.br"+obj.images.MEDIUM.path+"'></div>");
-            $('#nomeBanco').show().append("<option value='"+obj.name+"'>"+obj.displayName+"</option>");
-            $('.nomeBanco').hide();
-        });
-    },
-    error: function(retorno) {     
-    },
-    complete: function(retorno) { 
-        senderHash();   
-    }
+            //CREDITO
+            $('.meioPag').append("<div>Cartão de Crédito</div>");
+            $.each(retorno.paymentMethods.CREDIT_CARD.options, function (i, obj) {
+                $('.meioPag').append("<span class='img-band'><img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'></span>");
+            });
+            //BOLETO
+            $('.meioPag').append("<div>Boleto</div>");
+            $('.meioPag').append("<span class='img-band'><img src='https://stc.pagseguro.uol.com.br" + retorno.paymentMethods.BOLETO.options.BOLETO.images.SMALL.path + "'><span>");
+            //DEBITO
+            $('.meioPag').append("<div>Débito Online</div>");
+            $.each(retorno.paymentMethods.ONLINE_DEBIT.options, function (i, obj) {
+                $('.meioPag').append("<span class='img-band'><img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'></span>");
+                $('#bankName').show().append("<option value='" + obj.name + "'>" + obj.displayName + "</option>");
+                $('.bankName').hide();
+            });
+        },
+        error: function (retorno) {
+         
+        },
+        complete: function (retorno) {
+            // Callback para todas chamadas.
+            //recupTokemCartao();
+        }
     });
 }
 //OBTER BANDEIRA DO CARTAO
@@ -141,31 +142,6 @@ function hashCartao(){
         }
     });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 $(document).ready(function(){
     //MENU MOBILE//
