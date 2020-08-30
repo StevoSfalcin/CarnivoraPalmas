@@ -79,9 +79,7 @@
     <!--FORMULARIO DO PEDIDO-->
     <form name="formPagamento" action="" id="formPagamento">
     <!--INFORMAÇOES DO PEDIDO-->
-
     <input type="hidden" name="paymentMethod" id="paymentMethod">    
-    <input type="hidden" name="receiverEmail" id="receiverEmail" value="stevosfalcin@gmail.com">
     <input type="hidden" name="currency" id="currency" value="{{config.moedaPagamento}}">    
     <input type="hidden" name="extraAmount" id="extraAmount" value="">  
     <input type="hidden" name="itemId1" id="itemId1" value="0001">    
@@ -143,20 +141,20 @@
         <button type="button" class="collapsible"><h2>Forma de Pagamento</h2></button>
     <div class="conteudoAba" id="tabsPag">
         <ul class="tabs">
-            <li class="tab" id="boletoTab"><a class="active" href="#boleto">BOLETO</a></li>
-            <li class="tab" id="creditoTab"><a href="#credito">CREDITO</a></li>
-            <li class="tab" id="debitoTab"><a href="#debito">DEBITO</a></li>
+            <li class="tab" id="boleto"><a class="active" href="#boletoPag">BOLETO</a></li>
+            <li class="tab" id="creditCard"><a href="#creditoPag">CREDITO</a></li>
+            <li class="tab" id="eft"><a href="#debitoPag">DEBITO</a></li>
         </ul>
         <!--BOLETO-->
-        <div id="boleto" >Test 1      
+        <div id="boletoPag" >Test 1      
         </div>
         <!--DEBITO ONLINE-->
-        <div id="debito" >           
-            <label class="nomeBanco">Banco</label>
-            <select name="nomeBanco" id="nomeBanco" class="select-bank-name nomeBanco"></select>
+        <div id="debitoPag" >           
+            <label class="bankName">Banco</label>
+            <select name="bankName" id="bankName" class="select-bank-name bankName"></select>
         </div>
         <!--CREDITO-->
-        <div id="credito">
+        <div id="creditoPag">
             <h2>Dados do Cartão</h2>
             <label>Número do cartão</label>
             <input type="text" name="numCartao" id="numCartao" required value="4111111111111111"> 
@@ -179,19 +177,6 @@
             <input type="text" name="creditCardHolderName" id="creditCardHolderName" placeholder="Nome igual ao escrito no cartão" value="Jose Comprador" required><br><br>    
             <input type="hidden" name="tokenCartao" id="tokenCartao">    
             <input type="hidden" name="hashCartao" id="hashCartao">
-            <!--DADOS COMPRADOR-->
-            <h2>Dados do Comprador</h2>
-            <label>Nome</label>
-            <input type="text" name="senderName" id="senderName" placeholder="Nome completo" value="Jose Comprador" required><br><br>
-            <label>Data de Nascimento</label>
-            <input type="text" name="creditCardHolderBirthDate" id="creditCardHolderBirthDate" placeholder="Data de Nascimento. Ex: 12/12/1912" value="27/10/1987" required><br><br>
-            <label>CPF</label>
-            <input type="text" name="senderCPF" id="senderCPF" placeholder="CPF sem traço" value="22111944785" required><br><br>
-            <label>Telefone</label>
-            <input type="text" name="senderAreaCode" id="senderAreaCode" placeholder="DDD" value="11" required>
-            <input type="text" name="senderPhone" id="senderPhone" placeholder="Somente número" value="56273440" required><br><br>
-            <label>E-mail</label>
-            <input type="email" name="senderEmail" id="senderEmail" placeholder="E-mail do comprador" value="c99107516189840460162@sandbox.pagseguro.com.br" required><br><br>
             <!--ENDEREÇO DO DONO DO CARTAO-->
             <h2>Endereço do dono do cartão</h2>    
             <label>Logradouro</label>
@@ -209,6 +194,21 @@
             <label>Estado</label>
             <input type="text" name="billingAddressState" id="billingAddressState" placeholder="Sigla do Estado" value="SP" required><br><br>    
             <input type="hidden" name="billingAddressCountry" id="billingAddressCountry" value="BRL">
+        </div>
+
+        <!--DADOS COMPRADOS-->
+        <div class="dadosComprador">
+            <label>Nome</label>
+            <input type="text" name="senderName" id="senderName" placeholder="Nome completo" value="Jose Comprador" required><br><br>
+            <label>Data de Nascimento</label>
+            <input type="text" name="creditCardHolderBirthDate" id="creditCardHolderBirthDate" placeholder="Data de Nascimento. Ex: 12/12/1912" value="27/10/1987" required><br><br>
+            <label>CPF</label>
+            <input type="text" name="senderCPF" id="senderCPF" placeholder="CPF sem traço" value="22111944785" required><br><br>
+            <label>Telefone</label>
+            <input type="text" name="senderAreaCode" id="senderAreaCode" placeholder="DDD" value="11" required>
+            <input type="text" name="senderPhone" id="senderPhone" placeholder="Somente número" value="56273440" required><br><br>
+            <label>E-mail</label>
+            <input type="email" name="senderEmail" id="senderEmail" placeholder="E-mail do comprador" value="c99107516189840460162@sandbox.pagseguro.com.br" required><br><br>
         </div>
             
     </div>

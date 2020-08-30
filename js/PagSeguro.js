@@ -18,7 +18,6 @@ function sessionId() {
 //FORMA DE PAGAMENTO
 $("#tabsPag li").click(function() {
   var valor = $(this).attr('id');
-  document.getElementById("#paymentMethod").value = valor;
   $('#valorParcelas').val(valor);
 });
 
@@ -78,7 +77,7 @@ function obterParcelas(imgBand){
         maxInstallmentNoInterest: 2,
         brand: imgBand,
         success: function(retorno){
-            console.log(retorno);
+           
             $.each(retorno.installments, function (ia, obja) {
                 $.each(obja,function(ib,objb) {
                     var valorParcela = objb.installmentAmount.toFixed(2).replace(".", ",");
