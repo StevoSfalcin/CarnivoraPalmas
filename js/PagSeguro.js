@@ -127,7 +127,7 @@ function hashCartao(){
             $("#hashCartao").val(retorno.senderHash);
             var dados = $("#formPagamento").serialize();
             $.ajax({
-                url:"procPag.php",
+                url:"processaPedido.php",
                 method:"POST",
                 data:dados,
                 dataType:"json",

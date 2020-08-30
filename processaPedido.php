@@ -81,6 +81,7 @@ $retorno = curl_exec($curl);
 curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
-$retorna = ['erro' => true, 'dados' => $xml, 'DadosArray' => $DadosArray];
+
+$retorna = ['erro' => true, 'dados' => $xml];
 header('Content-Type: application/json');
 echo json_encode($retorna);
