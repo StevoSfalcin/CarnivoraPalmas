@@ -16,9 +16,9 @@ function sessionId() {
   });
 }
 //FORMA DE PAGAMENTO
-$("button").click(function() {
-    alert(this.id); // or alert($(this).attr('id'));
-    document.getElementById("metodoPag").value = (this.id);
+$("#tabsPag li").click(function() {
+  var valor = $(this).attr('id');
+  console.log(valor);
 });
 //LISTAR MEIOS PAGAMENTOS
 function listarMeiosPag(){
@@ -83,8 +83,7 @@ function obterParcelas(imgBand){
                 });
             });
        },
-        error: function(retorno) {
-            
+        error: function(retorno) {       
        },
         complete: function(retorno){
             // Callback para todas chamadas.
@@ -132,14 +131,10 @@ function hashCartao(){
                 dataType:"json",
                 success: function(retorno){
                     console.log("sucesso"+JSON.stringify(retorno));
-
-
                 },
                 error:function(retorno){
                     console.log(retorno)
                 }
-
-
             })
         }
     });

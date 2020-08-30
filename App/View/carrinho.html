@@ -141,22 +141,22 @@
     <!--FORMA DE PAGAMENTO-->
     <div class="box">
         <button type="button" class="collapsible"><h2>Forma de Pagamento</h2></button>
-    <div class="conteudoAba">
+    <div class="conteudoAba" id="tabsPag">
         <ul class="tabs">
-            <li class="tab"><a class="active" href="#boleto">BOLETO</a></li>
-            <li class="tab"><a href="#debito">DEBITO</a></li>
-            <li class="tab"><a href="#credito">CREDITO</a></li>
+            <li class="tab" id="boletoTab"><a class="active" href="#boleto">BOLETO</a></li>
+            <li class="tab" id="creditoTab"><a href="#credito">CREDITO</a></li>
+            <li class="tab" id="debitoTab"><a href="#debito">DEBITO</a></li>
         </ul>
         <!--BOLETO-->
-        <div id="boleto" >Test 1</div>
+        <div id="boleto" >Test 1      
+        </div>
         <!--DEBITO ONLINE-->
         <div id="debito" >           
             <label class="nomeBanco">Banco</label>
-            <select name="nomeBanco" id="nomeBanco" class="select-bank-name nomeBanco">
+            <select name="nomeBanco" id="nomeBanco" class="select-bank-name nomeBanco"></select>
         </div>
         <!--CREDITO-->
         <div id="credito">
-            <!--DADOS DO CARTAO-->
             <h2>Dados do Cartão</h2>
             <label>Número do cartão</label>
             <input type="text" name="numCartao" id="numCartao" required value="4111111111111111"> 
@@ -179,11 +179,7 @@
             <input type="text" name="creditCardHolderName" id="creditCardHolderName" placeholder="Nome igual ao escrito no cartão" value="Jose Comprador" required><br><br>    
             <input type="hidden" name="tokenCartao" id="tokenCartao">    
             <input type="hidden" name="hashCartao" id="hashCartao">
-            </div>
-            </div>
-            </div>
             <!--DADOS COMPRADOR-->
-            <div class="dadosComprador">
             <h2>Dados do Comprador</h2>
             <label>Nome</label>
             <input type="text" name="senderName" id="senderName" placeholder="Nome completo" value="Jose Comprador" required><br><br>
@@ -196,9 +192,7 @@
             <input type="text" name="senderPhone" id="senderPhone" placeholder="Somente número" value="56273440" required><br><br>
             <label>E-mail</label>
             <input type="email" name="senderEmail" id="senderEmail" placeholder="E-mail do comprador" value="c99107516189840460162@sandbox.pagseguro.com.br" required><br><br>
-            </div>
             <!--ENDEREÇO DO DONO DO CARTAO-->
-            <div class="dadosComprador">
             <h2>Endereço do dono do cartão</h2>    
             <label>Logradouro</label>
             <input type="text" name="billingAddressStreet" id="billingAddressStreet" placeholder="Av. Rua" value="Av. Brig. Faria Lima" required><br><br>    
@@ -215,7 +209,11 @@
             <label>Estado</label>
             <input type="text" name="billingAddressState" id="billingAddressState" placeholder="Sigla do Estado" value="SP" required><br><br>    
             <input type="hidden" name="billingAddressCountry" id="billingAddressCountry" value="BRL">
-            </div>
+        </div>
+            
+    </div>
+    </div>
+            
     <!--ORÇAMENTO-->
     <div class="box">
         <h2>Orçamento</h2>
