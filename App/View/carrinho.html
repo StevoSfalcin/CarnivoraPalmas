@@ -149,9 +149,31 @@
             </div>
         </div>
         <div class="btn collapsible">
-            <h1>Estoque</h1>
+            <h1>Credito</h1>
             <div class="conteudoPag">
-                
+                <!--DADOS DO CARTAO-->
+                <h2>Dados do Cartão</h2>
+                <label>Número do cartão</label>
+                <input type="text" name="numCartao" id="numCartao" required value="4111111111111111"> 
+                <span class="bandeira-cartao"></span><br><br>    
+                <label>CVV do cartão</label>
+                <input type="text" name="cvvCartao" id="cvvCartao" maxlength="3" value="123" required><br><br>    
+                <input type="hidden" name="bandeiraCartao" id="bandeiraCartao">    
+                <label>Mês de Validade</label>
+                <input type="text" name="mesValidade" id="mesValidade" maxlength="2" value="12" required><br><br>    
+                <label>Ano de Validade</label>
+                <input type="text" name="anoValidade" id="anoValidade" maxlength="4" value="2030" required><br><br>    
+                <label>Quantidades de Parcelas</label>
+                <select name="qntParcelas" id="qntParcelas" class="select-qnt-parcelas">
+                    <option value="">Selecione</option>
+                </select><br><br>   
+                <input type="hidden" name="valorParcelas" id="valorParcelas">   
+                <label>CPF do dono do Cartão</label>
+                <input type="text" name="creditCardHolderCPF" id="creditCardHolderCPF" placeholder="CPF sem traço" value="22111944785" required><br><br>    
+                <label>Nome no Cartão</label>
+                <input type="text" name="creditCardHolderName" id="creditCardHolderName" placeholder="Nome igual ao escrito no cartão" value="Jose Comprador" required><br><br>    
+                <input type="hidden" name="tokenCartao" id="tokenCartao">    
+                <input type="hidden" name="hashCartao" id="hashCartao">     
             </div>
         </div>
         <div class="btn collapsible">
@@ -163,33 +185,12 @@
         
         <div class="text" >Pagamento Via Boleto </div>
         <div class="text" >Pagamento Via Debito Online</div>
-        <div class="text">
-    <!--DADOS DO CARTAO-->
-    <h2>Dados do Cartão</h2>
-    <label>Número do cartão</label>
-    <input type="text" name="numCartao" id="numCartao" required value="4111111111111111"> 
-    <span class="bandeira-cartao"></span><br><br>    
-    <label>CVV do cartão</label>
-    <input type="text" name="cvvCartao" id="cvvCartao" maxlength="3" value="123" required><br><br>    
-    <input type="hidden" name="bandeiraCartao" id="bandeiraCartao">    
-    <label>Mês de Validade</label>
-    <input type="text" name="mesValidade" id="mesValidade" maxlength="2" value="12" required><br><br>    
-    <label>Ano de Validade</label>
-    <input type="text" name="anoValidade" id="anoValidade" maxlength="4" value="2030" required><br><br>    
-    <label>Quantidades de Parcelas</label>
-    <select name="qntParcelas" id="qntParcelas" class="select-qnt-parcelas">
-        <option value="">Selecione</option>
-    </select><br><br>   
-    <input type="hidden" name="valorParcelas" id="valorParcelas">   
-    <label>CPF do dono do Cartão</label>
-    <input type="text" name="creditCardHolderCPF" id="creditCardHolderCPF" placeholder="CPF sem traço" value="22111944785" required><br><br>    
-    <label>Nome no Cartão</label>
-    <input type="text" name="creditCardHolderName" id="creditCardHolderName" placeholder="Nome igual ao escrito no cartão" value="Jose Comprador" required><br><br>    
-    <input type="hidden" name="tokenCartao" id="tokenCartao">    
-    <input type="hidden" name="hashCartao" id="hashCartao">
+    
+    
+
     </div>
     </div>
-    </div>
+  
     <!--DADOS COMPRADOR-->
     <div class="dadosComprador">
     <h2>Dados do Comprador</h2>
