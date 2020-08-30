@@ -18,7 +18,7 @@ function sessionId() {
 //FORMA DE PAGAMENTO
 $("#tabsPag li").click(function() {
   var valor = $(this).attr('id');
-  $('#valorParcelas').val(valor);
+  $('#paymentMethod').val(valor);
 });
 
 
