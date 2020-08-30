@@ -103,7 +103,7 @@ table td{text-align: center;}
 .box h1{font-size: 1.2rem;margin: 1rem 0;}
 .box form input[type=text]{max-width: 80%;}
 .box button{background-color: white;border: none;width: 100%;}
-.conteudoAba{margin: 0;padding: 0;}
+.conteudoAba{margin: 0;padding: 0;display: none;}
 .dadosComprador{display: none;}
 
 /******** CLIENTE **********/

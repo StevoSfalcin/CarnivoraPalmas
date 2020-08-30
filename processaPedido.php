@@ -12,10 +12,17 @@ $DadosArray['paymentMethod'] = $Dados['paymentMethod'];
 $DadosArray['receiverEmail'] = $Dados['receiverEmail'];
 $DadosArray['currency'] = $Dados['currency'];
 $DadosArray['extraAmount'] = $Dados['extraAmount'];
-$DadosArray['itemId1'] = $Dados['itemId1'];
-$DadosArray['itemDescription1'] = $Dados['itemDescription1'];
-$DadosArray['itemAmount1'] = $Dados['itemAmount1'];
-$DadosArray['itemQuantity1'] = $Dados['itemQuantity1'];
+
+$cont_item = 1;
+while ($row_car = $resultado_car->fetch(PDO::FETCH_ASSOC)) {
+    $DadosArray["itemId{$cont_item}"] = $row_car['produto_id'];
+    $DadosArray["itemDescription{$cont_item}"] = $row_car['nome_produto'];
+    $total_venda = number_format($row_car['valor_venda'], 2, '.', '');
+    $DadosArray["itemAmount{$cont_item}"] = $total_venda;
+    $DadosArray["itemQuantity{$cont_item}"] = $row_car['qnt_produto'];
+    $cont_item++;
+}
+
 $DadosArray['notificationURL'] = URL_NOTIFICACAO;
 $DadosArray['reference'] = $Dados['reference'];
 $DadosArray['senderName'] = $Dados['senderName'];

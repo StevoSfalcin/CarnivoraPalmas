@@ -3,11 +3,12 @@ sessionId();
 //ID DA SESSAO
 function sessionId() {
   $.ajax({
-      url:"https://carnivorapalmas.com/pagamento.php",
+      url:"https://carnivorapalmas.com/sessaoPag.php",
       type: 'POST',
       dataType: 'json',
       success: function (retorno) {
-         PagSeguroDirectPayment.setSessionId(retorno.id);       
+         PagSeguroDirectPayment.setSessionId(retorno.id); 
+         console.log(retorno);      
       },
       complete: function (retorno) {
         listarMeiosPag();       
@@ -113,13 +114,10 @@ $("#formPagamento").on("submit", function (event) {
 function hashCartao(){
     PagSeguroDirectPayment.onSenderHashReady(function (retorno) {
         if (retorno.status == 'error') {
-            console.log(retorno.message);
             return false;
         } else {
             $("#hashCartao").val(retorno.senderHash);
             var dados = $("#formPagamento").serialize();
-            console.log(dados);
-
             $.ajax({
                 url:"procPag.php",
                 method:"POST",

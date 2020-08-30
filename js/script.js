@@ -22,9 +22,7 @@ $.ajaxSetup ({
  $(document).ready(function(){
      $('.busca input').keyup(function(){
      var words = $('#pesquisa').val();
-
      if (words != '') {
-
          $.ajax({
              'url' : 'search.php',
              'dataType': "json",
@@ -41,8 +39,6 @@ $.ajaxSetup ({
          .fail(function(){
              $('.results').html('');
          });
-         
-
      } else {
          $('.results').html('');
      }
@@ -64,7 +60,6 @@ $(document).ready(function(){
 
 
 //TABS ADMIN
-
 var trigger = Array.from(document.querySelectorAll('.title'));
 trigger.forEach(function(el,index,all){
     el.addEventListener('click',function(){
