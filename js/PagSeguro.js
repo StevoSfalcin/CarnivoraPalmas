@@ -18,7 +18,7 @@ function sessionId() {
 //FORMA DE PAGAMENTO
 $("#tabsPag li").click(function() {
   var valor = $(this).attr('id');
-  console.log(valor);
+  document.getElementById("paymentMethod").value = valor;
 });
 //LISTAR MEIOS PAGAMENTOS
 function listarMeiosPag(){
