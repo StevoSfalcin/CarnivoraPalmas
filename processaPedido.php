@@ -7,9 +7,6 @@ $Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 $DadosArray["email"]=EMAIL_PAGSEGURO;
 $DadosArray["token"]=TOKEN_PAGSEGURO;
 
-//METODO DE PAGAMENTO
-$DadosArray['paymentMethod'] = $Dados['paymentMethod'];
-
 //CREDITO
 if($Dados['paymentMethod'] == 'creditCard'){
     $DadosArray['creditCardToken'] = $Dados['tokenCartao'];
@@ -21,7 +18,7 @@ if($Dados['paymentMethod'] == 'creditCard'){
     $DadosArray['creditCardHolderBirthDate'] = $Dados['creditCardHolderBirthDate'];
     $DadosArray['creditCardHolderAreaCode'] = $Dados['senderAreaCode'];
     $DadosArray['creditCardHolderPhone'] = $Dados['senderPhone'];
-    //DADOS DONO CARTAO
+    //DADOS DONO DO CARTAO
     $DadosArray['billingAddressStreet'] = $Dados['billingAddressStreet'];
     $DadosArray['billingAddressNumber'] = $Dados['billingAddressNumber'];
     $DadosArray['billingAddressComplement'] = $Dados['billingAddressComplement'];
@@ -32,11 +29,17 @@ if($Dados['paymentMethod'] == 'creditCard'){
     $DadosArray['billingAddressCountry'] = $Dados['billingAddressCountry'];
 
 //DEBITO ONLINE    
-}else if($Dados['paymentMethod'] == 'eft'){
+}elseif ($Dados['paymentMethod'] == "eft") {
     $DadosArray['bankName'] = $Dados['bankName'];
 }
 
+$DadosArray['itemId1'] = $Dados['itemId1'];
+$DadosArray['itemDescription1'] = $Dados['itemDescription1'];
+$DadosArray['itemAmount1'] = $Dados['itemAmount1'];
+$DadosArray['itemQuantity1'] = $Dados['itemQuantity1'];
+
 $DadosArray['paymentMode'] = 'default';
+$DadosArray['paymentMethod'] = $Dados['paymentMethod'];
 $DadosArray['currency'] = $Dados['currency'];
 $DadosArray['extraAmount'] = $Dados['extraAmount'];
 
@@ -78,6 +81,6 @@ $retorno = curl_exec($curl);
 curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
-$retorna = ['dados' => $xml];
+$retorna = ['erro' => true, 'dados' => $xml, 'DadosArray' => $DadosArray];
 header('Content-Type: application/json');
 echo json_encode($retorna);
