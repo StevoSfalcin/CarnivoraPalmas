@@ -37,9 +37,8 @@ function listarMeiosPag() {
             //DEBITO
             $('.meioPag').append("<div>Débito Online</div>");
             $.each(retorno.paymentMethods.ONLINE_DEBIT.options, function (i, obj) {
-                $('.meioPag').append("<span class='img-band'><img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'></span>");
-                $('#bankName').show().append("<option value='" + obj.name + "'>" + obj.displayName + "</option>");
-                $('.bankName').hide();
+                $('.meioPag').append("<img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'>");
+                $('#bankName').show().append("<option value='" + obj.name + "'>" + obj.displayName + "</option>");            
             });
         },
         error: function (retorno) {

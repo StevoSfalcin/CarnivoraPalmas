@@ -150,11 +150,10 @@
         <div id="boletoPag" >Test 1      
         </div>
         <!--DEBITO ONLINE-->
-        <div id="debitoPag" >           
+        <div id="debitoPag" >          
             <div class="bankName">
                 <label class="bankName">Banco</label>
-                <select name="bankName" id="bankName" class="form-control select-bank-name bankName">
-
+                <select name="bankName" id="bankName">
                 </select>
             </div>
         </div>
@@ -197,7 +196,36 @@
             <label>Cidade</label>
             <input type="text" name="billingAddressCity" id="billingAddressCity" placeholder="Cidade" value="Sao Paulo" required><br><br>    
             <label>Estado</label>
-            <input type="text" name="billingAddressState" id="billingAddressState" placeholder="Sigla do Estado" value="SP" required><br><br>    
+            <select name="billingAddressState" class="custom-select d-block w-100 creditCard" id="billingAddressState">
+                <option value="">Selecione</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MT">MT</option>
+                <option value="MS">MS</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP" selected>SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+            </select>    
             <input type="hidden" name="billingAddressCountry" id="billingAddressCountry" value="BRL">
         </div>
 

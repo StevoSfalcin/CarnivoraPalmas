@@ -82,6 +82,14 @@ curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
 
-$retorna = ['erro' => true, 'dados' => $xml];
-header('Content-Type: application/json');
-echo json_encode($retorna);
+//$retorna = ['dados' => $xml];
+//header('Content-Type: application/json');
+//echo json_encode($retorna);
+
+
+if(isset($xml->error)){
+    $retorna = ['teste'=>'Nao foi','dados' => $xml];
+}else{
+    $retorna = ['dados' => $xml];
+
+}
