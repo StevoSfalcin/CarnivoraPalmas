@@ -20,7 +20,7 @@
             <a href="{{config.url}}"><img src="{{config.url}}/img/logo.png" alt="logo"></a>
         </div>
         <div class="botaoLogout">
-            <a class="btn" href="{{config.url}}home/logout">Sair</a>
+            <a class="btn" href="{{config.url}}/home/logout">Sair</a>
         </div>
     </div>
 
@@ -150,7 +150,7 @@
             <div id="{{produto.id}}" class="modal">
                 <div class="modal-content">
                   <h4>Editar Produto</h4>
-                  <form action="{{config.url}}admin/atualizaProduto" enctype="multipart/form-data" method="POST">
+                  <form action="{{config.url}}/admin/atualizaProduto" enctype="multipart/form-data" method="POST">
                       <div class="campoEditar">
                       <h2>Nome: </h2>
                       <input type="text" required value="{{produto.nome}}" name="nome">
@@ -194,7 +194,7 @@
                 <div class="modal-content">
                   <h4>Deletar Produto</h4>
                   <h2>Voce tem certeza que deseja deletar esse produto?</h2>
-                  <a href="{{config.url}}admin/deletarProduto/{{produto.id}}" class="waves-green btn">Sim(Deletar)</a>
+                  <a href="{{config.url}}/admin/deletarProduto/{{produto.id}}" class="waves-green btn">Sim(Deletar)</a>
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Cancelar</a>
 
                 </div>

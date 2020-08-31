@@ -112,15 +112,20 @@ if(isset($xml->error)){
     }
 
     //EXECUTA INSERÇÃO
+
     $sql->bindValue(':idCliente', $_SESSION['user']['id']);
     $sql->bindValue(':tipoPagamento', $xml->paymentMethod->type, PDO::PARAM_INT);
     $sql->bindValue(':codigoTransacao', $xml->code, PDO::PARAM_STR);
     $sql->bindValue(':status', $xml->status, PDO::PARAM_INT);
     $sql->bindValue(':data', $xml->date, PDO::PARAM_STR);
     $sql->execute();
+    if($sql->rowcount()){
+        return true;
+    };
 
     //RETORNA
     header('Content-Type: application/json');
     echo json_encode('true');
-
 }
+
+
