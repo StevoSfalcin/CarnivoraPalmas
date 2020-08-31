@@ -1,6 +1,7 @@
 <?php
 
 include 'config/config.php';
+include 'App/lib/Database/Conexao.php';
 
 $Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -33,11 +34,13 @@ if($Dados['paymentMethod'] == 'creditCard'){
     $DadosArray['bankName'] = $Dados['bankName'];
 }
 
+//PRODUTO
 $DadosArray['itemId1'] = $Dados['itemId1'];
 $DadosArray['itemDescription1'] = $Dados['itemDescription1'];
 $DadosArray['itemAmount1'] = $Dados['itemAmount1'];
 $DadosArray['itemQuantity1'] = $Dados['itemQuantity1'];
 
+//DADOS DE PAGAMENTO
 $DadosArray['paymentMode'] = 'default';
 $DadosArray['paymentMethod'] = $Dados['paymentMethod'];
 $DadosArray['currency'] = $Dados['currency'];
@@ -46,7 +49,6 @@ $DadosArray['extraAmount'] = $Dados['extraAmount'];
 $DadosArray['receiverEmail'] = 'stevosfalcin@gmail.com';
 $DadosArray['notificationURL'] = URL_NOTIFICACAO;
 $DadosArray['reference'] = $Dados['reference'];
-
 //DADOS COMPRADOR
 $DadosArray['senderName'] = $Dados['senderName'];
 $DadosArray['senderCPF'] = $Dados['senderCPF'];
@@ -81,15 +83,44 @@ $retorno = curl_exec($curl);
 curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
-
 //$retorna = ['dados' => $xml];
 //header('Content-Type: application/json');
 //echo json_encode($retorna);
-
+$conn = \App\lib\Database\Conexao::Connect();
 
 if(isset($xml->error)){
+    header('Content-Type: application/json');
     $retorna = ['teste'=>'Nao foi','dados' => $xml];
+    echo json_encode($retorna);
+
+//INSERIR NO BANCO DE DADOS
 }else{
-    $retorna = ['dados' => $xml];
+    //CREDITO   
+    if($Dados['paymentMethod'] == 'creditCard'){
+        $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkDebito, :data)';
+        $sql = $conn->prepare($query);
+
+    //DEBITO ONLINE    
+    }elseif ($Dados['paymentMethod'] == "eft") {
+        $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkDebito,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkDebito, :data)';
+        $sql = $conn->prepare($query);
+     
+    //BOLETO
+    }elseif ($Dados['paymentMethod'] == "boleto") {
+        $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkBoleto,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkBoleto, :linkDebito, :data)';
+        $sql = $conn->prepare($query); 
+    }
+
+    //EXECUTA INSERÇÃO
+    $sql->bindValue(':idCliente', $_SESSION['user']['id']);
+    $sql->bindValue(':tipoPagamento', $xml->paymentMethod->type, PDO::PARAM_INT);
+    $sql->bindValue(':codigoTransacao', $xml->code, PDO::PARAM_STR);
+    $sql->bindValue(':status', $xml->status, PDO::PARAM_INT);
+    $sql->bindValue(':data', $xml->date, PDO::PARAM_STR);
+    $sql->execute();
+
+    //RETORNA
+    header('Content-Type: application/json');
+    echo json_encode('true');
 
 }
