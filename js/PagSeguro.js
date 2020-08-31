@@ -132,7 +132,7 @@ function hashCartao(){
                 data:dados,
                 dataType:"json",
                 success: function(retorno){
-                    console.log("sucesso"+JSON.stringify(retorno));
+                    console.log("sucesso"));
                 },
                 error:function(retorno){
                     console.log('erro')
