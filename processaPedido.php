@@ -84,7 +84,6 @@ $retorno = curl_exec($curl);
 curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
-
 //CONEXAO COM BANCO DE DADOS
 $conn = \App\lib\Database\Conexao::Connect();
 
@@ -102,32 +101,31 @@ if(isset($xml->error)){
         $sql = $conn->prepare($query);
     
     //BOLETO
-    }elseif ($xml->paymentMethod->type == 2) {
+    }elseif($xml->paymentMethod->type == 2) {
     $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkBoleto,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkBoleto, :data)';
     $sql = $conn->prepare($query);
     $sql->bindParam(':linkBoleto', $xml->paymentLink, PDO::PARAM_STR); 
 
     //DEBITO ONLINE    
-    }elseif ($xml->paymentMethod->type == 3) {
+    }elseif($xml->paymentMethod->type == 3) {
         $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkDebito,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkDebito, :data)';
         $sql = $conn->prepare($query);
         $cadastrar->bindParam(':linkDebito', $xml->paymentLink, PDO::PARAM_STR);
     }
      
-    
-
     //EXECUTA INSERÇÃO
-    $sql->bindValue(':idCliente', $_SESSION['user']['id']);
-    $sql->bindValue(':tipoPagamento', $xml->paymentMethod->type, PDO::PARAM_INT);
+    $sql->bindValue(':idCliente', 1);
+    $sql->bindValue(':tipoPagamento', 1);
     $sql->bindValue(':codigoTransacao', $xml->code, PDO::PARAM_STR);
     $sql->bindValue(':status', $xml->status, PDO::PARAM_INT);
     $sql->bindValue(':data', $xml->date, PDO::PARAM_STR);
     $sql->execute();
 
     //RETORNA
-    $retorna = ['dados' => $xml];
+    $retorna = ['erro' => false, 'dados' => $xml];
     header('Content-Type: application/json');
     echo json_encode($retorna);
+
 }
 
 
