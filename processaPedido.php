@@ -84,11 +84,10 @@ $retorno = curl_exec($curl);
 curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
-//$retorna = ['dados' => $xml];
-//header('Content-Type: application/json');
-//echo json_encode($retorna);
+
 $conn = \App\lib\Database\Conexao::Connect();
 
+//VERIFICA SE RETORNOU ERRO
 if(isset($xml->error)){
     header('Content-Type: application/json');
     $retorna = ['teste'=>'Nao foi','dados' => $xml];
@@ -98,7 +97,7 @@ if(isset($xml->error)){
 }else{
     //CREDITO   
     if($Dados['paymentMethod'] == 'creditCard'){
-        $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkDebito, :data)';
+        $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :data)';
         $sql = $conn->prepare($query);
 
     //DEBITO ONLINE    
@@ -109,7 +108,7 @@ if(isset($xml->error)){
      
     //BOLETO
     }elseif ($Dados['paymentMethod'] == "boleto") {
-        $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkBoleto,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkBoleto, :linkDebito, :data)';
+        $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkBoleto,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkBoleto, :data)';
         $sql = $conn->prepare($query);
         $sql->bindParam(':linkBoleto', $xml->paymentLink, PDO::PARAM_STR); 
     }
@@ -127,7 +126,9 @@ if(isset($xml->error)){
 
     //RETORNA
     header('Content-Type: application/json');
-    echo json_encode('true');
+    $retorna = ['teste'=>'Nao foi','dados' => $xml];
+    echo json_encode($retorna);
+
 }
 
 
