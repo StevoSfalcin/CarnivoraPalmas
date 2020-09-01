@@ -89,8 +89,8 @@ $conn = \App\lib\Database\Conexao::Connect();
 
 //VERIFICA SE RETORNOU ERRO
 if(isset($xml->error)){
+    $retorna = ['erro' => true, 'dados' => $xml];
     header('Content-Type: application/json');
-    $retorna = ['teste'=>'Nao foi','dados' => $xml];
     echo json_encode($retorna);
 
 //INSERIR NO BANCO DE DADOS
@@ -125,8 +125,8 @@ if(isset($xml->error)){
     };
 
     //RETORNA
+    $retorna = ['erro' => true, 'dados' => $xml];
     header('Content-Type: application/json');
-    $retorna = ['teste'=>'Nao foi','dados' => $xml];
     echo json_encode($retorna);
 
 }
