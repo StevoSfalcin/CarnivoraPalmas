@@ -96,7 +96,7 @@ if(isset($xml->error)){
 //INSERIR NO BANCO DE DADOS
 }else{
     //CREDITO   
-    if($Dados['paymentMethod'] == 'creditCard'){
+    if($Dados['paymentMethod'] == "creditCard"){
         $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :data)';
         $sql = $conn->prepare($query);
 
@@ -120,12 +120,9 @@ if(isset($xml->error)){
     $sql->bindValue(':status', $xml->status, PDO::PARAM_INT);
     $sql->bindValue(':data', $xml->date, PDO::PARAM_STR);
     $sql->execute();
-    if($sql->rowcount()){
-        return true;
-    };
 
     //RETORNA
-    $retorna = ['erro' => true, 'dados' => $xml];
+    $retorna = ['dados' => $xml];
     header('Content-Type: application/json');
     echo json_encode($retorna);
 
