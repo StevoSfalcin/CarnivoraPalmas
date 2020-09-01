@@ -274,12 +274,9 @@
                       <input type="hidden" value="{{categoria.categoria}}" name="nomeAtual">
                     
                       <button class="btn" type="submit" name="editarcategoria" value="Editar categoria">Editar</button>
-                      <a class="modal-action modal-close waves-effect btn">ddd</a>
-                      
+                      <a class="modal-action modal-close waves-effect btn">ddd</a>                 
                   </form>
-
-                </div>
-        
+                </div>       
               </div>
             {% endfor %}
 
@@ -294,9 +291,7 @@
                       <button class="btn" type="submit" name="editarcategoria">Deletar</button>
                       <a class="modal-action modal-close waves-effect btn">Cancelar</a>
                       </form>
-
-                    </div>
-                    
+                    </div>                 
                   </div>
                 {% endfor %}
 
@@ -307,14 +302,11 @@
                 <div class="modal-content">
                   <h4>Adicionar Categoria</h4>
                   <form action="{{config.url}}admin/criarCategoria" enctype="multipart/form-data" method="POST">
-
                     <div class="campoEditar">
                     <h2>Nome: </h2>
                     <input type="text" required  name="categoria">
                     </div>  
-
-                    <input class="btn" type="submit" name="criarcategoria" value="Criar categoria">
-                    
+                    <input class="btn" type="submit" name="criarcategoria" value="Criar categoria">          
                 </form>
                 </div>
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Voltar</a>

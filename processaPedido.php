@@ -70,7 +70,7 @@ $DadosArray['shippingAddressCountry'] = $Dados['shippingAddressCountry'];
 $DadosArray['shippingType'] = $Dados['shippingType'];
 $DadosArray['shippingCost'] = $Dados['shippingCost'];
 
-
+//REQUISICAO HTTP PAGSEGURO
 $buildQuery = http_build_query($DadosArray);
 $url = URL_PAGSEGURO . "transactions";
 
@@ -85,6 +85,7 @@ curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
 
+//CONEXAO COM BANCO DE DADOS
 $conn = \App\lib\Database\Conexao::Connect();
 
 //VERIFICA SE RETORNOU ERRO
@@ -96,22 +97,24 @@ if(isset($xml->error)){
 //INSERIR NO BANCO DE DADOS
 }else{
     //CREDITO   
-    if($Dados['paymentMethod'] == "creditCard"){
+    if($xml->paymentMethod->type == 1){
         $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :data)';
         $sql = $conn->prepare($query);
+    
+    //BOLETO
+    }elseif ($xml->paymentMethod->type == 2) {
+    $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkBoleto,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkBoleto, :data)';
+    $sql = $conn->prepare($query);
+    $sql->bindParam(':linkBoleto', $xml->paymentLink, PDO::PARAM_STR); 
 
     //DEBITO ONLINE    
-    }elseif ($Dados['paymentMethod'] == "eft") {
+    }elseif ($xml->paymentMethod->type == 3) {
         $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkDebito,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkDebito, :data)';
         $sql = $conn->prepare($query);
         $cadastrar->bindParam(':linkDebito', $xml->paymentLink, PDO::PARAM_STR);
-     
-    //BOLETO
-    }elseif ($Dados['paymentMethod'] == "boleto") {
-        $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkBoleto,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkBoleto, :data)';
-        $sql = $conn->prepare($query);
-        $sql->bindParam(':linkBoleto', $xml->paymentLink, PDO::PARAM_STR); 
     }
+     
+    
 
     //EXECUTA INSERÇÃO
     $sql->bindValue(':idCliente', $_SESSION['user']['id']);
@@ -125,7 +128,6 @@ if(isset($xml->error)){
     $retorna = ['dados' => $xml];
     header('Content-Type: application/json');
     echo json_encode($retorna);
-
 }
 
 
