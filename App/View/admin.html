@@ -254,8 +254,8 @@
                     {% for categoria in categorias %}
                     <tr>
                         <td>{{categoria.categoria}}</td>
-                        <td><a class="waves-effect waves-light btn modal-trigger" href="#editar{{categoria.id}}">Editar</a></td>
-                        <td><a class="waves-effect waves-light btn modal-trigger" href="#deletarCat{{categoria.id}}">Deletar</a></td>
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#editar/{{categoria.id}}">Editar</a></td>
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#deletarCat/{{categoria.id}}">Deletar</a></td>
                     </tr>
                     {% endfor %}
                 </table>

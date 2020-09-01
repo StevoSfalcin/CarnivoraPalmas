@@ -8,6 +8,13 @@ $Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 $DadosArray["email"]=EMAIL_PAGSEGURO;
 $DadosArray["token"]=TOKEN_PAGSEGURO;
 
+
+//PRODUTO
+$DadosArray['itemId1'] = $Dados['itemId1'];
+$DadosArray['itemDescription1'] = $Dados['itemDescription1'];
+$DadosArray['itemAmount1'] = $Dados['itemAmount1'];
+$DadosArray['itemQuantity1'] = $Dados['itemQuantity1'];
+
 //CREDITO
 if($Dados['paymentMethod'] == 'creditCard'){
     $DadosArray['creditCardToken'] = $Dados['tokenCartao'];
@@ -33,12 +40,6 @@ if($Dados['paymentMethod'] == 'creditCard'){
 }elseif ($Dados['paymentMethod'] == "eft") {
     $DadosArray['bankName'] = $Dados['bankName'];
 }
-
-//PRODUTO
-$DadosArray['itemId1'] = $Dados['itemId1'];
-$DadosArray['itemDescription1'] = $Dados['itemDescription1'];
-$DadosArray['itemAmount1'] = $Dados['itemAmount1'];
-$DadosArray['itemQuantity1'] = $Dados['itemQuantity1'];
 
 //DADOS DE PAGAMENTO
 $DadosArray['paymentMode'] = 'default';
@@ -104,15 +105,16 @@ if(isset($xml->error)){
     }elseif ($Dados['paymentMethod'] == "eft") {
         $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkDebito,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkDebito, :data)';
         $sql = $conn->prepare($query);
+        $cadastrar->bindParam(':linkDebito', $xml->paymentLink, PDO::PARAM_STR);
      
     //BOLETO
     }elseif ($Dados['paymentMethod'] == "boleto") {
         $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkBoleto,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkBoleto, :linkDebito, :data)';
-        $sql = $conn->prepare($query); 
+        $sql = $conn->prepare($query);
+        $sql->bindParam(':linkBoleto', $xml->paymentLink, PDO::PARAM_STR); 
     }
 
     //EXECUTA INSERÇÃO
-
     $sql->bindValue(':idCliente', $_SESSION['user']['id']);
     $sql->bindValue(':tipoPagamento', $xml->paymentMethod->type, PDO::PARAM_INT);
     $sql->bindValue(':codigoTransacao', $xml->code, PDO::PARAM_STR);
