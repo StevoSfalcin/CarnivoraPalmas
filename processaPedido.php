@@ -2,76 +2,113 @@
 session_start();
 include 'config/config.php';
 include 'App/lib/Database/Conexao.php';
+include 'App/Model/carrinho.php';
 
-$Dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+//CONEXAO COM BANCO DE dados
+$conn = \App\lib\Database\Conexao::Connect();
 
-$DadosArray["email"]=EMAIL_PAGSEGURO;
-$DadosArray["token"]=TOKEN_PAGSEGURO;
+$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+$dadosArray["email"]=EMAIL_PAGSEGURO;
+$dadosArray["token"]=TOKEN_PAGSEGURO;
+
+//PROCESSA CARRINHO
+$carrinhoId = $dados['carrinhoId'];
+$dadosCarrinho = \App\Model\carrinho::selecionaIdCarrinho($carrinhoId);
+$produto['id'] = $dadosCarrinho->produto_id;
+if(strpos($produto['id'],';') !== true){
+    $expProd = explode(';',$produto['id']);
+    $expquant = explode(';', $produto['qnt']);
+    $i=1;
+    }else{
+    $expProd = $produto['id'];
+    $expquant = $produto['qnt'];
+    }  
+    //ADICIONA OS PRODUTOS AO ARRAY DO CARRINHO    
+    $dadosProd = array();
+    $i=0;
+    foreach($expProd as $Idproduto){
+        $produto = $dadosProduto::selecionarIdProduto($Idproduto);
+        $produto->qntCarrinho = $expquant[$i]; 
+        $produto->carrinhoId = $_SESSION['user']['carrinhoId'] ?? '';
+        //SUBTOTAL DO PRODUTO
+        $preco = str_replace(',','.',$produto->preco);
+        $subTotal = $preco * $produto->qntCarrinho;
+        $produto->subTotal = $subTotal;
+        $produto->posicao = $i;
+        $dadosProd[] = $produto;
+        $i++;
+    }
+    //VALOR TOTAL DOS PRODUTOS
+    $ValorTotalProd = 0;
+    foreach($dadosProd as $produto){
+        $ValorTotalProd += $produto->subTotal;
+    }
 
 
 //PRODUTO
-$DadosArray['itemId1'] = $Dados['itemId1'];
-$DadosArray['itemDescription1'] = $Dados['itemDescription1'];
-$DadosArray['itemAmount1'] = $Dados['itemAmount1'];
-$DadosArray['itemQuantity1'] = $Dados['itemQuantity1'];
+$dadosArray['itemId1'] = $dados['itemId1'];
+$dadosArray['itemDescription1'] = $dados['itemDescription1'];
+$dadosArray['itemAmount1'] = $dados['itemAmount1'];
+$dadosArray['itemQuantity1'] = $dados['itemQuantity1'];
 
 //CREDITO
-if($Dados['paymentMethod'] == 'creditCard'){
-    $DadosArray['creditCardToken'] = $Dados['tokenCartao'];
-    $DadosArray['installmentQuantity'] = $Dados['qntParcelas'];
-    $DadosArray['installmentValue'] = $Dados['valorParcelas'];
-    $DadosArray['noInterestInstallmentQuantity'] = $Dados['noIntInstalQuantity'];
-    $DadosArray['creditCardHolderName'] = $Dados['creditCardHolderName'];
-    $DadosArray['creditCardHolderCPF'] = $Dados['creditCardHolderCPF'];
-    $DadosArray['creditCardHolderBirthDate'] = $Dados['creditCardHolderBirthDate'];
-    $DadosArray['creditCardHolderAreaCode'] = $Dados['senderAreaCode'];
-    $DadosArray['creditCardHolderPhone'] = $Dados['senderPhone'];
-    //DADOS DONO DO CARTAO
-    $DadosArray['billingAddressStreet'] = $Dados['billingAddressStreet'];
-    $DadosArray['billingAddressNumber'] = $Dados['billingAddressNumber'];
-    $DadosArray['billingAddressComplement'] = $Dados['billingAddressComplement'];
-    $DadosArray['billingAddressDistrict'] = $Dados['billingAddressDistrict'];
-    $DadosArray['billingAddressPostalCode'] = $Dados['billingAddressPostalCode'];
-    $DadosArray['billingAddressCity'] = $Dados['billingAddressCity'];
-    $DadosArray['billingAddressState'] = $Dados['billingAddressState'];
-    $DadosArray['billingAddressCountry'] = $Dados['billingAddressCountry'];
+if($dados['paymentMethod'] == 'creditCard'){
+    $dadosArray['creditCardToken'] = $dados['tokenCartao'];
+    $dadosArray['installmentQuantity'] = $dados['qntParcelas'];
+    $dadosArray['installmentValue'] = $dados['valorParcelas'];
+    $dadosArray['noInterestInstallmentQuantity'] = $dados['noIntInstalQuantity'];
+    $dadosArray['creditCardHolderName'] = $dados['creditCardHolderName'];
+    $dadosArray['creditCardHolderCPF'] = $dados['creditCardHolderCPF'];
+    $dadosArray['creditCardHolderBirthDate'] = $dados['creditCardHolderBirthDate'];
+    $dadosArray['creditCardHolderAreaCode'] = $dados['senderAreaCode'];
+    $dadosArray['creditCardHolderPhone'] = $dados['senderPhone'];
+    //dados DONO DO CARTAO
+    $dadosArray['billingAddressStreet'] = $dados['billingAddressStreet'];
+    $dadosArray['billingAddressNumber'] = $dados['billingAddressNumber'];
+    $dadosArray['billingAddressComplement'] = $dados['billingAddressComplement'];
+    $dadosArray['billingAddressDistrict'] = $dados['billingAddressDistrict'];
+    $dadosArray['billingAddressPostalCode'] = $dados['billingAddressPostalCode'];
+    $dadosArray['billingAddressCity'] = $dados['billingAddressCity'];
+    $dadosArray['billingAddressState'] = $dados['billingAddressState'];
+    $dadosArray['billingAddressCountry'] = $dados['billingAddressCountry'];
 
 //DEBITO ONLINE    
-}elseif ($Dados['paymentMethod'] == "eft") {
-    $DadosArray['bankName'] = $Dados['bankName'];
+}elseif ($dados['paymentMethod'] == "eft") {
+    $dadosArray['bankName'] = $dados['bankName'];
 }
 
-//DADOS DE PAGAMENTO
-$DadosArray['paymentMode'] = 'default';
-$DadosArray['paymentMethod'] = $Dados['paymentMethod'];
-$DadosArray['currency'] = $Dados['currency'];
-$DadosArray['extraAmount'] = $Dados['extraAmount'];
+//dados DE PAGAMENTO
+$dadosArray['paymentMode'] = 'default';
+$dadosArray['paymentMethod'] = $dados['paymentMethod'];
+$dadosArray['currency'] = $dados['currency'];
+$dadosArray['extraAmount'] = $dados['extraAmount'];
 
-$DadosArray['receiverEmail'] = 'stevosfalcin@gmail.com';
-$DadosArray['notificationURL'] = URL_NOTIFICACAO;
-$DadosArray['reference'] = $Dados['reference'];
-//DADOS COMPRADOR
-$DadosArray['senderName'] = $Dados['senderName'];
-$DadosArray['senderCPF'] = $Dados['senderCPF'];
-$DadosArray['senderAreaCode'] = $Dados['senderAreaCode'];
-$DadosArray['senderPhone'] = $Dados['senderPhone'];
-$DadosArray['senderEmail'] = $Dados['senderEmail'];
-$DadosArray['senderHash'] = $Dados['hashCartao'];
+$dadosArray['receiverEmail'] = 'stevosfalcin@gmail.com';
+$dadosArray['notificationURL'] = URL_NOTIFICACAO;
+$dadosArray['reference'] = $dados['reference'];
+//dados COMPRADOR
+$dadosArray['senderName'] = $dados['senderName'];
+$dadosArray['senderCPF'] = $dados['senderCPF'];
+$dadosArray['senderAreaCode'] = $dados['senderAreaCode'];
+$dadosArray['senderPhone'] = $dados['senderPhone'];
+$dadosArray['senderEmail'] = $dados['senderEmail'];
+$dadosArray['senderHash'] = $dados['hashCartao'];
 //ENDERECO DE ENTREGA
-$DadosArray['shippingAddressRequired'] = $Dados['shippingAddressRequired'];
-$DadosArray['shippingAddressStreet'] = $Dados['shippingAddressStreet'];
-$DadosArray['shippingAddressNumber'] = $Dados['shippingAddressNumber'];
-$DadosArray['shippingAddressComplement'] = $Dados['shippingAddressComplement'];
-$DadosArray['shippingAddressDistrict'] = $Dados['shippingAddressDistrict'];
-$DadosArray['shippingAddressPostalCode'] = $Dados['shippingAddressPostalCode'];
-$DadosArray['shippingAddressCity'] = $Dados['shippingAddressCity'];
-$DadosArray['shippingAddressState'] = $Dados['shippingAddressState'];
-$DadosArray['shippingAddressCountry'] = $Dados['shippingAddressCountry'];
-$DadosArray['shippingType'] = $Dados['shippingType'];
-$DadosArray['shippingCost'] = $Dados['shippingCost'];
+$dadosArray['shippingAddressRequired'] = $dados['shippingAddressRequired'];
+$dadosArray['shippingAddressStreet'] = $dados['shippingAddressStreet'];
+$dadosArray['shippingAddressNumber'] = $dados['shippingAddressNumber'];
+$dadosArray['shippingAddressComplement'] = $dados['shippingAddressComplement'];
+$dadosArray['shippingAddressDistrict'] = $dados['shippingAddressDistrict'];
+$dadosArray['shippingAddressPostalCode'] = $dados['shippingAddressPostalCode'];
+$dadosArray['shippingAddressCity'] = $dados['shippingAddressCity'];
+$dadosArray['shippingAddressState'] = $dados['shippingAddressState'];
+$dadosArray['shippingAddressCountry'] = $dados['shippingAddressCountry'];
+$dadosArray['shippingType'] = $dados['shippingType'];
+$dadosArray['shippingCost'] = $dados['shippingCost'];
 
 //REQUISICAO HTTP PAGSEGURO
-$buildQuery = http_build_query($DadosArray);
+$buildQuery = http_build_query($dadosArray);
 $url = URL_PAGSEGURO . "transactions";
 
 $curl = curl_init($url);
@@ -84,8 +121,7 @@ $retorno = curl_exec($curl);
 curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
-//CONEXAO COM BANCO DE DADOS
-$conn = \App\lib\Database\Conexao::Connect();
+
 
 //VERIFICA SE RETORNOU ERRO
 if(isset($xml->error)){
@@ -93,7 +129,7 @@ if(isset($xml->error)){
     header('Content-Type: application/json');
     echo json_encode($retorna);
 
-//INSERIR NO BANCO DE DADOS
+//INSERIR NO BANCO DE dados
 }else{
     //CREDITO   
     if($xml->paymentMethod->type == 1){

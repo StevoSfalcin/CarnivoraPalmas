@@ -27,17 +27,12 @@ function listarMeiosPag() {
         amount: amount,
         success: function (retorno) {
             //CREDITO
-            $('.meioPag').append("<div>Cartão de Crédito</div>");
             $.each(retorno.paymentMethods.CREDIT_CARD.options, function (i, obj) {
-                $('.meioPag').append("<span class='img-band'><img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'></span>");
+                $('.meioPagCred').append("<span class='img-band'><img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'></span>");
             });
-            //BOLETO
-            $('.meioPag').append("<div>Boleto</div>");
-            $('.meioPag').append("<span class='img-band'><img src='https://stc.pagseguro.uol.com.br" + retorno.paymentMethods.BOLETO.options.BOLETO.images.SMALL.path + "'><span>");
             //DEBITO
-            $('.meioPag').append("<div>Débito Online</div>");
             $.each(retorno.paymentMethods.ONLINE_DEBIT.options, function (i, obj) {
-                $('.meioPag').append("<img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'>");
+                $('.meioPagDeb').append("<img src='https://stc.pagseguro.uol.com.br" + obj.images.SMALL.path + "'>");
                 $('#bankName').show().append("<option value='" + obj.name + "'>" + obj.displayName + "</option>");            
             });
         },
@@ -71,7 +66,7 @@ $('#numCartao').on('keyup', function () {
     }
 })
 //OBTER PARCELAS
-function recupParcelas(bandeira){
+function obterParcelas(bandeira){
     var noIntInstalQuantity = $('#noIntInstalQuantity').val();
     $('#qntParcelas').html('<option value="">Selecione</option>');
     PagSeguroDirectPayment.getInstallments({

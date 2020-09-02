@@ -67,7 +67,7 @@
             <form action="{{config.url}}/carrinho/deletarProdutoCarrinho/" method="POST">
             <div><button class="btn">X</button></div>
             <input type="hidden" name="posicaoProduto" value="{{produto.posicao}}">
-            <input type="hidden" name="carrinhoId" value="{{produto.carrinhoId}}">
+            <input type="hidden" name="carrinhoId" value="{{produto.carrinhoId}}">        
             </form>
             
         </div>
@@ -156,6 +156,11 @@
                 <select name="bankName" id="bankName">
                 </select>
             </div>
+            <label>Bandeiras</label>
+            <div class="meiosPagamento">
+                <div class="meioPagDeb"></div>
+            </div>
+            
         </div>
         <!--CREDITO-->
         <div id="creditoPag">
@@ -227,6 +232,10 @@
                 <option value="TO">TO</option>
             </select>    
             <input type="hidden" name="billingAddressCountry" id="billingAddressCountry" value="BRL">
+            <label>Bandeiras</label>
+            <div class="meiosPagamento">
+                <div class="meioPagCred"></div>
+            </div>
         </div>
 
         <!--DADOS COMPRADOS-->
