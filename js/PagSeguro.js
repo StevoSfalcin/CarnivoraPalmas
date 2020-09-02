@@ -58,8 +58,8 @@ $('#numCartao').on('keyup', function () {
         PagSeguroDirectPayment.getBrand({
             cardBin: numCartao,
             success: function(retorno) {
-              var imgBand = retorno.brand.name;
-              obterParcelas(imgBand);
+              var bandeira = retorno.brand.name;
+              obterParcelas(bandeira);
             },
             error: function(retorno) {
               //tratamento do erro
@@ -71,26 +71,29 @@ $('#numCartao').on('keyup', function () {
     }
 })
 //OBTER PARCELAS
-function obterParcelas(imgBand){
+function recupParcelas(bandeira){
+    var noIntInstalQuantity = $('#noIntInstalQuantity').val();
+    $('#qntParcelas').html('<option value="">Selecione</option>');
     PagSeguroDirectPayment.getInstallments({
-        amount: amount,
-        maxInstallmentNoInterest: 2,
-        brand: imgBand,
+        amount: amount,    
+        maxInstallmentNoInterest: noIntInstalQuantity,
+        brand: bandeira,
         success: function(retorno){
-           
             $.each(retorno.installments, function (ia, obja) {
-                $.each(obja,function(ib,objb) {
+                $.each(obja, function (ib, objb) {
                     var valorParcela = objb.installmentAmount.toFixed(2).replace(".", ",");
-                    $('#qntParcelas').show().append("<option value='" + objb.quantity + "' data-parcelas='" + objb.installmentAmount + "'>" + objb.quantity + " parcelas de R$ " + valorParcela + "</option>");
+                    var valorParcelaDouble = objb.installmentAmount.toFixed(2);
+                    $('#qntParcelas').show().append("<option value='" + objb.quantity + "' data-parcelas='" + valorParcelaDouble + "'>" + objb.quantity + " parcelas de R$ " + valorParcela + "</option>");
                 });
             });
-       },
-        error: function(retorno) {       
-       },
-        complete: function(retorno){
+        },
+        error: function (retorno) {
+            // callback para chamadas que falharam.
+        },
+        complete: function (retorno) {
             // Callback para todas chamadas.
-       }
-});
+        }
+    });
 }
 
 //Enviar o valor parcela para o formulário
