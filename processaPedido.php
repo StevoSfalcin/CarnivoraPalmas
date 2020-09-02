@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'config/config.php';
 include 'App/lib/Database/Conexao.php';
 
@@ -104,21 +104,21 @@ if(isset($xml->error)){
     }elseif($xml->paymentMethod->type == 2) {
     $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkBoleto,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkBoleto, :data)';
     $sql = $conn->prepare($query);
-    $sql->bindParam(':linkBoleto', $xml->paymentLink, PDO::PARAM_STR); 
+    $sql->bindParam(':linkBoleto', $xml->paymentLink); 
 
     //DEBITO ONLINE    
     }elseif($xml->paymentMethod->type == 3) {
         $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkDebito,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkDebito, :data)';
         $sql = $conn->prepare($query);
-        $cadastrar->bindParam(':linkDebito', $xml->paymentLink, PDO::PARAM_STR);
+        $cadastrar->bindParam(':linkDebito', $xml->paymentLink);
     }
      
     //EXECUTA INSERÇÃO
-    $sql->bindValue(':idCliente', 1);
-    $sql->bindValue(':tipoPagamento', 1);
-    $sql->bindValue(':codigoTransacao', $xml->code, PDO::PARAM_STR);
-    $sql->bindValue(':status', $xml->status, PDO::PARAM_INT);
-    $sql->bindValue(':data', $xml->date, PDO::PARAM_STR);
+    $sql->bindValue(':idCliente', $_SESSION['user']['id']);
+    $sql->bindValue(':tipoPagamento', $xml->paymentMethod->type);
+    $sql->bindValue(':codigoTransacao', $xml->code);
+    $sql->bindValue(':status', $xml->status);
+    $sql->bindValue(':data', $xml->date);
     $sql->execute();
 
     //RETORNA

@@ -135,7 +135,7 @@ function hashCartao(){
                     console.log("Sucesso " + JSON.stringify(retorno));
                 },
                 error:function(retorno){
-                    console.log("Erro" + JSON.stringify(retornao));
+                    console.log("Erro" + JSON.stringify(retorno));
                 }
             })
         }
