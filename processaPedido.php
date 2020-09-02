@@ -110,7 +110,7 @@ if(isset($xml->error)){
     }elseif($xml->paymentMethod->type == 3) {
         $query = 'INSERT INTO transacoes(idCliente,tipoPagamento,codigoTransacao,status,linkDebito,data) VALUES (:idCliente, :tipoPagamento, :codigoTransacao, :status, :linkDebito, :data)';
         $sql = $conn->prepare($query);
-        $cadastrar->bindParam(':linkDebito', $xml->paymentLink);
+        $sql->bindParam(':linkDebito', $xml->paymentLink);
     }
      
     //EXECUTA INSERÇÃO
