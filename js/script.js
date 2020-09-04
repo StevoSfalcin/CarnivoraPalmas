@@ -29,12 +29,12 @@ $.ajaxSetup ({
 				'dataType' : 'json',
 				'data' : {palavra : words}
 			})
-			.done(function(response){
+			.done(function(retorno){
 				$('.results').html('');		
-				$.each(response, function(key, val){
-					$('.results').append('<div class="item">' + val + '</div>');
+				$.each(retorno, function(key, val){
+					$('.results').append('<div class="item">' + val.nome + '</div>');
                 });
-                console.log('foi');
+                console.log(retorno);
 			})
 			.fail(function(){
                 $('.results').html('');

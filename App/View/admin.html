@@ -208,7 +208,7 @@
             <div id="adicionarProduto" class="modal">
                 <div class="modal-content">
                   <h4>Adicionar Produto</h4>
-                  <form action="{{config.url}}admin/adicionaProduto" enctype="multipart/form-data" method="POST">
+                  <form action="{{config.url}}/admin/adicionaProduto" enctype="multipart/form-data" method="POST">
                     <div class="campoEditar">
                     <h2>Nome: </h2>
                     <input type="text" required  name="nome">
@@ -265,7 +265,7 @@
             <div id="editar{{categoria.id}}" class="modal">
                 <div class="modal-content">
                   <h4>Editar categoria</h4>
-                  <form action="{{config.url}}admin/atualizaCategoria" enctype="multipart/form-data" method="POST">
+                  <form action="{{config.url}}/admin/atualizaCategoria" enctype="multipart/form-data" method="POST">
                       <div class="campoEditar">
                       <h2>Nome: </h2>
                       <input type="text" required value="{{categoria.categoria}}" name="categoria">
@@ -286,7 +286,7 @@
                     <div class="modal-content">
                       <h4>Deletar Produto</h4>
                       <h2>Voce tem certeza que deseja deletar esse produto?</h2>
-                      <form action="{{config.url}}admin/deletarCategoria/{{categoria.id}}" method="POST">
+                      <form action="{{config.url}}/admin/deletarCategoria/{{categoria.id}}" method="POST">
                       <input type="hidden" value="{{categoria.categoria}}" name="categoria">
                       <button class="btn" type="submit" name="editarcategoria">Deletar</button>
                       <a class="modal-action modal-close waves-effect btn">Cancelar</a>
@@ -301,7 +301,7 @@
             <div id="adicionarCategoria" class="modal">
                 <div class="modal-content">
                   <h4>Adicionar Categoria</h4>
-                  <form action="{{config.url}}admin/criarCategoria" enctype="multipart/form-data" method="POST">
+                  <form action="{{config.url}}/admin/criarCategoria" enctype="multipart/form-data" method="POST">
                     <div class="campoEditar">
                     <h2>Nome: </h2>
                     <input type="text" required  name="categoria">

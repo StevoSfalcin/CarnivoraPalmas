@@ -49,6 +49,7 @@ class produto{
 
         while($row=$sql->fetch(\PDO::FETCH_ASSOC)) {
             $dados[] = $row['nome'];
+            $dados[] = $row['id'];
         }
 		
             return $dados; 
