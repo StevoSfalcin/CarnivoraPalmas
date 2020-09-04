@@ -1,4 +1,5 @@
 <?php
+require_once 'config/config';
 require_once 'App/lib/Database/Conexao.php';
 require_once 'App/Model/Produto.php';
 
