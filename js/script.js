@@ -37,7 +37,8 @@ $.ajaxSetup ({
                 console.log('foi');
 			})
 			.fail(function(){
-				$('.results').html('');
+                $('.results').html('');
+                console.log('semRetorno');
 			});			
 		} else {
 			$('.results').html('');
