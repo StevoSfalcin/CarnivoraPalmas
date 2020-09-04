@@ -10,7 +10,6 @@ if($_REQUEST['numero1']){
     echo json_encode($busca);
 }
 
-    
-
 
 ?>
+

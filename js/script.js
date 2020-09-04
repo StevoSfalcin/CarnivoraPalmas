@@ -20,30 +20,31 @@ $.ajaxSetup ({
   cache: false
  });
  $(document).ready(function(){
-     $('.busca input').keyup(function(){
-     var words = $('#pesquisa').val();
-     if (words != '') {
-         $.ajax({
-             'url' : 'buscaProduto.php',
-             'dataType': "json",
-             'method' : 'POST',
-             'data' : {palavra : words}
-         })
-         .done(function(response){
-             $('.results').html('');
-             
-             $.each(response, function(key, val){
-                 $('.results').append('<h2>' + val + '</h2>');
-             });
-         })
-         .fail(function(){
-             $('.results').html('');
-         });
-     } else {
-         $('.results').html('');
-     }
- });
+	$('.busca input').keyup(function(){
+		var words = $('input').val();
+		if (words != '') {
+			$.ajax({
+				'url' : 'search.php',
+				'method' : 'GET',
+				'dataType' : 'json',
+				'data' : {s : words}
+			})
+			.done(function(response){
+				$('.results').html('');		
+				$.each(response, function(key, val){
+					$('.results').append('<div class="item">' + val + '</div>');
+                });
+                console.log('foi');
+			})
+			.fail(function(){
+				$('.results').html('');
+			});			
+		} else {
+			$('.results').html('');
+		}
+	});
 });
+
 
 
 

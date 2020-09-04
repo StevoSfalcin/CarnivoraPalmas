@@ -47,10 +47,11 @@ class produto{
 		$sql->bindValue(':busc', '%'.$word.'%');
 		$sql->execute();
 
-        while($row = $sql->fetch()){
+        while($row=$sql->fetch(\PDO::FETCH_ASSOC)) {
             $dados[] = $row['nome'];
         }
 		
             return $dados; 
     }
 }
+
