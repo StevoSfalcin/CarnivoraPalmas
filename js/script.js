@@ -24,10 +24,10 @@ $.ajaxSetup ({
      var words = $('#pesquisa').val();
      if (words != '') {
          $.ajax({
-             'url' : 'search.php',
+             'url' : 'buscaProduto.php',
              'dataType': "json",
              'method' : 'POST',
-             'data' : {numero1 : words}
+             'data' : {palavra : words}
          })
          .done(function(response){
              $('.results').html('');
