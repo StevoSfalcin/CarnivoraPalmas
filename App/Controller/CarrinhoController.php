@@ -50,6 +50,8 @@ class CarrinhoController{
         foreach($expProd as $Idproduto){
             $produto = $dadosProduto::selecionarIdProduto($Idproduto);
             $produto->qntCarrinho = $expquant[$i]; 
+            $produto->peso = $produto->peso * $expquant[$i]; 
+            $produto->volume = ($produto->altura * $produto->largura * $produto->comprimento) * $expquant[$i];
             $produto->carrinhoId = $_SESSION['user']['carrinhoId'] ?? '';
             //SUBTOTAL DO PRODUTO
             $preco = str_replace(',','.',$produto->preco);
