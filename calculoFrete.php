@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST['teclado'])){
+if(isset($_POST['dados'])){
 
     $busca = 4200;
 
@@ -8,17 +8,6 @@ if(isset($_POST['teclado'])){
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

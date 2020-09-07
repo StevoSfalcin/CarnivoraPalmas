@@ -100,16 +100,19 @@
         <div class="conteudoAba">
         <div class="frete">         
             <form action="" method="POST">
+                <!--CEP-->
                 <input type="number" name="cep" id="pesquisa">
                 <button><span class="material-icons">search</span></button>
                     <h1>Produtos:R${{volumeTotalProd}}</h1>
             
-            <div class="results"></div>
+            
             <label>Frete</label>
+            <!--PAC-->
             <p>
             <input name="group1" type="radio" id="test1" value="04510"/>
             <label for="test1">PAC</label>
             </p>
+            <!--SEDEX-->
             <p>
             <input name="group1" type="radio" id="test2" value="04014"/>
             <label for="test2">SEDEX</label>
@@ -117,11 +120,12 @@
             </form>
 
             <label>Valor Frete</label>
-            
-            <input type="hidden" name="volumeTotal"value="{{volumeTotal}}">
-            <input type="hidden" name="pesoTotal"value="{{pesoTotal}}">
-            
+            <div class="results"></div>
 
+            
+            <input type="hidden" name="volumeTotal" value="{{volumeTotal}}">
+            <input type="hidden" name="pesoTotal" value="{{pesoTotal}}">
+            
         </div>
         </div>
     </div>
