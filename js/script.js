@@ -17,13 +17,12 @@
 
     //BUSCA PRODUTO
     $(document).ready(function(){
-        console.log($('input[name="volumeTotal"]').val());
         $('.frete input[name="cep"]').keyup(function(){
             var cep = $('input[name="cep"]').val();
             var dados = [];
             dados['cep'] = $('input[name="cep"]').val();
-            dados['volume'] = document.getElementsByClassName("volumeTotal")
-            dados['peso'] = $('input[name="pesoTotal"]').attr('value');
+            dados['volume'] = $('input[name="volumeTotal"]').val();
+            dados['peso'] = $('input[name="pesoTotal"]').val();
             if(cep.length >= 8){
                 $.ajax({
                     'url' : 'calculoFrete.php',
