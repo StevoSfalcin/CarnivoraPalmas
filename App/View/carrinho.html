@@ -102,17 +102,25 @@
             <form action="" method="POST">
                 <input type="number" name="cep" id="pesquisa">
                 <button><span class="material-icons">search</span></button>
-            </form>        <h1>Produtos:R${{volumeTotalProd}}</h1>
+                    <h1>Produtos:R${{volumeTotalProd}}</h1>
             
             <div class="results"></div>
             <label>Frete</label>
-            <input type="radio" name="shippingType" value="1"> PAC
-            <input type="radio" name="shippingType" value="2" checked> SEDEX
+            <p>
+            <input name="group1" type="radio" id="test1" value="04510"/>
+            <label for="test1">PAC</label>
+            </p>
+            <p>
+            <input name="group1" type="radio" id="test2" value="04014"/>
+            <label for="test2">SEDEX</label>
+            </p>
+            </form>
 
             <label>Valor Frete</label>
             
             <input type="hidden" name="volumeTotal"value="{{volumeTotal}}">
             <input type="hidden" name="pesoTotal"value="{{pesoTotal}}">
+            
 
         </div>
         </div>

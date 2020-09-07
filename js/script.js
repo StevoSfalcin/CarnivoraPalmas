@@ -18,19 +18,26 @@
     //BUSCA PRODUTO
     $(document).ready(function(){
         $('.frete input[name="cep"]').keyup(function(){
-            var cep = $('input').val();
-            console.log("apertou");
+            var cep = $('input[name="cep"]').val();
+            var dados = $('.frete input').val();
+            console.log(dados);
             if(cep.length >= 8){
                 $.ajax({
                     'url':'calculoFrete.php',
                     'method':'POST',
-                    'data':{cep:cep}
+                    'data':{dados:dados}
+                })
+                .success(function(retorno){
+                    console.log(retorno);
+                    console.log(dados);
+                    
+
                 })
                 .done(function(retorno){
-                    console.log('chamou');
+            
                 })
                 .fail(function(retorno){
-                    console.log('chamou');
+                  
 
                 })
             }
