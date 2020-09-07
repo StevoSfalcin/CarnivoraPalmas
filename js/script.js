@@ -19,26 +19,25 @@
     $(document).ready(function(){
         $('.frete input[name="cep"]').keyup(function(){
             var cep = $('input[name="cep"]').val();
-            var dados = [];
-            dados['cep'] = $('input[name="cep"]').val();
-            dados['volume'] = $('input[name="volumeTotal"]').val();
-            dados['peso'] = $('input[name="pesoTotal"]').val();
+            var teclado = [];
+            teclado['cep'] = $('input[name="cep"]').val();
+            teclado['volume'] = $('input[name="volumeTotal"]').val();
+            teclado['peso'] = $('input[name="pesoTotal"]').val();
             if(cep.length >= 8){
                 $.ajax({
-                    'url':'calculoFrete.php',
+                    'url' : 'calculoFrete.php',
                     'method' : 'POST',
                     'dataType' : 'json',
-                    'data':{dados:dados},
-                    success: function (retorno) {                       
-                        console.log(retorno);      
-                     },
-                     complete: function (retorno) {
-                          
-                     },
-                     fail: function (retorno) {
-                                            
-                    }
-                });
+                    'data' : {mouse : teclado}
+                })
+                .done(function(retorno){
+                    console.log(retorno);
+                                  
+                })
+                .fail(function(){
+             
+                    console.log('fail');
+                });	
             }
 
         });
@@ -71,7 +70,7 @@
                     $('.results').html('');
                     console.log('semRetorno');
                 });			
-            } else {+
+            }else{
 
                 $('.results').html('');
             }
