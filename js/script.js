@@ -32,9 +32,12 @@
                         console.log(retorno);      
                      },
                      complete: function (retorno) {
-                       listarMeiosPag();       
-                     }
-                    });
+                          
+                     },
+                     fail: function (retorno) {
+                                            
+                    }
+                });
             }
 
         });

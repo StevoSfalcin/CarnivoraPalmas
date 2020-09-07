@@ -1,8 +1,14 @@
 <?php
 
+if(isset($_POST['dados'])){
+    
 $dados = json_decode($_POST['dados']);
 $dados['teste']='foiii';
-echo json_encode($dados);
+echo json_encode(444444);
+    
+}
+
+
 
 
 
