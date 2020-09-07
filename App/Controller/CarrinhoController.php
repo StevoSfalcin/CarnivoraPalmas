@@ -62,14 +62,21 @@ class CarrinhoController{
             $i++;
         }
         //VALOR TOTAL DOS PRODUTOS
-        $ValorTotalProd = 0;
+        $valorTotalProd = 0;
+        $pesoTotal = 0;
+        $volumeTotal = 0;
         foreach($dadosProd as $produto){
-            $ValorTotalProd += $produto->subTotal;
+            $valorTotalProd += $produto->subTotal;
+            $pesoTotal += $produto->peso;
+            $volumeTotal += $produto->volume;
         }
     }
 
     $dadosRender['produtos'] = $dadosProd ?? '';
-    $dadosRender['ValorTotalProd'] = $ValorTotalProd ?? '';
+
+    $dadosRender['ValorTotalProd'] = $valorTotalProd ?? '';
+    $dadosRender['volumeTotal'] = $volumeTotal ?? '';
+    $dadosRender['pesoTotal'] = $pesoTotal ?? '';
 
     $dadosRender['config'] = array('url'=>URL,'emailLoja'=>EMAIL_LOJA,'moedaPagamento'=>MOEDA_PAGAMENTO,'urlNotificacao'=>URL_NOTIFICACAO,'scriptPagseguro'=>SCRIPT_PAGSEGURO);
    

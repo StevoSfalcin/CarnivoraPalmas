@@ -16,6 +16,28 @@
     }
 
     //BUSCA PRODUTO
+    $(document).ready(function(){
+        $('.Frete input').keyup(function(){
+            var cep = $('input').val();
+            if(cep.length >= 8){
+                $.ajax({
+                    'url':'calculoFrete.php',
+                    'method':'POST',
+                    'data':{cep:cep}
+                })
+                .done(function(retorno){
+                    console.log('chamou');
+                })
+                .fail(function(retorno){
+                    console.log('chamou');
+
+                })
+            }
+
+        });
+    })
+
+    //BUSCA PRODUTO
     $.ajaxSetup ({
     cache: false
     });

@@ -68,8 +68,8 @@
             <div><button class="btn">X</button></div>
             <input type="hidden" name="posicaoProduto" value="{{produto.posicao}}">
             <input type="hidden" name="carrinhoId" value="{{produto.carrinhoId}}">        
-            <input type="hidden" name="carrinhoId" value="{{produto.volume}}">        
-            <input type="hidden" name="carrinhoId" value="{{produto.peso}}">        
+            <input type="hidden" name="volume" value="{{produto.volume}}">        
+            <input type="hidden" name="peso" value="{{produto.peso}}">        
             </form>
             
         </div>
@@ -98,20 +98,22 @@
         <button type="button" class="collapsible"><h2>Calcular Frete</h2></button>
         
         <div class="conteudoAba">
-        <div class="busca">         
+        <div class="Frete">         
             <form action="" method="POST">
-                <input type="number" name="pesquisa" value="Pesquisar..." id="pesquisa" autocomplete="off">
+                <input type="number" name="pesquisa" id="pesquisa">
                 <button><span class="material-icons">search</span></button>
-            </form>
+            </form>        <h1>Produtos:R${{volumeTotalProd}}</h1>
             
             <div class="results"></div>
             <label>Frete</label>
             <input type="radio" name="shippingType" value="1"> PAC
-            <input type="radio" name="shippingType" value="2"> SEDEX
-            <input type="radio" name="shippingType" value="3" checked> Sem frete<br><br>
+            <input type="radio" name="shippingType" value="2" checked> SEDEX
 
             <label>Valor Frete</label>
-            <input type="text" name="shippingCost" id="senderCPF" placeholder="Preço do frete. Ex: 2.10"><br><br> 
+            
+            <input type="hidden" name="volumeTotal"value="{{volumeTotal}}">
+            <input type="hidden" name="pesoTotal"value="{{pesoTotal}}">
+
         </div>
         </div>
     </div>
@@ -257,7 +259,7 @@
             
     </div>
     </div>
-            
+
     <!--ORÇAMENTO-->
     <div class="box">
         <h2>Orçamento</h2>
