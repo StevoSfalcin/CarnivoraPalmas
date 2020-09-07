@@ -26,7 +26,8 @@
             if(cep.length >= 8){
                 $.ajax({
                     'url':'calculoFrete.php',
-                    'method':'POST',
+                    'method' : 'POST',
+                    'dataType' : 'json',
                     'data':{dados:dados},
                     success: function (retorno) {                       
                         console.log(retorno);      

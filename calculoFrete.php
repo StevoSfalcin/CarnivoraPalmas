@@ -6,6 +6,9 @@ $dados = json_decode($_POST['dados']);
 $dados['teste']='foiii';
 echo json_encode(444444);
     
+}else{
+    echo json_encode(5555);
+
 }
 
 
