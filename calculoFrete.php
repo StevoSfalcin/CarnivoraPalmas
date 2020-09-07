@@ -1,20 +1,44 @@
 <?php
 
-$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+$dados = json_decode($_POST['dados'],true);
+$dados['teste']='foiii';
+echo json_encode($dados);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//PAC 04510
+//SEDEX 04014
+/*
 $valores['nCdEmpresa'] = "";
 $valores['sDsSenha'] = "";
-$valores['sCepOrigem'] = $dados['cepOrigem'];
+$valores['sCepOrigem'] = $dados['77023038'];
+
 $valores['sCepDestino'] = $dados['cepOrigem'];
 $valores['nVlPeso'] = $dados['peso'];
+$valores['nVlComprimento'] = $dados['volume'];
+$valores['nVlAltura'] = $dados['volume'];
+$valores['nVlLargura'] = $dados['volume'];
+
+$valores['nVlValorDeclarado'] = $dados['precoProduto'];
+$valores['nCdServico'] = '04014';
 $valores['nCdFormato'] = "1";
-$valores['nVlComprimento'] = $dados['peso'];
-$valores['nVlAltura'] = $dados['peso'];
-$valores['nVlLargura'] = $dados['peso'];
 $valores['sCdMaoPropria'] = "n";
-$valores['nVlValorDeclarado'] = "0";
 $valores['sCdAvisoRecebimento'] = "n";
-$valores['nCdServico'] = $dados['peso'];
 $valores['nVlDiametro'] = "0";
 $valores['StrRetorno'] = "xml";
 

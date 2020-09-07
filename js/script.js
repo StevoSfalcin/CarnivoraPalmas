@@ -19,27 +19,22 @@
     $(document).ready(function(){
         $('.frete input[name="cep"]').keyup(function(){
             var cep = $('input[name="cep"]').val();
-            var dados = $('.frete input').val();
-            console.log(dados);
+            var dados = [];
+            dados['cep'] = $('input[name="cep"]').val();
+            dados['volume'] = $('input[name="volumeTotal"]').val();
+            dados['peso'] = $('input[name="pesoTotal"]').val();
             if(cep.length >= 8){
                 $.ajax({
                     'url':'calculoFrete.php',
                     'method':'POST',
-                    'data':{dados:dados}
-                })
-                .success(function(retorno){
-                    console.log(retorno);
-                    console.log(dados);
-                    
-
-                })
-                .done(function(retorno){
-            
-                })
-                .fail(function(retorno){
-                  
-
-                })
+                    'data':{dados:dados},
+                    success: function (retorno) {                       
+                        console.log(retorno);      
+                     },
+                     complete: function (retorno) {
+                       listarMeiosPag();       
+                     }
+                    });
             }
 
         });
