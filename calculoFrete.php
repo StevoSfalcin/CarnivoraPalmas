@@ -1,6 +1,6 @@
 <?php
 
-$dados = json_decode($_POST['dados'],true);
+$dados = json_decode($_POST['dados']);
 $dados['teste']='foiii';
 echo json_encode($dados);
 
@@ -47,6 +47,8 @@ $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx";
 $url = $url."?".$valores;
 $xml = simplexml_load_file($url);
 echo json_encode($xml->cServico);
+*/
+
 
 
 
