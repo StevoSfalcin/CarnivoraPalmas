@@ -17,8 +17,9 @@
 
     //BUSCA PRODUTO
     $(document).ready(function(){
-        $('.Frete input').keyup(function(){
+        $('.frete input[name="cep"]').keyup(function(){
             var cep = $('input').val();
+            console.log("apertou");
             if(cep.length >= 8){
                 $.ajax({
                     'url':'calculoFrete.php',
