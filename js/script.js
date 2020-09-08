@@ -70,7 +70,8 @@
         });
 
         $('#pac').click(function(){
-            var valor = document.getElementById('valorPac').getAttribute('value');       
+            var valor = document.getElementById('valorPac').getAttribute('value');   
+            console.log(valor);    
             document.getElementById("orcamentoFrete").innerHTML = valor;
         })
         $('#sedex').click(function(){
