@@ -30,8 +30,9 @@
                     'dataType' : 'json',
                     'data' : {'dados' : dados},
                     success: function(retorno){
-                        console.log(retorno);
-                        $('results').append("<h2>"+retorno.Valor+"</h2>")
+                        console.log(retorno.Valor);
+                        $('.results').html('');
+                        $('resultadoPac').append("<h2>"+retorno.Valor+"</h2>")
 
                     }
                 });
