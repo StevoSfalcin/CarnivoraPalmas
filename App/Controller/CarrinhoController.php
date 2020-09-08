@@ -52,6 +52,7 @@ class CarrinhoController{
             $produto->qntCarrinho = $expquant[$i]; 
             $produto->peso = $produto->peso * $expquant[$i]; 
             $produto->volume = ($produto->altura * $produto->largura * $produto->comprimento) * $expquant[$i];
+
             $produto->carrinhoId = $_SESSION['user']['carrinhoId'] ?? '';
             //SUBTOTAL DO PRODUTO
             $preco = str_replace(',','.',$produto->preco);
@@ -64,11 +65,13 @@ class CarrinhoController{
         //VALOR TOTAL DOS PRODUTOS
         $valorTotalProd = 0;
         $pesoTotal = 0;
+        $volume = 0;
         $volumeTotal = 0;
         foreach($dadosProd as $produto){
             $valorTotalProd += $produto->subTotal;
             $pesoTotal += $produto->peso;
-            $volumeTotal += $produto->volume;
+            $volume += $produto->volume;
+            $volumeTotal =+ round(pow($volume,1/3),2)
         }
     }
 
