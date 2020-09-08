@@ -20,20 +20,39 @@
         $('.frete input[name="cep"]').keyup(function(){
             var cep = $('input[name="cep"]').val();
             var dados = [];
+            var metodoPac = 04510;
+            var metodoSedex = 04014;
             dados[0] = $('input[name="cep"]').val();
             dados[1] = $('input[name="volumeTotal"]').val();
             dados[2] = $('input[name="pesoTotal"]').val();
+
             if(cep.length >= 8){
+                //PAC
                 $.ajax({
                     'url' : 'calculoFrete.php',
                     'method' : 'POST',
                     'dataType' : 'json',
-                    'data' : {'dados' : dados},
-                    success: function(retorno){
-                        console.log(retorno.Valor);
-                        //$('resultadoPac').append("<h2>"+retorno.Valor+"</h2>")
-
-                    }
+                    'data' : {'dados' : dados,
+                              'metodo':metodoPac},               
+                })
+                .done(function(retorno){
+                    console.log(retorno.Valor);
+                        $('.resultadoPac').html('');
+                        $('.resultadoPac').show().append("<h2>R$"+retorno.Valor+"</h2>")                       
+                });
+                //SEDEX
+                $.ajax({
+                    'url' : 'calculoFrete.php',
+                    'method' : 'POST',
+                    'dataType' : 'json',
+                    'data' : {'dados' : dados,
+                              'metodo':metodoSedex},               
+                })
+                .done(function(retorno){
+                    console.log(retorno.Valor);
+                        $('.resultadoSedex').html('');
+                        $('.resultadoSedex').show().append("<h2>R$"+retorno.Valor+"</h2>")
+                        
                 });
                        
             }

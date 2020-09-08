@@ -16,7 +16,7 @@ $valores['nVlLargura'] = $_POST['dados'][1];
 $valores['nVlPeso'] = $_POST['dados'][2];
 
 $valores['nVlValorDeclarado'] = '0';
-$valores['nCdServico'] = '04014';
+$valores['nCdServico'] = $_POST['metodo'];
 $valores['nCdFormato'] = "1";
 $valores['sCdMaoPropria'] = "n";
 $valores['sCdAvisoRecebimento'] = "n";
