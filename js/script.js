@@ -36,7 +36,7 @@
                               'metodo':metodoPac},               
                 })
                 .done(function(retorno){
-                    console.log(retorno);
+                    console.log(retorno.Valor);
                         $('.resultadoPac').html('');
                         $('.resultadoPac').show().append("<h2>R$"+retorno.Valor+"</h2>")                       
                 });
@@ -49,7 +49,7 @@
                               'metodo':metodoSedex},               
                 })
                 .done(function(retorno){
-                    console.log(retorno);
+                    console.log(retorno.Valor);
                         $('.resultadoSedex').html('');
                         $('.resultadoSedex').show().append("<h2>R$"+retorno.Valor+"</h2>")
                         
