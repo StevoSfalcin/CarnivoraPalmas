@@ -40,7 +40,7 @@
                 })
                 .done(function(retorno){            
                         $('.resultadoPac').html('');
-                        $('.resultadoSedex').show().append("<div id='valorPac' value='"+retorno.Valor+"'><h2>R$"+retorno.Valor+"</h2></div>")    
+                        $('.resultadoPac').show().append("<div id='valorPac' value='"+retorno.Valor+"'><h2>R$"+retorno.Valor+"</h2></div>")    
                         $('.resultadoPac').show().append("<h2>Prazo:"+retorno.PrazoEntrega+" Dias Uteis.</h2>")
 
                 })
