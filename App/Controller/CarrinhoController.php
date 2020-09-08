@@ -71,7 +71,7 @@ class CarrinhoController{
             $valorTotalProd += $produto->subTotal;
             $pesoTotal += $produto->peso;
             $volume += $produto->volume;
-            $volumeTotal =+ round(pow($volume,1/3),2)
+            $volumeTotal =+ round(pow($volume,1/3),2);
         }
     }
 
