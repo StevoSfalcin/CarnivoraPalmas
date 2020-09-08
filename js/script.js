@@ -36,9 +36,10 @@
                               'metodo':metodoPac},               
                 })
                 .done(function(retorno){
-                    console.log(retorno.Valor);
+                    console.log(retorno);
                         $('.resultadoPac').html('');
-                        $('.resultadoPac').show().append("<h2>R$"+retorno.Valor+"</h2>")                       
+                        $('.resultadoPac').show().append("<h2>Valor R$"+retorno.Valor+"</h2>")                       
+                        $('.resultadoPac').show().append("<h2>Prazo:R$"+retorno.Prazo+"</h2>")                       
                 });
                 //SEDEX
                 $.ajax({
@@ -49,9 +50,11 @@
                               'metodo':metodoSedex},               
                 })
                 .done(function(retorno){
-                    console.log(retorno.Valor);
+                    console.log(retorno);
                         $('.resultadoSedex').html('');
                         $('.resultadoSedex').show().append("<h2>R$"+retorno.Valor+"</h2>")
+                        $('.resultadoSedex').show().append("<h2>Prazo:R$"+retorno.Prazo+"</h2>")                       
+
                         
                 });
                        
