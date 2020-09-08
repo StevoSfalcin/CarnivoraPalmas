@@ -69,9 +69,8 @@
 
         });
 
-        $('#pac').click(function(){
-            console.log('clicou');
-
+        $('#pac').click(function(){<h1>Frete:R$0</h1>
+            document.getElementById("orcamentoFrete").value = "Johnny Bravo";
         })
     })
 
