@@ -31,10 +31,11 @@
                     'data' : {'dados' : dados},
                     success: function(retorno){
                         console.log(retorno);
+                        $('results').append("<h2>"+retorno.Valor+"</h2>")
 
                     }
-                })
-                
+                });
+                       
             }
 
         });

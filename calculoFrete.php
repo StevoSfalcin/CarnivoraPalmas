@@ -2,13 +2,6 @@
 
 if(isset($_POST['dados'])){
 
-    $teste = $_POST['dados'];
-
-    $dados = filter_var($_POST['dados'],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $dados = json_decode($dados,true);
-
-
-
 //PAC 04510
 //SEDEX 04014
 
@@ -16,11 +9,11 @@ $valores['nCdEmpresa'] = "";
 $valores['sDsSenha'] = "";
 $valores['sCepOrigem'] = '77023038';
 
-$valores['sCepDestino'] = $dados[0];
-$valores['nVlComprimento'] = $dados[1];
-$valores['nVlAltura'] = $dados[1];
-$valores['nVlLargura'] = $dados[1];
-$valores['nVlPeso'] = $dados[2];
+$valores['sCepDestino'] = $_POST['dados'][0];
+$valores['nVlComprimento'] = $_POST['dados'][1];
+$valores['nVlAltura'] = $_POST['dados'][1];
+$valores['nVlLargura'] = $_POST['dados'][1];
+$valores['nVlPeso'] = $_POST['dados'][2];
 
 $valores['nVlValorDeclarado'] = '0';
 $valores['nCdServico'] = '04014';
