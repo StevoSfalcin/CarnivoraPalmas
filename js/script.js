@@ -52,7 +52,10 @@
                     'method' : 'POST',
                     'dataType' : 'json',
                     'data' : {'dados' : dados,
-                              'metodo':metodoSedex},               
+                              'metodo':metodoSedex},   
+                beforeSend: function(){
+                    $('.resultadoPac').show().html('<img src="img/loadCep.gif" alt="carregando...">"');
+                }             
                 })
                 .done(function(retorno){
                     console.log(retorno.Valor);
