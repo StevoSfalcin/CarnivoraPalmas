@@ -20,8 +20,8 @@
         $('.frete input[name="cep"]').keyup(function(){
             var cep = $('input[name="cep"]').val();
             var dados = [];
-            var metodoPac = 04510;
-            var metodoSedex = 04014;
+            var metodoPac = '04510';
+            var metodoSedex = '04014';
             dados[0] = $('input[name="cep"]').val();
             dados[1] = $('input[name="volumeTotal"]').val();
             dados[2] = $('input[name="pesoTotal"]').val();
@@ -33,7 +33,10 @@
                     'method' : 'POST',
                     'dataType' : 'json',
                     'data' : {'dados' : dados,
-                              'metodo':metodoPac},               
+                              'metodo':metodoPac},            
+                beforeSend: function(){
+                    $('.resultadoPac').show().html('<img src="img/loadCep.gif" alt="carregando...">"');
+                }         
                 })
                 .done(function(retorno){
                     console.log(retorno.Valor);
