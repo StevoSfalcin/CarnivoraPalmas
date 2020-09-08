@@ -20,8 +20,8 @@
         $('.frete input[name="cep"]').keyup(function(){
             var cep = $('input[name="cep"]').val();
             var dados = [];
-            var metodoPac = 04510;
-            var metodoSedex = 04014;
+            var metodoPac = '04510';
+            var metodoSedex = '04014';
             dados[0] = $('input[name="cep"]').val();
             dados[1] = $('input[name="volumeTotal"]').val();
             dados[2] = $('input[name="pesoTotal"]').val();
@@ -36,7 +36,7 @@
                               'metodo':metodoPac},               
                 })
                 .done(function(retorno){
-                    console.log(retorno.Valor);
+                    console.log(retorno);
                         $('.resultadoPac').html('');
                         $('.resultadoPac').show().append("<h2>R$"+retorno.Valor+"</h2>")                       
                 });
@@ -49,7 +49,7 @@
                               'metodo':metodoSedex},               
                 })
                 .done(function(retorno){
-                    console.log(retorno.Valor);
+                    console.log(retorno);
                         $('.resultadoSedex').html('');
                         $('.resultadoSedex').show().append("<h2>R$"+retorno.Valor+"</h2>")
                         

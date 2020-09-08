@@ -29,5 +29,4 @@ $url = $url."?".$valores;
 $xml = simplexml_load_file($url);
 echo json_encode($xml->cServico);
 
-
 }
