@@ -20,24 +20,21 @@
         $('.frete input[name="cep"]').keyup(function(){
             var cep = $('input[name="cep"]').val();
             var dados = [];
-            dados['cep'] = $('input[name="cep"]').val();
-            dados['volume'] = $('input[name="volumeTotal"]').val();
-            dados['peso'] = $('input[name="pesoTotal"]').val();
+            dados[0] = $('input[name="cep"]').val();
+            dados[1] = $('input[name="volumeTotal"]').val();
+            dados[2] = $('input[name="pesoTotal"]').val();
             if(cep.length >= 8){
                 $.ajax({
                     'url' : 'calculoFrete.php',
                     'method' : 'POST',
                     'dataType' : 'json',
-                    'data' : {dados : dados}
+                    'data' : {'dados' : dados},
+                    success: function(retorno){
+                        console.log(retorno);
+
+                    }
                 })
-                .done(function(retorno){
-                    console.log(dados);
-                                  
-                })
-                .fail(function(){
-             
-                    console.log(dados);
-                });	
+                
             }
 
         });
