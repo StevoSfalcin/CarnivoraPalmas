@@ -60,8 +60,8 @@
                 })
                 .done(function(retorno){            
                         $('.resultadoSedex').html('');
-                        $('.resultadoSedex').show().append("<h2>R$"+retorno.Valor+"</h2>")
-                        $('.resultadoSedex').show().append("<div class='valorSedex' id='valorSedex'><h2>Prazo:"+retorno.PrazoEntrega+" Dias Uteis.</h2></div>")
+                        $('.resultadoSedex').show().append("<div class='valorSedex' id='valorSedex' value='"+retorno.Valor+"'><h2>R$"+retorno.Valor+"</h2></div>")
+                        $('.resultadoSedex').show().append("<h2>Prazo:"+retorno.PrazoEntrega+" Dias Uteis.</h2>")
                         
                 });
                        
@@ -70,7 +70,8 @@
         });
 
         $('#pac').click(function(){<h1>Frete:R$0</h1>
-            document.getElementById("orcamentoFrete").value = "Johnny Bravo";
+        var valor = $('.valorSedex').attr('value')
+            document.getElementById("orcamentoFrete").value = valor;
         })
     })
 
