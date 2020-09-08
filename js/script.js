@@ -40,7 +40,7 @@
                 })
                 .done(function(retorno){            
                         $('.resultadoPac').html('');
-                        $('.resultadoPac').show().append("<h2>R$"+retorno.Valor+"</h2>")     
+                        $('.resultadoSedex').show().append("<div id='valorPac' value='"+retorno.Valor+"'><h2>R$"+retorno.Valor+"</h2></div>")    
                         $('.resultadoPac').show().append("<h2>Prazo:"+retorno.PrazoEntrega+" Dias Uteis.</h2>")
 
                 })
@@ -60,7 +60,7 @@
                 })
                 .done(function(retorno){            
                         $('.resultadoSedex').html('');
-                        $('.resultadoSedex').show().append("<div class='valorSedex' id='valorSedex' value='"+retorno.Valor+"'><h2>R$"+retorno.Valor+"</h2></div>")
+                        $('.resultadoSedex').show().append("<div id='valorSedex' value='"+retorno.Valor+"'><h2>R$"+retorno.Valor+"</h2></div>")
                         $('.resultadoSedex').show().append("<h2>Prazo:"+retorno.PrazoEntrega+" Dias Uteis.</h2>")
                         
                 });
@@ -70,11 +70,12 @@
         });
 
         $('#pac').click(function(){
-        
-            document.getElementById("orcamentoFrete").innerHTML = "whatever";
-    
-    
-
+            var valor = document.getElementById('valorPac').getAttribute('value');       
+            document.getElementById("orcamentoFrete").innerHTML = valor;
+        })
+        $('#sedex').click(function(){
+            var valor = document.getElementById('valorSedex').getAttribute('value');       
+            document.getElementById("orcamentoFrete").innerHTML = valor;
         })
     })
 
