@@ -31,8 +31,7 @@
                     'data' : {'dados' : dados},
                     success: function(retorno){
                         console.log(retorno.Valor);
-                        $('.results').html('');
-                        $('resultadoPac').append("<h2>"+retorno.Valor+"</h2>")
+                        //$('resultadoPac').append("<h2>"+retorno.Valor+"</h2>")
 
                     }
                 });
