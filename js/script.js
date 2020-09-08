@@ -38,10 +38,11 @@
                     $('.resultadoPac').show().html('<img src="img/loadCep.gif" alt="carregando...">"');
                 }         
                 })
-                .done(function(retorno){
-                    console.log(retorno.Valor);
+                .done(function(retorno){            
                         $('.resultadoPac').html('');
-                        $('.resultadoPac').show().append("<h2>R$"+retorno.Valor+"</h2>")                       
+                        $('.resultadoPac').show().append("<h2>R$"+retorno.Valor+"</h2>")     
+                        $('.resultadoPac').show().append("<h2>Prazo:"+retorno.PrazoEntrega+" Dias Uteis.</h2>")
+
                 })
                 .fail(function(){
                     console.log('falhou')
@@ -54,19 +55,24 @@
                     'data' : {'dados' : dados,
                               'metodo':metodoSedex},   
                 beforeSend: function(){
-                    $('.resultadoPac').show().html('<img src="img/loadCep.gif" alt="carregando...">"');
+                    $('.resultadoSedex').show().html('<img src="img/loadCep.gif" alt="carregando...">"');
                 }             
                 })
-                .done(function(retorno){
-                    console.log(retorno.Valor);
+                .done(function(retorno){            
                         $('.resultadoSedex').html('');
                         $('.resultadoSedex').show().append("<h2>R$"+retorno.Valor+"</h2>")
+                        $('.resultadoSedex').show().append("<div class='valorSedex' id='valorSedex'><h2>Prazo:"+retorno.PrazoEntrega+" Dias Uteis.</h2></div>")
                         
                 });
                        
             }
 
         });
+
+        $('#pac').click(function(){
+            console.log('clicou');
+
+        })
     })
 
     //BUSCA PRODUTO
