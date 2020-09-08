@@ -69,9 +69,12 @@
 
         });
 
-        $('#pac').click(function(){<h1>Frete:R$0</h1>
-        var valor = $('.valorSedex').attr('value')
-            document.getElementById("orcamentoFrete").value = valor;
+        $('#pac').click(function(){
+        
+            document.getElementById("orcamentoFrete").innerHTML = "whatever";
+    
+    
+
         })
     })
 
