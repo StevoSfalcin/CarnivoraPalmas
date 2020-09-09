@@ -20,7 +20,7 @@ $("#tabsPag li").click(function() {
   var valor = $(this).attr('id');
   $('#paymentMethod').val(valor);
   if(valor == 'boleto'){
-  document.getElementById('#selecFormaPag').innerHTML = 555555;
+  document.getElementById('selecFormaPag').innerHTML = '<h1>Pagamento Via Boleto Selecionado</h1>';
   console.log('boleto')
  }
 });
