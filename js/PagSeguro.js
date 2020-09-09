@@ -15,13 +15,14 @@ function sessionId() {
       }
   });
 }
-//FORMA DE PAGAMENTO
+//TABS FORMA DE PAGAMENTO
 $("#tabsPag li").click(function() {
   var valor = $(this).attr('id');
   $('#paymentMethod').val(valor);
-  if(valor = 'boleto'){
-  document.getElementById('#selecFormaPag').innerHTML = 'Pagamento via Boleto';
-  }
+  if(valor == 'boleto'){
+  document.getElementById('#selecFormaPag').innerHTML = 555555;
+  console.log('boleto')
+ }
 });
 
 //LISTAR MEIOS PAGAMENTOS
