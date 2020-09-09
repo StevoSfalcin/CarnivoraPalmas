@@ -1,13 +1,15 @@
+
 var valorFrete = document.getElementById('valorPac').getAttribute('value');     
 var valorProdutos = document.getElementById('valorProdutos').getAttribute('value');
 var total = parseFloat(valorProdutos.replace(',','.')) + parseFloat(valorFrete.replace(',','.'));
+var amount = total || "600.00";
+console.log(total);
   
-var amount = total;
 sessionId();
 //ID DA SESSAO
 function sessionId() {
   $.ajax({
-      url:"https://carnivorapalmas.com/carrinhoajax/sessaoPag.php",
+      url:"https://carnivorapalmas.com/ajax/sessaoPag.php",
       type: 'POST',
       dataType: 'json',
       success: function (retorno) {
