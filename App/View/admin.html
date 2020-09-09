@@ -149,35 +149,50 @@
             {% for produto in produtos %}
             <div id="{{produto.id}}" class="modal">
                 <div class="modal-content">
-                  <h4>Editar Produto</h4>
-                  <form action="{{config.url}}/admin/atualizaProduto" enctype="multipart/form-data" method="POST">
-                      <div class="campoEditar">
-                      <h2>Nome: </h2>
-                      <input type="text" required value="{{produto.nome}}" name="nome">
-                      </div>  
-                      <div class="campoEditar">
-                      <h2>Descriçao: </h2>
-                      <input type="text" required value="{{produto.descricao}}" name="descricao">
-                      </div>
-                      <div class="campoEditar">
-                      <h2>Preço: </h2>
-                      <input type="text" required value="{{produto.preco}}" name="preco">
-                      </div>
-                      <div class="campoEditar">
-                      <h2>Quantidade: </h2>
-                      <input type="text" required value="{{produto.quantidade}}" name="quantidade">
-                      </div>
-                      <div class="campoEditar">
-                      <h2>Categoria: </h2>
-                      <input type="text" required value="{{produto.categoria}}" name="categoria">
-                      </div>
-                      <div class="campoEditar">
-                      <h2>Imagem: </h2>
-                      <input type="file" required name="arquivo">
-                      </div>
-                      <input type="hidden" value="{{produto.id}}" name="id">
+                    <h4>Editar Produto</h4>
+                    <form action="{{config.url}}/admin/atualizaProduto" enctype="multipart/form-data" method="POST">
+                        <div class="campoEditar">
+                        <h2>Nome: </h2>
+                        <input type="text" required value="{{produto.nome}}" name="nome">
+                        </div>  
+                        <div class="campoEditar">
+                        <h2>Descriçao: </h2>
+                        <input type="text" required value="{{produto.descricao}}" name="descricao">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>Preço: </h2>
+                        <input type="text" required value="{{produto.preco}}" name="preco">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>Quantidade: </h2>
+                        <input type="text" required value="{{produto.quantidade}}" name="quantidade">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>Categoria: </h2>
+                        <input type="text" required value="{{produto.categoria}}" name="categoria">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>Imagem: </h2>
+                        <input type="file" required name="arquivo">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>largura: </h2>
+                        <input type="number" required name="largura">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>altura: </h2>
+                        <input type="number" required name="altura">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>comprimento: </h2>
+                        <input type="number" required name="comprimento">
+                        </div><div class="campoEditar">
+                        <h2>Peso: </h2>
+                        <input type="number" required name="peso">
+                        </div>
+                        <input type="hidden" value="{{produto.id}}" name="id">
 
-                      <input class="btn" type="submit" name="editarProduto" value="Editar Produto">
+                        <input class="btn" type="submit" name="editarProduto" value="Editar Produto">
                       
                   </form>
 
@@ -232,6 +247,21 @@
                     <div class="campoEditar">
                     <h2>Imagem: </h2>
                     <input type="file" required name="arquivo">
+                    </div>
+                    <div class="campoEditar">
+                    <h2>largura: </h2>
+                    <input type="number" required name="largura">
+                    </div>
+                    <div class="campoEditar">
+                    <h2>altura: </h2>
+                    <input type="number" required name="altura">
+                    </div>
+                    <div class="campoEditar">
+                    <h2>comprimento: </h2>
+                    <input type="number" required name="comprimento">
+                    </div><div class="campoEditar">
+                    <h2>Peso: </h2>
+                    <input type="number" required name="peso">
                     </div>
 
                     <input class="btn" type="submit" name="criarProduto" value="Criar Produto">

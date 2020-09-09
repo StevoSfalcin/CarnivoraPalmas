@@ -30,6 +30,11 @@ class AdminController{
         $dados->setCategoria($_POST['categoria']);
         $dados->setDestaque(10);
         $dados->setImg($_FILES['arquivo']);
+        $dados->setAltura($_POST['altura']);
+        $dados->setLargura($_POST['largura']);
+        $dados->setComprimento($_POST['comprimento']);
+        $dados->setPeso($_POST['peso']);
+
         $dados->adicionaProduto();
         header('Location:'.URL.'/admin');
         }catch(\Exception $e){
@@ -47,6 +52,10 @@ class AdminController{
         $dados->setCategoria($_POST['categoria']);
         $dados->setDestaque(10);
         $dados->setImg($_FILES['arquivo']);
+        $dados->setAltura($_POST['altura']);
+        $dados->setLargura($_POST['largura']);
+        $dados->setComprimento($_POST['comprimento']);
+        $dados->setPeso($_POST['peso']);
         $dados->atualizaProduto();
         header('Location:'.URL.'/admin');
         }catch(\Exception $e){

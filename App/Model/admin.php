@@ -11,6 +11,10 @@ class admin{
     private $categoria;
     private $destaque;
     private $img;
+    private $largura;
+    private $altura;
+    private $comprimento;
+    private $peso;
 
     /**************** PRODUTOS *****************/
     public function adicionaProduto(){
@@ -20,7 +24,7 @@ class admin{
         move_uploaded_file($_FILES['arquivo']['tmp_name'],$diretorio.$novoNome);  
 
         $conn = \App\lib\Database\Conexao::Connect();
-        $query = 'INSERT INTO produtos(nome,descricao,preco,quantidade,categoria,destaque,img) VALUES (:nome, :descricao, :preco, :quantidade, :categoria, :destaque, :img)';
+        $query = 'INSERT INTO produtos(nome,descricao,preco,quantidade,categoria,destaque,img,largura,altura,comprimento,peso) VALUES (:nome, :descricao, :preco, :quantidade, :categoria, :destaque, :img, :largura, :altura, :comprimento:, :peso)';
         $sql = $conn->prepare($query);
         $sql->bindValue(1,$this->nome);
         $sql->bindValue(2,$this->descricao);
@@ -42,7 +46,7 @@ class admin{
         move_uploaded_file($_FILES['arquivo']['tmp_name'],$diretorio.$novoNome);
 
         $conn = \App\lib\Database\Conexao::Connect();
-        $query = 'UPDATE produtos SET nome=:nome, descricao=:descricao, preco=:preco, quantidade=:quantidade, categoria=:categoria, destaque=:destaque, img=:img WHERE id=:id';
+        $query = 'UPDATE produtos SET nome=:nome, descricao=:descricao, preco=:preco, quantidade=:quantidade, categoria=:categoria, destaque=:destaque, img=:img, largura=:largura, altura=:altura, comprimento=:comprimento, peso=:peso WHERE id=:id';
         $sql = $conn->prepare($query);
         $sql->bindValue(1,$this->nome);
         $sql->bindValue(2,$this->descricao);
@@ -51,6 +55,10 @@ class admin{
         $sql->bindValue(5,$this->categoria);
         $sql->bindValue(6,$this->destaque);
         $sql->bindValue(7,$novoNome);
+        $sql->bindValue(6,$this->largura);
+        $sql->bindValue(6,$this->altura);
+        $sql->bindValue(6,$this->comprimento);
+        $sql->bindValue(6,$this->peso);
         $sql->bindValue(8,$this->id);
         $sql->execute();
         if($sql->rowcount()){
@@ -206,6 +214,30 @@ class admin{
     }
     public function getImg(){
         return $this->Img;
+    }
+    public function setLargura($e){
+        $this->largura = $e;
+    }
+    public function getLargura(){
+        return $this->largura;
+    }
+    public function setAltura($e){
+        $this->altura = $e;
+    }
+    public function getAltura(){
+        return $this->altura;
+    }
+    public function setComprimento($e){
+        $this->comprimento = $e;
+    }
+    public function getComprimento(){
+        return $this->comprimento;
+    }
+    public function setPeso($e){
+        $this->peso = $e;
+    }
+    public function getPeso(){
+        return $this->peso;
     }
  
  
