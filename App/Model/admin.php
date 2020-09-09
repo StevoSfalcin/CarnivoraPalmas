@@ -33,6 +33,10 @@ class admin{
         $sql->bindValue(5,$this->categoria);
         $sql->bindValue(6,$this->destaque);
         $sql->bindValue(7,$novoNome);
+        $sql->bindValue(8,$this->largura);
+        $sql->bindValue(9,$this->altura);
+        $sql->bindValue(10,$this->comprimento);
+        $sql->bindValue(11,$this->peso);
         $sql->execute();
         if($sql->rowcount()){
             return true;
@@ -55,11 +59,11 @@ class admin{
         $sql->bindValue(5,$this->categoria);
         $sql->bindValue(6,$this->destaque);
         $sql->bindValue(7,$novoNome);
-        $sql->bindValue(6,$this->largura);
-        $sql->bindValue(6,$this->altura);
-        $sql->bindValue(6,$this->comprimento);
-        $sql->bindValue(6,$this->peso);
-        $sql->bindValue(8,$this->id);
+        $sql->bindValue(8,$this->largura);
+        $sql->bindValue(9,$this->altura);
+        $sql->bindValue(10,$this->comprimento);
+        $sql->bindValue(11,$this->peso);
+        $sql->bindValue(12,$this->id);
         $sql->execute();
         if($sql->rowcount()){
             return true;

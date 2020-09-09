@@ -292,7 +292,7 @@
 
                 <!-- Modal Editar Categoria-->
             {% for categoria in categorias %}
-            <div id="editar{{categoria.id}}" class="modal">
+            <div id="editar/{{categoria.id}}" class="modal">
                 <div class="modal-content">
                   <h4>Editar categoria</h4>
                   <form action="{{config.url}}/admin/atualizaCategoria" enctype="multipart/form-data" method="POST">
@@ -312,7 +312,7 @@
 
                 <!--MODAL Deletar Categoria-->
                 {% for categoria in categorias %}
-                <div id="deletarCat{{categoria.id}}" class="modal">
+                <div id="deletarCat/{{categoria.id}}" class="modal">
                     <div class="modal-content">
                       <h4>Deletar Produto</h4>
                       <h2>Voce tem certeza que deseja deletar esse produto?</h2>
