@@ -69,6 +69,7 @@ class CarrinhoController{
         $volumeTotal = 0;
         foreach($dadosProd as $produto){
             $valorTotalProd += $produto->subTotal;
+            $valorTotalProd = str_replace('.',',',$valorTotalProd);
             $pesoTotal += $produto->peso;
             $volume += $produto->volume;
             $volumeTotal =+ round(pow($volume,1/3),2);

@@ -19,6 +19,9 @@ function sessionId() {
 $("#tabsPag li").click(function() {
   var valor = $(this).attr('id');
   $('#paymentMethod').val(valor);
+  if(valor = 'boleto'){
+  document.getElementById('#selecFormaPag').innerHTML = 'Pagamento via Boleto';
+  }
 });
 
 //LISTAR MEIOS PAGAMENTOS

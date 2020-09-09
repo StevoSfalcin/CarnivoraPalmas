@@ -100,8 +100,8 @@
         <div class="conteudoAba">
         <div class="frete">         
             <form action="" method="POST">
-                <!--CEP-->
-                <input type="text" name="cep" id="pesquisa" value="Digite seu CEP">                         
+            <!--CEP-->
+            <input type="text" name="cep" id="pesquisa" value="Digite seu CEP">                         
             <label>Frete</label>
             <!--PAC-->
             <p>
@@ -158,8 +158,7 @@
             <li class="tab" id="eft"><a href="#debitoPag">DEBITO</a></li>
         </ul>
         <!--BOLETO-->
-        <div id="boletoPag" >Test 1      
-        </div>
+        <div id="selecFormaPag" >Selecione uma forma de Pagamento</div>
         <!--DEBITO ONLINE-->
         <div id="debitoPag" >          
             <div class="bankName">
@@ -270,9 +269,9 @@
     <!--ORÇAMENTO-->
     <div class="box">
         <h2>Orçamento</h2>
-        <h1>Produtos:R${{ValorTotalProd}}</h1>
+        <h1 id="valorProdutos" value='{{ValorTotalProd}}'>Produtos:R${{ValorTotalProd}}</h1>
         <div id="orcamentoFrete"></div>
-        <h1>Total:R$0</h1>
+        <div id="orcamentoTotal"></div>
         <input type="submit" name="btnComprar" id="btnComprar" value="Comprar" class="btn">
     </div>
     </form>
