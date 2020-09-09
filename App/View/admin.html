@@ -170,25 +170,25 @@
                         <div class="campoEditar">
                         <h2>Categoria: </h2>
                         <input type="text" required value="{{produto.categoria}}" name="categoria">
+                        </div>                      
+                        <div class="campoEditar">
+                        <h2>largura: </h2>
+                        <input type="number" required value="{{produto.largura}}" name="largura">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>altura: </h2>
+                        <input type="number" required value="{{produto.altura}}" name="altura">
+                        </div>
+                        <div class="campoEditar">
+                        <h2>comprimento: </h2>
+                        <input type="number" required value="{{produto.comprimento}}" name="comprimento">
+                        </div><div class="campoEditar">
+                        <h2>Peso: </h2>
+                        <input type="number" required value="{{produto.peso}}" name="peso">
                         </div>
                         <div class="campoEditar">
                         <h2>Imagem: </h2>
                         <input type="file" required name="arquivo">
-                        </div>
-                        <div class="campoEditar">
-                        <h2>largura: </h2>
-                        <input type="number" required name="largura">
-                        </div>
-                        <div class="campoEditar">
-                        <h2>altura: </h2>
-                        <input type="number" required name="altura">
-                        </div>
-                        <div class="campoEditar">
-                        <h2>comprimento: </h2>
-                        <input type="number" required name="comprimento">
-                        </div><div class="campoEditar">
-                        <h2>Peso: </h2>
-                        <input type="number" required name="peso">
                         </div>
                         <input type="hidden" value="{{produto.id}}" name="id">
 
@@ -243,11 +243,7 @@
                     <div class="campoEditar">
                     <h2>Categoria: </h2>
                     <input type="text" required name="categoria">
-                    </div>
-                    <div class="campoEditar">
-                    <h2>Imagem: </h2>
-                    <input type="file" required name="arquivo">
-                    </div>
+                    </div>                  
                     <div class="campoEditar">
                     <h2>largura: </h2>
                     <input type="number" required name="largura">
@@ -262,6 +258,10 @@
                     </div><div class="campoEditar">
                     <h2>Peso: </h2>
                     <input type="number" required name="peso">
+                    </div>
+                    <div class="campoEditar">
+                    <h2>Imagem: </h2>
+                    <input type="file" required name="arquivo">
                     </div>
 
                     <input class="btn" type="submit" name="criarProduto" value="Criar Produto">
