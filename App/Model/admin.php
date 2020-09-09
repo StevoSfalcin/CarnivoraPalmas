@@ -24,7 +24,7 @@ class admin{
         move_uploaded_file($_FILES['arquivo']['tmp_name'],$diretorio.$novoNome);  
 
         $conn = \App\lib\Database\Conexao::Connect();
-        $query = 'INSERT INTO produtos(nome,descricao,preco,quantidade,categoria,destaque,img,largura,altura,comprimento,peso) VALUES (:nome, :descricao, :preco, :quantidade, :categoria, :destaque, :img, :largura, :altura, :comprimento:, :peso)';
+        $query = 'INSERT INTO produtos(nome,descricao,preco,quantidade,categoria,destaque,img,largura,altura,comprimento,peso) VALUES (:nome, :descricao, :preco, :quantidade, :categoria, :destaque, :img, :largura, :altura, :comprimento, :peso)';
         $sql = $conn->prepare($query);
         $sql->bindValue(1,$this->nome);
         $sql->bindValue(2,$this->descricao);

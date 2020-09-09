@@ -1,11 +1,21 @@
-
-var valorFrete = document.getElementById('valorPac').getAttribute('value');     
-var valorProdutos = document.getElementById('valorProdutos').getAttribute('value');
-var total = parseFloat(valorProdutos.replace(',','.')) + parseFloat(valorFrete.replace(',','.'));
-var amount = total;
-console.log(total);
-  
 sessionId();
+var valorProdutos = document.getElementById('valorProdutos').getAttribute('value').replace(',','.');
+var amount = valorProdutos;
+
+$('#pac').click(function(){
+    var valorFrete = document.getElementById('valorPac').getAttribute('value');
+    total = parseFloat(valorProdutos.replace(',','.')) + parseFloat(valorFrete.replace(',','.'));
+    amount = total;
+    obterParcelas('visa');
+    console.log(total);
+});
+$('#sedex').click(function(){
+    var valorFrete = document.getElementById('valorSedex').getAttribute('value');
+    total = parseFloat(valorProdutos.replace(',','.')) + parseFloat(valorFrete.replace(',','.'));
+    amount = total;
+    obterParcelas('visa');
+    console.log(total);
+});
 //ID DA SESSAO
 function sessionId() {
   $.ajax({

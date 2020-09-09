@@ -22,7 +22,6 @@ class AdminController{
     public function adicionaProduto(){
     try{
         $dados = new \App\Model\admin();
-        $dados->setId($_POST['id']);
         $dados->setNome($_POST['nome']);
         $dados->setDescricao($_POST['descricao']);
         $dados->setPreco($_POST['preco']);
