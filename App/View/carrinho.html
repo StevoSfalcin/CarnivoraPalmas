@@ -108,14 +108,14 @@
             <input name="group1" type="radio" id="pac" value="04510"/>
             <label for="pac">PAC</label>
             <div class="resultadoPac"></div>
-            <div class="valorPac" value="0"></div>
+            <div id="valorPac" value="0"></div>
             </p>
             <!--SEDEX-->
             <p>
             <input name="group1" type="radio" id="sedex" value="04014"/>
             <label for="sedex">SEDEX</label>
             <div class="resultadoSedex"></div>
-            <div class="valorSedex" value="0"></div>
+            <div id="valorSedex" value="0"></div>
             </p>
             </form>
 
@@ -278,6 +278,8 @@
         {% if ValorTotalProd != '' %}
         <h1 id="valorProdutos" value='{{ValorTotalProd}}'>Produtos:R${{ValorTotalProd}}</h1>
         <div id="orcamentoFrete"></div>
+        {% else %}
+        <h1 id="valorProdutos" value='0'></h1>
         {% endif %}
         <div id="orcamentoTotal"></div>
         <input type="submit" name="btnComprar" id="btnComprar" value="Comprar" class="btn">

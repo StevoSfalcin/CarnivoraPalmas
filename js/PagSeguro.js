@@ -2,7 +2,7 @@
 var valorFrete = document.getElementById('valorPac').getAttribute('value');     
 var valorProdutos = document.getElementById('valorProdutos').getAttribute('value');
 var total = parseFloat(valorProdutos.replace(',','.')) + parseFloat(valorFrete.replace(',','.'));
-var amount = total || "600.00";
+var amount = total;
 console.log(total);
   
 sessionId();
