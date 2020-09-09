@@ -3,7 +3,7 @@ sessionId();
 //ID DA SESSAO
 function sessionId() {
   $.ajax({
-      url:"https://carnivorapalmas.com/sessaoPag.php",
+      url:"ajax/sessaoPag.php",
       type: 'POST',
       dataType: 'json',
       success: function (retorno) {
@@ -129,7 +129,7 @@ function hashCartao(){
             $("#hashCartao").val(retorno.senderHash);
             var dados = $("#formPagamento").serialize();
             $.ajax({
-                url:"processaPedido.php",
+                url:"ajax/processaPedido.php",
                 method:"POST",
                 data:dados,
                 dataType:"json",

@@ -273,8 +273,10 @@
     <!--ORÇAMENTO-->
     <div class="box">
         <h2>Orçamento</h2>
+        {% if ValorTotalProd != '' %}
         <h1 id="valorProdutos" value='{{ValorTotalProd}}'>Produtos:R${{ValorTotalProd}}</h1>
         <div id="orcamentoFrete"></div>
+        {% endif %}
         <div id="orcamentoTotal"></div>
         <input type="submit" name="btnComprar" id="btnComprar" value="Comprar" class="btn">
     </div>

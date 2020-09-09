@@ -26,7 +26,7 @@ $(document).ready(function(){
         if(cep.length >= 8){
             //PAC
             $.ajax({
-                'url' : 'calculoFrete.php',
+                'url' : 'ajax/calculoFrete.php',
                 'method' : 'POST',
                 'dataType' : 'json',
                 'data' : {'dados' : dados,
@@ -45,7 +45,7 @@ $(document).ready(function(){
             })
             //SEDEX
             $.ajax({
-                'url' : 'calculoFrete.php',
+                'url' : 'ajax/calculoFrete.php',
                 'method' : 'POST',
                 'dataType' : 'json',
                 'data' : {'dados' : dados,
@@ -94,7 +94,7 @@ $(document).ready(function(){
         var words = $('input').val();
         if (words != '') {
             $.ajax({
-                'url' : 'buscaProduto.php',
+                'url' : 'ajax/buscaProduto.php',
                 'method' : 'POST',
                 'dataType' : 'json',
                 'data' : {palavra : words}
