@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'config/config.php';
-include 'App/lib/Database/Conexao.php';
-include 'App/Model/carrinho.php';
+include '../config/config.php';
+include '../App/lib/Database/Conexao.php';
+include '../App/Model/carrinho.php';
 
 //CONEXAO COM BANCO DE dados
 $conn = \App\lib\Database\Conexao::Connect();

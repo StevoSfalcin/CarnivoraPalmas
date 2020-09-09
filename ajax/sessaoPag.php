@@ -1,5 +1,5 @@
 <?php
-include 'config/config.php';
+include '../config/config.php';
 
 $url = URL_PAGSEGURO . "sessions?email=" . EMAIL_PAGSEGURO . "&token=" . TOKEN_PAGSEGURO;
 
