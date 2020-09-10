@@ -63,8 +63,8 @@
 .postProduto .descricaoProduto{width: 100%; margin: 0.5rem;padding: 0.5rem;border: 1px solid black;text-align: start;}
 .postProduto .info .tituloProduto h2{font-size: 1.6rem;}
 .postProduto .info h1{font-size: 1.5rem;}
-.postProduto  .descricaoProduto h1{font-size: 1.2rem;}
-.postProduto  .descricaoProduto h2{font-size: 1.5rem;}
+.postProduto  .descricaoProduto h1{font-size: 1.2rem; margin:0.5rem 0}
+.postProduto  .descricaoProduto h2{font-size: 1.5rem; margin:0}
 
 /******** ADMIN **********/
 .admin .banner{align-items: center;}
@@ -151,7 +151,7 @@ table td a{word-break: keep-all;}
     .postProduto .info h1{font-size: 1.5rem;}
     .postProduto  .descricaoProduto h1{font-size: 1.3 rem;}
     .postProduto  .descricaoProduto h2{font-size: 1.1rem;}
-    .topoProduto{display: flex;}
+    .topoProduto{display: flex;justify-content: center;}
     
     }
 
