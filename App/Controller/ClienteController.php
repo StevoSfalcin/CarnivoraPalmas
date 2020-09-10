@@ -70,7 +70,8 @@ public function alterarSenha(){
     $dados->alterarSenha();
     header('Location:'.URL.'/cliente');
     }catch(\Exception $e){
-        $_SESSION['msg'] = $e->getMessage();
+        $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
+        header('Location:'.URL);
 }
 }
 
