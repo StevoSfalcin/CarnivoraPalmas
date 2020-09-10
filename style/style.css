@@ -134,11 +134,15 @@ table td a{word-break: keep-all;}
 
 
 
-@media only screen and (max-width: 375px) {
-    .corpo{display: none;}
-    .produto{max-width: 100%;}
+@media only screen and (max-width: 500px) {
+    .produto{max-width: 92%;}
+    .rodape-cnpj{display: none;}
     }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (min-width: 700px) {
     .produto{max-width: 50%;}   
     }
+
+@media only screen and (min-width: 993px) {
+    .produto{max-width: 31%;}   
+        }

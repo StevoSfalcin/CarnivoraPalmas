@@ -92,7 +92,7 @@ class AdminController{
 
         }catch(\Exception $e){
             $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
-            header('Location:'.URL.'/admin')
+            header('Location:'.URL.'/admin');
         }
     }
     public function atualizaCategoria(){
