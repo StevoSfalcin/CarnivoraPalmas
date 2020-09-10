@@ -60,8 +60,8 @@
 .postProduto .info .quantidade h2{font-size: 1.2rem;}  
 .postProduto .pedido{display: flex; justify-content: space-around;}
 .postProduto .pedido a{width: 45%;}
-.postProduto .descricaoProduto{width: 100%; margin: 0.5rem;padding: 0.5rem;border: 1px solid black;text-align: start;}
-.postProduto .info .tituloProduto h2{font-size: 1.6rem;}
+.postProduto .descricaoProduto{width: 100%; margin: 0.5rem;padding: 0.5rem;border: solid #CFD8DC 2px;text-align: start;}
+.postProduto .info .tituloProduto h2{font-size: 1.6rem;margin: 0;}
 .postProduto .info h1{font-size: 1.5rem;}
 .postProduto  .descricaoProduto h1{font-size: 1.2rem; margin:0.5rem 0}
 .postProduto  .descricaoProduto h2{font-size: 1.5rem; margin:0}
@@ -150,9 +150,9 @@ table td a{word-break: keep-all;}
     .postProduto .info{width: 90%;background-color: royalblue;}
     .postProduto .info .tituloProduto h2{font-size: 1.5rem;}
     .postProduto .info h1{font-size: 1.5rem;}
-    .postProduto  .descricaoProduto h1{font-size: 1.3 rem;}
+    .postProduto  .descricaoProduto h1{font-size: 1.3rem;}
     .postProduto  .descricaoProduto h2{font-size: 1.1rem;}
-    .topoProduto{display: flex;justify-content: center;}
+    .postProduto .topoProduto{background-color: royalblue;}
     
     }
 
