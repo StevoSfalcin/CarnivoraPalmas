@@ -86,7 +86,7 @@
             <div class="corpoGeral">
                 <div class="caixa maisVendidos">
                     <h1>Mais Vendidos</h1>
-                    <table border="1" class="bordered">
+                    <table border="1" class="bordered responsive-table responsive-table">
                         <tr>
                             <th>A</th>
                             <th>A</th>
@@ -100,7 +100,7 @@
                 <div class="caixa indiceVendas">    
                     <div class="maisVendidos">
                     <h1>Mais Vendidos</h1>
-                    <table border="1" class="bordered">
+                    <table border="1" class="bordered responsive-table">
                         <tr>
                             <th>A</th>
                             <th>A</th>
@@ -116,11 +116,13 @@
             </div>
         </div>
         <!--PEDIDOS-->
-        <div class="text">
+        <div class="text">        
             <div class="tituloConteudo">
-                <h2>Pedidos</h2>
+            <h2>Pedidos</h2>
             </div>
-            <table border="1" class="bordered">
+            <div class="corpoPedidos">
+             <div class="tabelaPedidos">
+            <table border="1" class="bordered responsive-table">
                 <tr>
                     <th>id Cliente</th>
                     <th>Metodo de Pagamento</th>
@@ -145,7 +147,8 @@
                 </tr>
                 {% endfor %}
             </table>
-                
+            </div>   
+            </div>         
         </div>
     
         <!--Produtos-->
@@ -154,7 +157,7 @@
             <div class="tituloConteudo">
             <h2>Produtos</h2>
             </div>
-            <table border="1" class="bordered">
+            <table border="1" class="bordered responsive-table">
                 <tr>
                     <th>Produto</th>
                     <th class="testeee">Descriçao</th>
@@ -307,7 +310,7 @@
         <!--CATEGORIAS-->
         <div class="text">
                 <h2>Categorias</h2>
-                <table border="1" class="bordered">                   
+                <table border="1" class="bordered responsive-table">                   
                     <tr>
                         <th>Categoria</th>
                         <th>Editar</th>
@@ -377,8 +380,10 @@
         </div>
         <!--CLIENTES-->
         <div class="text">
+            <div class="conteudo">
             <div class="tituloConteudo">
                 <h2>CLIENTES</h2>
+            </div>
             </div>
 
                 
