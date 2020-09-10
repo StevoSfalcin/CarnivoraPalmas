@@ -55,11 +55,13 @@
 .postProduto .info h2{font-size: 2rem;}
 .postProduto .info h1{font-size: 1rem;}
 .postProduto .info .valor{display: flex}
-.postProduto .info .quantidade{display: flex;}
+.postProduto .info .valor h3{font-size: 1.4rem;}
+.postProduto .info .quantidade{display: flex;}  
+.postProduto .info .quantidade h2{font-size: 1.2rem;}  
 .postProduto .pedido{display: flex; justify-content: space-around;}
 .postProduto .pedido a{width: 45%;}
 .postProduto .descricaoProduto{width: 100%; margin: 0.5rem;padding: 0.5rem;border: 1px solid black;text-align: start;}
-.postProduto .info .tituloProduto h2{font-size: 1.1rem;}
+.postProduto .info .tituloProduto h2{font-size: 1.6rem;}
 .postProduto .info h1{font-size: 1.5rem;}
 .postProduto  .descricaoProduto h1{font-size: 1.2rem;}
 .postProduto  .descricaoProduto h2{font-size: 1.5rem;}
@@ -147,14 +149,16 @@ table td a{word-break: keep-all;}
     .publicidades{display: none;}
     .postProduto .info .tituloProduto h2{font-size: 1.5rem;}
     .postProduto .info h1{font-size: 1.5rem;}
-    .postProduto  .descricaoProduto h1{font-size: 1rem;}
-    .postProduto  .descricaoProduto h2{font-size: 0.5rem;}
-    .postProduto{display: flex}
+    .postProduto  .descricaoProduto h1{font-size: 1.3 rem;}
+    .postProduto  .descricaoProduto h2{font-size: 1.1rem;}
+    .topoProduto{display: flex;}
     
     }
 
 @media only screen and (min-width: 700px) {
     .produto{max-width: 50%;}   
+    .topoProduto{display: flex;}
+
     }
 
 @media only screen and (min-width: 993px) {
