@@ -193,12 +193,7 @@
 
 </div>
 
-<!--MENSAGENS-->
-{% if msg != '' %}
-<div id="msg" value='true' data='{{msg.msg}}'></div>
-{% else %}
-<div id="msg" value='false'></div>
-{% endif %}
+
 
 <footer class="footer">
     <div class="rodape">
@@ -215,6 +210,13 @@
     </div>
 
 </footer>
+
+<!--MENSAGENS-->
+{% if msg != '' %}
+<div id="msg" value='true' data='{{msg.msg}}'></div>
+{% else %}
+<div id="msg" value='false'></div>
+{% endif %}
 
 
 </body>

@@ -16,6 +16,7 @@ class LoginController{
                 $_SESSION['user']['carrinhoId'] = $carrinho->id;
             }
 
+            $_SESSION['msg']=array('msg'=> 'Login Realizado Com Sucesso','count'=>0);
             header('Location:'.URL);
                               
         }catch(\Exception $e){

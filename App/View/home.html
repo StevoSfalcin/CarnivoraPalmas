@@ -207,6 +207,15 @@
 
 </footer>
 
+<!--MENSAGENS-->
+{% if msg != '' %}
+<div id="msg" value='true' data='{{msg.msg}}'></div>
+{% else %}
+<div id="msg" value='false'></div>
+{% endif %}
+
+
+
 <!--JQUERY-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!--MATERIALIZE JS-->

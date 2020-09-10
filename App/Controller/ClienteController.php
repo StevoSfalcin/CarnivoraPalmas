@@ -69,6 +69,7 @@ public function alterarSenha(){
     $dados->setId($_POST['idCliente']);
     $dados->setSenha($senha);
     $dados->alterarSenha();
+    $_SESSION['msg']=array('msg'=> 'Senha Alterada Com Sucesso','count'=>0);
     header('Location:'.URL.'/cliente');
     }catch(\Exception $e){
         $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
