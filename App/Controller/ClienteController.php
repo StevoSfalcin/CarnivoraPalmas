@@ -13,6 +13,7 @@ public function index(){
     $template = $twig->load('cliente.html');
 
     $dadosRender = array();  
+    $dadosRender['msg'] = $_SESSION['msg'] ?? NULL;
     $dadosRender['transacoes'] = $transacoes;
     $dadosRender['cliente'] = $cliente;
     $dadosRender['endereco'] = $endereco;
@@ -57,6 +58,7 @@ try{
         var_dump($e->getMessage());
     }
 }
+
 public function alterarSenha(){
     try{
     $senha = array();
@@ -66,8 +68,9 @@ public function alterarSenha(){
     $dados->setId($_POST['idCliente']);
     $dados->setSenha($senha);
     $dados->alterarSenha();
+    header('Location:'.URL.'/cliente');
     }catch(\Exception $e){
-    var_dump($e->getMessage());
+        $_SESSION['msg'] = $e->getMessage();
 }
 }
 

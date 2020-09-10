@@ -114,7 +114,7 @@ public function alterarSenha(){
         $query = "UPDATE usuarios SET senha=:senha WHERE id=:id";
         $sql = $conn->prepare($query);
         $sql->bindValue(1,$this->senha['senhaNova']);
-        $sql->bindValue(1,$this->id);
+        $sql->bindValue(2,$this->id);
         $sql->execute();
         if($sql->rowCount()){
             return true;

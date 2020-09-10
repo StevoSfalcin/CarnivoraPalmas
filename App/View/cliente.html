@@ -78,7 +78,7 @@
                  
                 <div class="btnsCliente">
                     <div><h2 class="btn">ATUALIZAR NOME</h2></div>
-                    <div><h2 class="btn modal-trigger" href="#alteraSenha">ALTERAR SENHA </h2></div>
+                    <div><h2 class="btn modal-trigger" href="#alterarSenha">ALTERAR SENHA </h2></div>
                     <div><a href="{{config.url}}/carrinho"><h2 class="btn">MEU CARRINHO</h2></a></div>
                 </div>
             </div>
@@ -137,8 +137,8 @@
                   </div>  
                   <input type="hidden" value="{{cliente.id}}" name="idCliente">
                 
-                  <button class="btn" type="submit" name="editarcategoria" value="Editar categoria">Editar</button>
-                  <a class="modal-action modal-close waves-effect btn">ddd</a>                 
+                  <button class="btn" type="submit" name="editarcategoria" value="Editar categoria">Alterar</button>
+                  <a class="modal-action modal-close waves-effect btn">Cancelar</a>                 
               </form>
             </div>       
           </div>
@@ -192,6 +192,11 @@
     <hr>
 
 </div>
+
+<!--MENSAGENS-->
+{% if msg != '' %}
+<a class="btn" onclick="Materialize.toast('{{msg.msg}}', 4000)">Toast!</a>
+{% endif %}
 
 <footer class="footer">
     <div class="rodape">
