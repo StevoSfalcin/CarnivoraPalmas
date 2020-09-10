@@ -172,11 +172,12 @@ class admin{
         $query = 'SELECT * FROM transacoes ORDER BY id DESC';
         $sql = $conn->prepare($query);
         $sql->execute();
-        if($sql->rowCount()){
-            return $sql->fetch();
-        }else{
-            return false;
+        $dados = array();
+        while($row = $sql->fetchObject()){
+            $dados[] = $row;
         }
+        return $dados;
+        
     }
 
     /**************** CLIENTES *****************/
@@ -185,11 +186,10 @@ class admin{
         $query = 'SELECT * FROM usuarios ORDER BY id DESC';
         $sql = $conn->prepare($query);
         $sql->execute();
-        if($sql->rowCount()){
-            return $sql->fetch();
-        }else{
-            return false;
+        while($row = $sql->fetchObject()){
+            $dados[] = $row;
         }
+        return $dados;
     }
 
 
