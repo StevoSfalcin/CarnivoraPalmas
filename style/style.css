@@ -87,7 +87,8 @@ form .campoEditar h2{font-size: 1.5rem; margin: 0 1rem;}
 form input[type=submit]{margin: 2.5rem 0 0 0; background-color: green;}
 table{margin-bottom: 1.8rem;}
 table th{text-align: center;padding: 0 2rem;}
-table td{text-align: center;}
+table td{text-align: center; word-break: break-all;}
+table td a{word-break: keep-all;}
 /*Pedidos*/
 
 

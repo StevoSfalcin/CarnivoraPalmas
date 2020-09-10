@@ -132,7 +132,40 @@
 
         <!--NAO SEI-->
         <div class="text">
-            <h2>Pedidosddd</h2>
+            <div class="tituloConteudo">
+                <h2>Pedidos</h2>
+                </div>
+                <div class="corpoPedidos">
+                 <div class="tabelaPedidos">
+                <table border="1" class="bordered responsive-table">
+                    <tr>
+                        <th>id Cliente</th>
+                        <th>Metodo de Pagamento</th>
+                        <th>Codigo da transacao</th>
+                        <th>Status</th>
+                        <th>Link do Boleto</th>
+                        <th>Link Debito</th>
+                        <th>Data</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                        <th></th>
+                    </tr>
+                    {% for transacao in  transacoes %}
+                    <tr>
+                        <td>{{transacao.idCliente}}</td> 
+                        <td>{{transacao.tipoPagamento}}</td> 
+                        <td>{{transacao.codigoTransacao}}</td>
+                        <td>{{transacao.status}}</td>
+                        <td>{{transacao.linkBoleto}}</td>    
+                        <td>{{transacao.linkDebito}}</td>    
+                        <td>{{transacao.data}}</td>    
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#{{produto.id}}">Editar</a></td>
+                        <td><a class="waves-effect waves-light btn modal-trigger" href="#deletar{{produto.id}}">Deletar</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                </div>   
+                </div>
                   
         </div>
                 

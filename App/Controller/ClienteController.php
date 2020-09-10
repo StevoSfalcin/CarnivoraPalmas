@@ -7,14 +7,16 @@ public function index(){
     $dados = new \App\Model\cliente();
     $cliente = $dados->selecionaClienteId($_SESSION['user']['id']) ?? NULL;
     $endereco = $dados->selecionaEndereco($_SESSION['user']['id']) ?? NULL;
+    $transacoes = $dados->selecTodasTransacoes($_SESSION['user']['id']) ?? NULL;
     $loader = new \Twig\Loader\FilesystemLoader('App/View/');
     $twig = new \Twig\Environment($loader, ['auto_reload'=>true]);
     $template = $twig->load('cliente.html');
 
-    $dadosRender = array();
-    $dadosRender['config'] = array('url'=>URL);
+    $dadosRender = array();  
+    $dadosRender['transacoes'] = $transacoes;
     $dadosRender['cliente'] = $cliente;
     $dadosRender['endereco'] = $endereco;
+    $dadosRender['config'] = array('url'=>URL);
 
     echo $template->render($dadosRender);
 }

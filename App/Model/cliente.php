@@ -11,7 +11,7 @@ class cliente{
     private $img;
 
 
-/**************** SELECIONA ENDEREÇO *****************/
+/**************** SELECIONA DADOS DO USUARIO *****************/
 public function selecionaClienteId($id){
     $conn = \App\lib\Database\Conexao::Connect();
     $query = "SELECT * FROM usuarios WHERE id = :id";
@@ -60,7 +60,6 @@ public function selecionaEndereco($id){
     }
 }
 
-
 /**************** ATUALIZA CADASTRO *****************/
 public function atualizaCadastro(){
     //FOTO
@@ -91,10 +90,11 @@ public function atualizaCadastro(){
 }
 
 
-public function selecionaTodosprodutos(){
+public function selecTodasTransacoes($id){
     $conn = \App\lib\Database\Conexao::connect();
-    $query = "SELECT * FROM produtos";
+    $query = "SELECT * FROM transacoes WHERE idCliente=:idCliente";
 	$sql = $conn->prepare($query);
+    $sql->bindValue(1,$id);
     $sql->execute();
     $dados = array();
     while($row = $sql->fetchObject()){
@@ -103,16 +103,8 @@ public function selecionaTodosprodutos(){
     return $dados;
 }
 
-public function deletaCat($id){
-    $conn = \App\lib\Database\Conexao::Connect();
-    $query = 'DELETE FROM categorias WHERE id = :id';
-	$sql = $conn->prepare($query);
-	$sql->bindValue(1,$id);
-    $sql->execute();
-    if($sql->rowcount()){
-        return true;
-    }throw new \Exception("Erro ao Deletar Categoria");
-}
+
+
 /**************** GET AND SET *****************/
 
 public function setNome($e){
