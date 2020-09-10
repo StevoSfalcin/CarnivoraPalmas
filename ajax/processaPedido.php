@@ -4,15 +4,16 @@ include '../config/config.php';
 include '../App/lib/Database/Conexao.php';
 include '../App/Model/carrinho.php';
 
-//CONEXAO COM BANCO DE dados
+//CONEXAO COM BANCO DE DADOS
 $conn = \App\lib\Database\Conexao::Connect();
 
+//RECEBE DADOS DOS INPUT VIA POST
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 $dadosArray["email"]=EMAIL_PAGSEGURO;
 $dadosArray["token"]=TOKEN_PAGSEGURO;
 
-//PROCESSA CARRINHO
+//************ PROCESSA PRODUTOS A PARTIR DO CARRINHO **********//
 $carrinhoId = $dados['carrinhoId'];
 $dadosCarrinho = \App\Model\carrinho::selecionaIdCarrinho($carrinhoId);
 $produto['id'] = $dadosCarrinho->produto_id;
@@ -24,34 +25,68 @@ if(strpos($produto['id'],';') !== true){
     $expProd = $produto['id'];
     $expquant = $produto['qnt'];
     }  
-    //ADICIONA OS PRODUTOS AO ARRAY DO CARRINHO    
+    //SELECIONA OS PRODUTOS    
     $dadosProd = array();
     $i=0;
     foreach($expProd as $Idproduto){
         $produto = $dadosProduto::selecionarIdProduto($Idproduto);
         $produto->qntCarrinho = $expquant[$i]; 
         $produto->carrinhoId = $_SESSION['user']['carrinhoId'] ?? '';
-        //SUBTOTAL DO PRODUTO
+
+        //SUBTOTAL DE CADA PRODUTO
         $preco = str_replace(',','.',$produto->preco);
         $subTotal = $preco * $produto->qntCarrinho;
         $produto->subTotal = $subTotal;
         $produto->posicao = $i;
         $dadosProd[] = $produto;
         $i++;
+
+        //ARRAY PRODUTO PAGSEGURO
+        $dadosArray['itemId'.$i] = $i;
+        $dadosArray['itemDescription'.$i] = $produto->descricao;
+        $dadosArray['itemAmount'.$i] =  $produto->preco;
+        $dadosArray['itemQuantity'.$i] =  $produto->qntCarrinho;
     }
     //VALOR TOTAL DOS PRODUTOS
-    $ValorTotalProd = 0;
-    foreach($dadosProd as $produto){
-        $ValorTotalProd += $produto->subTotal;
-    }
+    $valorTotalProd = 0;
+        $pesoTotal = 0;
+        $volume = 0;
+        $volumeTotal = 0;
+        foreach($dadosProd as $produto){
+            $valorTotalProd += $produto->subTotal;
+            $valorTotalProd = str_replace('.',',',$valorTotalProd);
+            $pesoTotal += $produto->peso;
+            $volume += $produto->volume;
+            $volumeTotal =+ round(pow($volume,1/3),2);
+        }
+
+//************ CALCULO FRETE **********//
+$valores['nCdEmpresa'] = "";
+$valores['sDsSenha'] = "";
+$valores['sCepOrigem'] = '77023038';
+
+$valores['sCepDestino'] = $dados['shippingAddressPostalCode'];
+$valores['nVlComprimento'] = $volumeTotal;
+$valores['nVlAltura'] = $volumeTotal;
+$valores['nVlLargura'] = $volumeTotal;
+$valores['nVlPeso'] = $pesoTotal;
+
+$valores['nVlValorDeclarado'] = $valorTotalProd;
+$valores['nCdServico'] = $_POST['metodo'];
+$valores['nCdFormato'] = "1";
+$valores['sCdMaoPropria'] = "n";
+$valores['sCdAvisoRecebimento'] = "n";
+$valores['nVlDiametro'] = "0";
+$valores['StrRetorno'] = "xml";
+
+$valores = http_build_query($valores);
+$url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx";
+$url = $url."?".$valores;
+$xml = simplexml_load_file($url);
+$valorFrete = json_encode($xml->cServico->Valor);
 
 
-//PRODUTO
-$dadosArray['itemId1'] = $dados['itemId1'];
-$dadosArray['itemDescription1'] = $dados['itemDescription1'];
-$dadosArray['itemAmount1'] = $dados['itemAmount1'];
-$dadosArray['itemQuantity1'] = $dados['itemQuantity1'];
-
+//************ FORMAS DE PAGAMENTO **********//
 //CREDITO
 if($dados['paymentMethod'] == 'creditCard'){
     $dadosArray['creditCardToken'] = $dados['tokenCartao'];
@@ -63,7 +98,7 @@ if($dados['paymentMethod'] == 'creditCard'){
     $dadosArray['creditCardHolderBirthDate'] = $dados['creditCardHolderBirthDate'];
     $dadosArray['creditCardHolderAreaCode'] = $dados['senderAreaCode'];
     $dadosArray['creditCardHolderPhone'] = $dados['senderPhone'];
-    //dados DONO DO CARTAO
+    //DADOS DONO DO CARTAO
     $dadosArray['billingAddressStreet'] = $dados['billingAddressStreet'];
     $dadosArray['billingAddressNumber'] = $dados['billingAddressNumber'];
     $dadosArray['billingAddressComplement'] = $dados['billingAddressComplement'];
@@ -105,9 +140,10 @@ $dadosArray['shippingAddressCity'] = $dados['shippingAddressCity'];
 $dadosArray['shippingAddressState'] = $dados['shippingAddressState'];
 $dadosArray['shippingAddressCountry'] = $dados['shippingAddressCountry'];
 $dadosArray['shippingType'] = $dados['shippingType'];
-$dadosArray['shippingCost'] = $dados['shippingCost'];
+$dadosArray['shippingCost'] = $valorFrete;
 
-//REQUISICAO HTTP PAGSEGURO
+
+//************ REQUISICAO HTTP PAGSEGURO **********//
 $buildQuery = http_build_query($dadosArray);
 $url = URL_PAGSEGURO . "transactions";
 
@@ -122,14 +158,13 @@ curl_close($curl);
 $xml = simplexml_load_string($retorno);
 
 
-
 //VERIFICA SE RETORNOU ERRO
 if(isset($xml->error)){
     $retorna = ['erro' => true, 'dados' => $xml];
     header('Content-Type: application/json');
     echo json_encode($retorna);
 
-//INSERIR NO BANCO DE dados
+//************ INSERE NO BANCO DE DADOS **********//
 }else{
     //CREDITO   
     if($xml->paymentMethod->type == 1){
