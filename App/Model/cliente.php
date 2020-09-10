@@ -103,10 +103,34 @@ public function selecTodasTransacoes($id){
     return $dados;
 }
 
+public function alterarSenha(){
+    $conn = \App\lib\Database\Conexao::connect();
+    $query = "SELECT * FROM usuarios WHERE id=:id";
+	$sql = $conn->prepare($query);
+    $sql->bindValue(1,$this->id);
+    $sql->execute();
+    $resultado = $sql->fetch();
+    if(password_verify($this->senha['senhaAntiga'],$resultado['senha'])){
+        $query = "UPDATE usuarios SET senha=:senha WHERE id=:id";
+        $sql = $conn->prepare($query);
+        $sql->bindValue(1,$this->senha['senhaNova']);
+        $sql->bindValue(1,$this->id);
+        $sql->execute();
+        if($sql->rowCount()){
+            return true;
+        }throw new \Exception('Nao Foi Possivel Alterar a Senha');
+    }throw new \Exception('Senha Antiga Incorreta');
+}
+
 
 
 /**************** GET AND SET *****************/
-
+public function setId($e){
+    $this->id = $e;
+}
+public function getId(){
+    return $this->id;
+}
 public function setNome($e){
     $this->nome = $e;
 }

@@ -57,15 +57,19 @@ try{
         var_dump($e->getMessage());
     }
 }
-public function deletarProduto($id){
+public function alterarSenha(){
     try{
-    $admin = new \App\Model\admin();
-    $admin->deletarProduto($id);
-    header('Location:'.URL.'/admin');
+    $senha = array();
+    $senha['senhaAntiga'] = $_POST['senhaAntiga'];
+    $senha['senhaNova'] = password_hash($_POST['senhaNova'],PASSWORD_BCRYPT,['cost'=>'11']);
+    $dados = new \App\Model\cliente();
+    $dados->setId($_POST['idCliente']);
+    $dados->setSenha($senha);
+    $dados->alterarSenha();
     }catch(\Exception $e){
     var_dump($e->getMessage());
-    }
-    }
+}
+}
 
 
 

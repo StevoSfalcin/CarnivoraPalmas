@@ -118,6 +118,7 @@ $(document).ready(function(){
     });
 });
 
+//MATERIALIZE
 $(document).ready(function(){
     //MENU MOBILE//
     $(".button-collapse").sideNav();

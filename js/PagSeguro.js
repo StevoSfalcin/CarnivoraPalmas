@@ -160,13 +160,3 @@ function hashCartao(){
     });
 }
 
-$(document).ready(function(){
-    //MENU MOBILE//
-    $(".button-collapse").sideNav();
-    //MODAL
-    $(".modal").modal();
-    //ESCONDER MENU AO CLICAR
-    $(".hide-menu").click(function(){
-        $(".button-collapse").sideNav("hide");
-    });
-});

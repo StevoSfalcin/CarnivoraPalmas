@@ -78,8 +78,8 @@
                  
                 <div class="btnsCliente">
                     <div><h2 class="btn">ATUALIZAR NOME</h2></div>
-                    <div><h2 class="btn">ALTERAR SENHA </h2></div>
-                    <div><h2 class="btn">MEUS CARRINHO</h2></div>
+                    <div><h2 class="btn modal-trigger" href="#alteraSenha">ALTERAR SENHA </h2></div>
+                    <div><a href="{{config.url}}/carrinho"><h2 class="btn">MEU CARRINHO</h2></a></div>
                 </div>
             </div>
             <h2>Meu Endereço</h2>   
@@ -123,23 +123,36 @@
             </div> 
             <div class="btn">Atualizar Endereço</div>     
         </div>
+
+        <!-- Modal Alterar Senha -->   
+        <div id="alterarSenha" class="modal">
+            <div class="modal-content">
+              <h4>Alterar Senha</h4>
+              <form action="{{config.url}}/cliente/alterarSenha" enctype="multipart/form-data" method="POST">
+                  <div class="campoEditar">
+                  <h2>Senha Antiga: </h2>
+                  <input type="text" required placeholder="Senha Antiga" name="senhaAntiga">
+                  <h2>Senha Nova: </h2>
+                  <input type="text" required placeholder="Senha Antiga" name="senhaNova">
+                  </div>  
+                  <input type="hidden" value="{{cliente.id}}" name="idCliente">
+                
+                  <button class="btn" type="submit" name="editarcategoria" value="Editar categoria">Editar</button>
+                  <a class="modal-action modal-close waves-effect btn">ddd</a>                 
+              </form>
+            </div>       
+          </div>
     
         <!--MEUS PEDIDOS-->
         <div class="text">
-            <h2>Peddddos</h2>
-           
-        </div>
-
-        <!--NAO SEI-->
-        <div class="text">
-            <div class="tituloConteudo">
+                <div class="tituloConteudo">
                 <h2>Pedidos</h2>
                 </div>
                 <div class="corpoPedidos">
                  <div class="tabelaPedidos">
                 <table border="1" class="bordered responsive-table">
                     <tr>
-                        <th>id Cliente</th>
+                       
                         <th>Metodo de Pagamento</th>
                         <th>Codigo da transacao</th>
                         <th>Status</th>
@@ -152,7 +165,7 @@
                     </tr>
                     {% for transacao in  transacoes %}
                     <tr>
-                        <td>{{transacao.idCliente}}</td> 
+                       
                         <td>{{transacao.tipoPagamento}}</td> 
                         <td>{{transacao.codigoTransacao}}</td>
                         <td>{{transacao.status}}</td>
@@ -165,14 +178,17 @@
                     {% endfor %}
                 </table>
                 </div>   
-                </div>
-                  
+                </div>                        
         </div>
+
+        <!--NAO SEI-->
+        <div class="text">
+            <h2>ainda nao sei</h2>
+            
                 
         </div>
 
     </div>
-
     <hr>
 
 </div>
@@ -196,43 +212,14 @@
 
 </body>
 <!--JQUERY-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script> 
 <!--MATERIALIZE JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.js"></script>        
-
 <!--JAVASCRIPT-->
-<script>
+<script src="{{config.url}}/js/script.js"></script>      
 
-    $(document).ready(function(){
-        //MENU MOBILE//
-        $(".button-collapse").sideNav();
-        //MODAL
-        $(".modal").modal();
-        //ESCONDER MENU AO CLICAR
-        $(".hide-menu").click(function(){
-            $(".button-collapse").sideNav("hide");
-        });
 
-    }); 
 
-    var trigger = Array.from(document.querySelectorAll('.title'));
-    trigger.forEach(function(el,index,all){
-        el.addEventListener('click',function(){
-            let container=document.querySelector('.conteudo');
-            let content = Array.from(document.querySelectorAll('.conteudo .text'));
-            content.forEach(function(el){
-                el.style.display="none";
-            });
-            content[index].style.display="block";
-            
-        });
-    });
-    $(document).ready(function() {
-    $('.PrimeiraOpcao').trigger("click");
-});
-
-</script>
 
 
 
