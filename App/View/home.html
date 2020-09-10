@@ -97,11 +97,11 @@
                     <img src="{{config.url}}/img/{{produto.img}}" alt="foto-produto">
                 </div>
                 <div class="info">
-                    <div class="titulo-produto">
+                    <div class="tituloProduto">
                         <h2>{{produto.nome}}</h2>
                     </div>
                     <div class="valor">
-                        <h3>R${{produto.preco}}</h3><h2>uni.</h2>
+                        <h3>R${{produto.preco}}</h3><h3>uni.</h3>
                     </div>
                     <div class="quantidade">
                         <h2>quantidade:</h2>
@@ -110,12 +110,13 @@
                             <input type="hidden" name="produto_id" value="{{produto.id}}">                   
                     </div>
                     <div class="pedido">
-                        <button type="submit">ADICIONAR AO CARRINHO</button>              
+                        <button class="btn" type="submit">ADICIONAR AO CARRINHO</button>              
                       
                         </form>
                     </div>
                 </div>
-                <div class="descricao-produto">
+                <div class="descricaoProduto">
+                    <h2>Descriçao</h2>
                     <h1>{{produto.descricao}}</h1>
                 </div>
                 <div class="meiosPagamento">

@@ -58,7 +58,11 @@
 .postProduto .info .quantidade{display: flex;}
 .postProduto .pedido{display: flex; justify-content: space-around;}
 .postProduto .pedido a{width: 45%;}
-.postProduto .descricao-produto{width: 100%; margin: 0.5rem;padding: 0.5rem;border: 1px solid black;text-align: start;}
+.postProduto .descricaoProduto{width: 100%; margin: 0.5rem;padding: 0.5rem;border: 1px solid black;text-align: start;}
+.postProduto .info .tituloProduto h2{font-size: 1.5rem;}
+.postProduto .info h1{font-size: 1.5rem;}
+.postProduto  .descricaoProduto h1{font-size: 1.5rem;}
+.postProduto  .descricaoProduto h2{font-size: 1rem;}
 
 /******** ADMIN **********/
 .admin .banner{align-items: center;}
@@ -135,8 +139,17 @@ table td a{word-break: keep-all;}
 
 
 @media only screen and (max-width: 500px) {
-    .produto{max-width: 92%;}
+    .img-banner img{max-width: 10rem;margin: 1rem 0.5rem;}
+    .categorias{width: 35%;}
+    .produtos{width: 65%;}
+    .produto{max-width: 90%;}
     .rodape-cnpj{display: none;}
+    .publicidades{display: none;}
+    .postProduto .info .tituloProduto h2{font-size: 1.5rem;}
+    .postProduto .info h1{font-size: 1.5rem;}
+    .postProduto  .descricaoProduto h1{font-size: 1rem;}
+    .postProduto  .descricaoProduto h2{font-size: 0.5rem;}
+    
     }
 
 @media only screen and (min-width: 700px) {
