@@ -166,6 +166,32 @@ class admin{
         $sql->execute();
     }
 
+    /**************** TRANSACOES *****************/
+    public function selecTodasTransacoes(){
+        $conn = \App\lib\Database\Conexao::Connect();
+        $query = 'SELECT * FROM transacoes ORDER BY id DESC';
+        $sql = $conn->prepare($query);
+        $sql->execute();
+        if($sql->rowCount()){
+            return $sql->fetch();
+        }else{
+            return false;
+        }
+    }
+
+    /**************** CLIENTES *****************/
+    public function selecTodosClientes(){
+        $conn = \App\lib\Database\Conexao::Connect();
+        $query = 'SELECT * FROM usuarios ORDER BY id DESC';
+        $sql = $conn->prepare($query);
+        $sql->execute();
+        if($sql->rowCount()){
+            return $sql->fetch();
+        }else{
+            return false;
+        }
+    }
+
 
 
 

@@ -36,7 +36,7 @@
             <div class="opcao">
                 <div class="title">
                 <h1>Pedidos</h1>
-                <hr>
+                <hr>              
                 </div>  
             </div>
 
@@ -50,6 +50,13 @@
             <div class="opcao">
                 <div class="title">
                 <h1>Categorias</h1>
+                <hr>
+                </div>  
+            </div>
+
+            <div class="opcao">
+                <div class="title">
+                <h1>Clientes</h1>
                 <hr>
                 </div>  
             </div>
@@ -113,6 +120,31 @@
             <div class="tituloConteudo">
                 <h2>Pedidos</h2>
             </div>
+            <table border="1" class="bordered">
+                <tr>
+                    <th>id Cliente</th>
+                    <th>Metodo de Pagamento</th>
+                    <th>Codigo da transacao</th>
+                    <th>Status</th>
+                    <th>Link do Boleto</th>
+                    <th>Link Debito</th>
+                    <th>Data</th>
+                    <th></th>
+                </tr>
+                {% for transacao in  transacoes %}
+                <tr>
+                    <td>{{transacao.idCliente}}</td> 
+                    <td>{{transacao.tipoPagamento}}</td> 
+                    <td>R${{transacao.codigoTransacao}}</td>
+                    <td>{{transacao.satus}}</td>
+                    <td>{{transacao.linkBoleto}}</td>    
+                    <td>{{transacao.linkDebito}}</td>    
+                    <td>{{transacao.Data}}</td>    
+                    <td><a class="waves-effect waves-light btn modal-trigger" href="#{{produto.id}}">Editar</a></td>
+                    <td><a class="waves-effect waves-light btn modal-trigger" href="#deletar{{produto.id}}">Deletar</a></td>
+                </tr>
+                {% endfor %}
+            </table>
                 
         </div>
     
@@ -342,6 +374,14 @@
                   <a href="#!" class="modal-action modal-close waves-effect waves-green btn">Voltar</a>
               </div>
                
+        </div>
+        <!--CLIENTES-->
+        <div class="text">
+            <div class="tituloConteudo">
+                <h2>CLIENTES</h2>
+            </div>
+
+                
         </div>
                 
             

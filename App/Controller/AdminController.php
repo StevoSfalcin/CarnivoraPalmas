@@ -7,13 +7,17 @@ class AdminController{
         $dados = new \App\Model\admin();
         $produtos = $dados->selecionaTodosprodutos();
         $categorias = $dados->selecionaTodasCategorias();
+        $transacoes = $dados->selecTodasTransacoes();
+        $clientes = $dados->selecTodosClientes();
         $loader = new \Twig\Loader\FilesystemLoader('App/View/');
         $twig = new \Twig\Environment($loader, ['auto_reload'=>true]);
         $template = $twig->load('admin.html');
 
         $dadosRender = array();
+        $dadosRender['transacoes'] = $transacoes;
         $dadosRender['produtos'] = $produtos;
         $dadosRender['categorias'] = $categorias;
+        $dadosRender['clientes'] = $clientes;
         $dadosRender['config'] = array('url'=>URL);
 
         echo $template->render($dadosRender);
