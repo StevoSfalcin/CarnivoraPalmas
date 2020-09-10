@@ -71,7 +71,7 @@ public function alterarSenha(){
     header('Location:'.URL.'/cliente');
     }catch(\Exception $e){
         $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
-        header('Location:'.URL);
+        header('Location:'.URL.'/cliente');
 }
 }
 

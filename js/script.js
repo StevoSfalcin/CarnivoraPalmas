@@ -147,6 +147,14 @@ $(document).ready(function() {
 $('.PrimeiraOpcao').trigger("click");
 });
 
+//MENSAGENS
+$(document).ready(function(){
+    var msg = document.getElementById('msg').getAttribute('value');
+    if(msg == 'true'){
+        $('.msgTexto').trigger("click");
+    }
+})
+
 
 
 

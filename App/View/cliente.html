@@ -195,7 +195,10 @@
 
 <!--MENSAGENS-->
 {% if msg != '' %}
-<a class="btn" onclick="Materialize.toast('{{msg.msg}}', 4000)">Toast!</a>
+<div class="msgTexto" onclick="Materialize.toast('{{msg.msg}}', 4000)"></div>
+<div id="msg" value='true'></div>
+{% else %}
+<div id="msg" value='false'></div>
 {% endif %}
 
 <footer class="footer">
