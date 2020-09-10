@@ -151,7 +151,10 @@ $('.PrimeiraOpcao').trigger("click");
 $(document).ready(function(){
     var msg = document.getElementById('msg').getAttribute('value');
     if(msg == 'true'){
-        $('.msgTexto').trigger("click");
+    var msgTexto = document.getElementById('msg').getAttribute('data');
+    Materialize.toast(msgTexto, 4000)
+
+        
     }
 })
 

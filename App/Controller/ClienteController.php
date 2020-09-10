@@ -31,11 +31,12 @@ public function cadastrarCliente(){
         $dados->setSenha($senha);
         $dados->cadastraCliente();
     
+        $_SESSION['msg']=array('msg'=> 'Cadastro Realizado com Sucesso','count'=>0);
         header('Location:'.URL);
 
-        }catch(\Exception $e){
-          
-            echo $e->getMessage();
+        }catch(\Exception $e){        
+        $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
+        header('Location:'.URL.'/cliente');
             
         }
 }

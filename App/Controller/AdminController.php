@@ -37,11 +37,13 @@ class AdminController{
         $dados->setLargura($_POST['largura']);
         $dados->setComprimento($_POST['comprimento']);
         $dados->setPeso($_POST['peso']);
-
         $dados->adicionaProduto();
+
+        $_SESSION['msg']=array('msg'=> 'Produto Adicionado Com Sucesso','count'=>0);
         header('Location:'.URL.'/admin');
         }catch(\Exception $e){
-            var_dump($e->getMessage());
+        $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
+        header('Location:'.URL.'/admin');
         }
     }
     public function atualizaProduto(){
@@ -60,19 +62,23 @@ class AdminController{
         $dados->setComprimento($_POST['comprimento']);
         $dados->setPeso($_POST['peso']);
         $dados->atualizaProduto();
+        $_SESSION['msg']=array('msg'=> 'Produto Atualizado Com Sucesso','count'=>0);
         header('Location:'.URL.'/admin');
         }catch(\Exception $e){
-            var_dump($e->getMessage());
+        $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
+        header('Location:'.URL.'/admin');
         }
     }
     public function deletarProduto($id){
         try{
         $admin = new \App\Model\admin();
         $admin->deletarProduto($id);
+        $_SESSION['msg']=array('msg'=> 'Produto Deletado Com Sucesso','count'=>0);
         header('Location:'.URL.'/admin');
 
         }catch(\Exception $e){
-        var_dump($e->getMessage());
+        $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
+        header('Location:'.URL.'/admin');
         }
     }
     /******************** CATEGORIAS *******************/
@@ -81,10 +87,12 @@ class AdminController{
             $admin = new \App\Model\admin();
             $admin->setCategoria($_POST['categoria']);
             $admin->CriaCategoria();
+            $_SESSION['msg']=array('msg'=> 'Categoria Criada Com Sucesso','count'=>0);
             header('Location:'.URL.'/admin');
 
         }catch(\Exception $e){
-            var_dump($e->getMessage());
+            $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
+            header('Location:'.URL.'/admin')
         }
     }
     public function atualizaCategoria(){
@@ -94,9 +102,11 @@ class AdminController{
             $admin->setId($_POST['id']);
             $admin->atualizaCategoria();
             $admin->atualizaCategoriaProduto($_POST['nomeAtual']);
+            $_SESSION['msg']=array('msg'=> 'Categoria Atualizada Com Sucesso','count'=>0);
             header('Location:'.URL.'/admin');
         }catch(\Exception $e){
-            var_dump($e->getMessage());
+            $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
+            header('Location:'.URL.'/admin');
         }
     }
     public function deletarCategoria($id){
@@ -105,10 +115,13 @@ class AdminController{
             $admin->setCategoria($_POST['categoria']);
             $admin->deletaCat($id);
             $admin->deletaCategoriaProduto();
+             
+            $_SESSION['msg']=array('msg'=> 'Categoria Deletada Com Sucesso','count'=>0);
             header('Location:'.URL.'/admin');
 
         }catch(\Exception $e){
-            var_dump($e->getMessage());
+            $_SESSION['msg']=array('msg'=> $e->getMessage(),'count'=>0);
+            header('Location:'.URL.'/admin');
         }
     }
 }
