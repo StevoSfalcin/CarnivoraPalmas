@@ -1,4 +1,11 @@
 {
+    "name":"stevosfalcin/CarnivoraPalmas",
+    "description": "Loja Virtual Carniva Palmas",
+    "type": "project",
+    "authors": [{
+        "name":"stevo",
+        "email":"stevosfalcin@gmail.com"
+    }],
     "autoload": {
         "psr-4": {
             "App\\":"App/"
