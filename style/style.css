@@ -98,7 +98,7 @@ table td a{word-break: keep-all;}
 .ProdutoCarrinho {width: 100%;display: flex; justify-content: space-around;align-items: center; margin: 0.7rem 0;}
 .ProdutoCarrinho img{max-width: 2.5rem;}
 .detalhesPedido{display: flex; justify-content: space-between;margin-top: 0.4rem;}
-.box{width: 24%;height: auto;border: 1px solid #CFD8DC;padding: 0.4rem; text-align: center;}
+.box{width: 27%;height: auto;border: 1px solid #CFD8DC;padding: 0.4rem; text-align: center;}
 .box h2{font-size: 1.5rem;margin: 1rem 0;}
 .box h1{font-size: 1.2rem;margin: 1rem 0;}
 .box form input[type=text]{max-width: 80%;}
@@ -135,6 +135,7 @@ table td a{word-break: keep-all;}
 
 
 @media only screen and (max-width: 375px) {
+    .corpo{display: none;}
     .produto{max-width: 100%;}
     }
 

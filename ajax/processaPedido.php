@@ -83,7 +83,7 @@ $valores = http_build_query($valores);
 $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx";
 $url = $url."?".$valores;
 $xml = simplexml_load_file($url);
-$valorFrete = json_encode($xml->cServico->Valor);
+$valorFrete = $xml->cServico->Valor;
 
 
 //************ FORMAS DE PAGAMENTO **********//
