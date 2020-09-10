@@ -19,6 +19,7 @@ class AdminController{
         $dadosRender['categorias'] = $categorias;
         $dadosRender['clientes'] = $clientes;
         $dadosRender['config'] = array('url'=>URL);
+        $dadosRender['msg'] = $_SESSION['msg'] ?? null;
 
         echo $template->render($dadosRender);
     }

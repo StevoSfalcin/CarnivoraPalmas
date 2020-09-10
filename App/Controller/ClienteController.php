@@ -13,7 +13,7 @@ public function index(){
     $template = $twig->load('cliente.html');
 
     $dadosRender = array();  
-    $dadosRender['msg'] = $_SESSION['msg'] ?? NULL;
+    $dadosRender['msg'] = $_SESSION['msg'] ?? null;
     $dadosRender['transacoes'] = $transacoes;
     $dadosRender['cliente'] = $cliente;
     $dadosRender['endereco'] = $endereco;

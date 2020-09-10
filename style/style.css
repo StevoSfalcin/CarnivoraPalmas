@@ -49,7 +49,7 @@
 
 /******** POST PRODUTO **********/
 .postProduto{display: inline-flex;justify-content: center;flex-wrap: wrap}
-.postProduto .imagem{flex: 1;padding: 1rem;}
+.postProduto .imagem{flex: 1;padding: 1rem; justify-content: center;}
 .postProduto .imagem img{width: 80%;border-radius: 8px;}
 .postProduto .info{flex: 1;padding: 1rem;max-width: 50%; }
 .postProduto .info h2{font-size: 2rem;}
@@ -140,13 +140,14 @@ table td a{word-break: keep-all;}
 
 
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
     .img-banner img{max-width: 10rem;margin: 1rem 0.5rem;}
     .categorias{width: 35%;}
     .produtos{width: 65%;}
     .produto{max-width: 90%;}
     .rodape-cnpj{display: none;}
     .publicidades{display: none;}
+    .postProduto .info{width: 90%;background-color: royalblue;}
     .postProduto .info .tituloProduto h2{font-size: 1.5rem;}
     .postProduto .info h1{font-size: 1.5rem;}
     .postProduto  .descricaoProduto h1{font-size: 1.3 rem;}
