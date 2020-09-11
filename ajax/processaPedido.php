@@ -30,7 +30,7 @@ if(strpos($produto['id'],';') !== true){
     $dadosProd = array();
     $i=0;
     foreach($expProd as $Idproduto){
-        $produto = $dadosProduto::selecionarIdProduto($Idproduto);
+        $produto = \App\Model\carrinho::selecionarIdProduto($Idproduto);
         $produto->qntCarrinho = $expquant[$i]; 
 
         //SUBTOTAL DE CADA PRODUTO
