@@ -149,12 +149,15 @@ function hashCartao(){
                 method:"POST",
                 data:dados,
                 dataType:"json",
+                beforeSend: function(){
+                    $('.loadPagamento').show().html('<img src="img/loadCep.gif" alt="carregando...">"');
+
+                },
                 success: function(retorno){
                     if(retorno.erro == 'false'){
                         $('#modalPagamento').modal('open');
-                        $('.dadosCompra').append("<h1>Codigo da Transação"+retorno.dados.code+"</h1>");
-                        $('.dadosCompra').append("<h1>Link de Pagamento"+retorno.dados.paymentLink+"</h1>");
-
+                        $('.dadosCompra').append("<h2>Codigo da Transação"+retorno.dados.code+"</h2>");
+                        $('.dadosCompra').append("<h2>Link de Pagamento"+retorno.dados.paymentLink+"</h2>");
                     }
                 },
                 error:function(retorno){

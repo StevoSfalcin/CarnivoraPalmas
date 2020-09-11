@@ -137,6 +137,10 @@ table td a{word-break: keep-all;}
 .corpoCliente .conteudo{width: 100%;height: auto;text-align: center; margin: 0.2rem; border: 0.2px solid gray;border-radius: 5px;padding: 1rem;}
 .corpoCliente .conteudo .tituloConteudo h2{font-size: 2rem;margin-top: 0;padding-top: 0;}
 
+/******** CLIENTE **********/
+.modalPagamento h1{font-size: 1.8rem;}
+.modalPagamento h2{font-size: 1.4rem;}
+
 
 
 
