@@ -7,14 +7,12 @@ $('#pac').click(function(){
     total = parseFloat(valorProdutos.replace(',','.')) + parseFloat(valorFrete.replace(',','.'));
     amount = total;
     obterParcelas('visa');
-    console.log(total);
 });
 $('#sedex').click(function(){
     var valorFrete = document.getElementById('valorSedex').getAttribute('value');
     total = parseFloat(valorProdutos.replace(',','.')) + parseFloat(valorFrete.replace(',','.'));
     amount = total;
-    obterParcelas('visa');
-    console.log(total);
+    obterParcelas('visa');   
 });
 //ID DA SESSAO
 function sessionId() {
@@ -24,7 +22,7 @@ function sessionId() {
       dataType: 'json',
       success: function (retorno) {
          PagSeguroDirectPayment.setSessionId(retorno.id); 
-         console.log(retorno);      
+     
       },
       complete: function (retorno) {
         listarMeiosPag();       
@@ -150,18 +148,20 @@ function hashCartao(){
                 data:dados,
                 dataType:"json",
                 beforeSend: function(){
-                    $('.loadPagamento').show().html('<img src="img/loadCep.gif" alt="carregando...">"');
-
+                    document.getElementById('btnComprar').innerHTML = '<img src="img/loadCep.gif" alt="carregando...">"';                 
                 },
                 success: function(retorno){
                     if(retorno.erro == 'false'){
                         $('#modalPagamento').modal('open');
+                        $('.dadosCompra').append("<h1>TRANSAÇAO REALIZADA COM SUCESSO</h1>");
                         $('.dadosCompra').append("<h2>Codigo da Transação: "+retorno.dados.code+"</h2>");
                         $('.dadosCompra').append("<h2>Link de Pagamento: "+retorno.dados.paymentLink+"</h2>");
                     }
                 },
                 error:function(retorno){
-                    console.log("Erro" + JSON.stringify(retorno));
+                    $('#modalPagamento').modal('open');
+                        $('.dadosCompra').append("<h1>TRANSAÇAO NAO REALIZADA</h1>");
+                        $('.dadosCompra').append("<h2>Verifique todos os dados e tente novamente</h2>");
                 }
             })
         }
