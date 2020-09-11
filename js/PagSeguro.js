@@ -156,8 +156,8 @@ function hashCartao(){
                 success: function(retorno){
                     if(retorno.erro == 'false'){
                         $('#modalPagamento').modal('open');
-                        $('.dadosCompra').append("<h2>Codigo da Transação"+retorno.dados.code+"</h2>");
-                        $('.dadosCompra').append("<h2>Link de Pagamento"+retorno.dados.paymentLink+"</h2>");
+                        $('.dadosCompra').append("<h2>Codigo da Transação: "+retorno.dados.code+"</h2>");
+                        $('.dadosCompra').append("<h2>Link de Pagamento: "+retorno.dados.paymentLink+"</h2>");
                     }
                 },
                 error:function(retorno){
