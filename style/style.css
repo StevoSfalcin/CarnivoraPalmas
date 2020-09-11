@@ -140,25 +140,25 @@ table td a{word-break: keep-all;}
 
 
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 500px) {
     .img-banner img{max-width: 10rem;margin: 1rem 0.5rem;}
     .categorias{width: 35%;}
     .produtos{width: 65%;}
     .produto{max-width: 90%;}
-    .rodape-cnpj{display: none;}
+    .rodapeCnpj{display: none;}
     .publicidades{display: none;}
     .postProduto .info{width: 90%;background-color: royalblue;}
     .postProduto .info .tituloProduto h2{font-size: 1.5rem;}
     .postProduto .info h1{font-size: 1.5rem;}
     .postProduto  .descricaoProduto h1{font-size: 1.3rem;}
     .postProduto  .descricaoProduto h2{font-size: 1.1rem;}
-    .postProduto .topoProduto{background-color: royalblue;}
+    .postProduto .topoProduto{display: flex;justify-content: center;}
     
     }
 
 @media only screen and (min-width: 700px) {
     .produto{max-width: 50%;}   
-    .topoProduto{display: flex;}
+    
 
     }
 
