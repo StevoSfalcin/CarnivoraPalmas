@@ -140,7 +140,7 @@ $dadosArray['shippingAddressPostalCode'] = $dados['shippingAddressPostalCode'];
 $dadosArray['shippingAddressCity'] = $dados['shippingAddressCity'];
 $dadosArray['shippingAddressState'] = $dados['shippingAddressState'];
 $dadosArray['shippingAddressCountry'] = $dados['shippingAddressCountry'];
-$dadosArray['shippingType'] = '1';
+$dadosArray['shippingType'] = '3';
 $dadosArray['shippingCost'] = $valorFrete;
 
 

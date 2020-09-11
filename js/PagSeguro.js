@@ -149,8 +149,16 @@ function hashCartao(){
                 method:"POST",
                 data:dados,
                 dataType:"json",
+                beforeSend: function(){
+                    $('.loadPagamento').show().html('<img src="img/loadPagamento.gif" alt="carregando...">"');                 
+                },
                 success: function(retorno){
                     console.log(JSON.stringify(retorno));
+                    if(retorno.erro == 'false'){
+                        $('.pagamento').show().html('<img src="img/loadPagamento.gif" alt="carregando...">"');
+                        $('#modalPagamento').modal('open');
+
+                    }
                 },
                 error:function(retorno){
                     console.log("Erro" + JSON.stringify(retorno));

@@ -282,6 +282,7 @@
         {% endif %}
         <div id="orcamentoTotal"></div>
         <input type="submit" name="btnComprar" id="btnComprar" value="Comprar" class="btn">
+        <div class="loadPagamento"></div>
     </div>
     </form>
     </div>
@@ -306,26 +307,43 @@
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Voltar</a>
     </div>
     </div>
-    <!--MODAL CADASTRO-->
-    <div id="modalCadastro" class="modal">
-        <div class="modal-content">
-        <h4>LOGIN</h4>
-        <form action="{{config.url}}/cliente/cadastrarCliente" method="POST">
-            <h2>Usuario:</h2>
-            <input type="text" name="nome" placeholder="Nome de Usuario">
-            <h2>Email:</h2>
-            <input type="text" name="email" placeholder="Seu Email">
-            <h2>Senha:</h2>
-            <input type="password" name="senha" placeholder="******">
-            <button>CADASTRAR</button>
-        </form>
-        <h2>{{msg.MsgErroLogin}}</h2>
-        </div>
+<!--MODAL CADASTRO-->
+<div id="modalCadastro" class="modal">
+    <div class="modal-content">
+    <h4>LOGIN</h4>
+    <form action="{{config.url}}/cliente/cadastrarCliente" method="POST">
+        <h2>Usuario:</h2>
+        <input type="text" name="nome" placeholder="Nome de Usuario">
+        <h2>Email:</h2>
+        <input type="text" name="email" placeholder="Seu Email">
+        <h2>Senha:</h2>
+        <input type="password" name="senha" placeholder="******">
+        <button>CADASTRAR</button>
+    </form>
+    <h2>{{msg.MsgErroLogin}}</h2>
+    </div>
+    <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Voltar</a>
+    </div>
+    </div>
+<!--MODAL CONCLUSAO PAGAMENTO-->
+<div id="modalPagamento" class="modal">
+    <div class="modal-content">
+    <h4>LOGIN</h4>
+    <form action="{{config.url}}/login" method="POST">
+        <h2>Usuario:</h2>
+        <input type="text" name="usuario" placeholder="Email ou Usuario">
+        <h2>Senha:</h2>
+        <input type="password" name="senha" placeholder="******">
+        <button>ENTRAR</button>
+    </form>
+    <h2>{{msg.MsgErroLogin}}</h2>
+    </div>
 
-        <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Voltar</a>
-        </div>
-        </div>
+    <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Voltar</a>
+    </div>
+    </div>       
 
 </body>
 <!--RODAPE-->

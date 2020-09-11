@@ -120,10 +120,8 @@ class CarrinhoController{
             }else{
             $_SESSION['carrinho'] = NULL;
             header('Location:'.URL);
+            }   
             }
-    
-            }
-
     }
 
 //INSERIR PRODUTO AO CARRINHO   
