@@ -44,7 +44,7 @@ if(strpos($produto['id'],';') !== true){
 
         //ARRAY PRODUTO PAGSEGURO
         $dadosArray['itemId'.$i] = $i;
-        $dadosArray['itemDescription'.$i] = $produto->descricao;
+        $dadosArray['itemDescription'.$i] = mb_strimwidth($produto->descricao,'0','30','...');
         $dadosArray['itemAmount'.$i] =  $produto->preco;
         $dadosArray['itemQuantity'.$i] =  $produto->qntCarrinho;
     }
