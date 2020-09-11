@@ -81,6 +81,7 @@ class CarrinhoController{
     $dadosRender['ValorTotalProd'] = $valorTotalProd ?? '';
     $dadosRender['volumeTotal'] = $volumeTotal ?? '';
     $dadosRender['pesoTotal'] = $pesoTotal ?? '';
+    $dadosRender['msg'] = $_SESSION['msg'] ?? null;
 
     $dadosRender['config'] = array('url'=>URL,'emailLoja'=>EMAIL_LOJA,'moedaPagamento'=>MOEDA_PAGAMENTO,'urlNotificacao'=>URL_NOTIFICACAO,'scriptPagseguro'=>SCRIPT_PAGSEGURO);
    

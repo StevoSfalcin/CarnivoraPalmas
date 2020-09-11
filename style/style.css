@@ -51,8 +51,9 @@
 .postProduto{display: inline-flex;justify-content: center;flex-wrap: wrap}
 .postProduto .imagem{flex: 1;padding: 1rem; justify-content: center;}
 .postProduto .imagem img{width: 80%;border-radius: 8px;}
-.postProduto .info{flex: 1;padding: 1rem;max-width: 50%; }
-.postProduto .info h2{font-size: 2rem;}
+.postProduto .topoProduto{display: flex;}
+.postProduto .info{flex: 1;padding: 1rem;max-width: 50%; align-content: space-between;}
+.postProduto .info h2{font-size: 2rem;}.topoProduto
 .postProduto .info h1{font-size: 1rem;}
 .postProduto .info .valor{display: flex}
 .postProduto .info .valor h3{font-size: 1.4rem;}
@@ -140,19 +141,21 @@ table td a{word-break: keep-all;}
 
 
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
     .img-banner img{max-width: 10rem;margin: 1rem 0.5rem;}
     .categorias{width: 35%;}
     .produtos{width: 65%;}
     .produto{max-width: 90%;}
     .rodapeWaths{display: none;}
     .publicidades{display: none;}
-    .postProduto .info{width: 90%;background-color: royalblue;}
-    .postProduto .info .tituloProduto h2{font-size: 1.5rem;}
+    .postProduto .topoProduto{display: grid;justify-content: center;}
+    .postProduto .info{max-width: 100%;text-align: center;}
+    .postProduto .info .tituloProduto h2{font-size: 1.5rem;margin-top: 0;}
     .postProduto .info h1{font-size: 1.5rem;}
     .postProduto .descricaoProduto h1{font-size: 1.3rem;}
     .postProduto .descricaoProduto h2{font-size: 1.1rem;}
-    .postProduto .topoProduto{display: flex;justify-content: center;}
+    
+    
     
     }
 
