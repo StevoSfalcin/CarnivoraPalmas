@@ -31,7 +31,8 @@ if(strpos($produto['id'],';') !== true){
     $i=0;
     foreach($expProd as $Idproduto){
         $produto = \App\Model\carrinho::selecionarIdProduto($Idproduto);
-        $produto->qntCarrinho = $expquant[$i]; 
+        $produto->qntCarrinho = $expquant[$i];
+        $produto->volume = ($produto->altura * $produto->largura * $produto->comprimento) * $expquant[$i]; 
 
         //SUBTOTAL DE CADA PRODUTO
         $preco = str_replace(',','.',$produto->preco);
@@ -72,7 +73,7 @@ $valores['nVlLargura'] = $volumeTotal;
 $valores['nVlPeso'] = $pesoTotal;
 
 $valores['nVlValorDeclarado'] = $valorTotalProd;
-$valores['nCdServico'] = $_POST['metodo'];
+$valores['nCdServico'] = $_POST['metodoEnvio'];
 $valores['nCdFormato'] = "1";
 $valores['sCdMaoPropria'] = "n";
 $valores['sCdAvisoRecebimento'] = "n";
