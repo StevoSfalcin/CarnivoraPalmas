@@ -1,0 +1,109 @@
+
+
+
+DROP TABLE IF EXISTS `carrinhos`;
+CREATE TABLE IF NOT EXISTS `carrinhos` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `produto_id` varchar(100) NOT NULL,
+  `quantidade` varchar(100) NOT NULL,
+  `idCliente` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `categorias`;
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoria` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `categorias` (`id`, `categoria`) VALUES
+(1, 'testee');
+
+
+
+DROP TABLE IF EXISTS `enderecousuarios`;
+CREATE TABLE IF NOT EXISTS `enderecousuarios` (
+  `id` varchar(120) NOT NULL,
+  `logradouro` int(10) NOT NULL,
+  `numero` text NOT NULL,
+  `complemento` varchar(120) NOT NULL,
+  `bairro` int(8) NOT NULL,
+  `cep` varchar(20) NOT NULL,
+  `cidade` varchar(20) NOT NULL,
+  `estado` varchar(30) NOT NULL,
+  `pais` int(10) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+DROP TABLE IF EXISTS `fabricante`;
+CREATE TABLE IF NOT EXISTS `fabricante` (
+  `id_fabricante` int(11) NOT NULL,
+  `fabricante` varchar(150) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `fabricante` (`id_fabricante`, `fabricante`) VALUES
+(2, 'efefef');
+
+-- --------------------------------------------------------
+
+
+
+DROP TABLE IF EXISTS `produtos`;
+CREATE TABLE IF NOT EXISTS `produtos` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(55) NOT NULL,
+  `descricao` text NOT NULL,
+  `preco` varchar(20) NOT NULL,
+  `quantidade` int(20) NOT NULL,
+  `categoria` varchar(25) DEFAULT NULL,
+  `destaque` int(2) DEFAULT NULL,
+  `img` varchar(37) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `produtos` (`id`, `nome`, `descricao`, `preco`, `quantidade`, `categoria`, `destaque`, `img`) VALUES
+(11, 'Dioneia Muscipula', 'A dioneia, tambÃ©m conhecida como apanha-moscas (Dionaea muscipula) Ã© uma planta carnÃ­vora que pega e digere a presa animal (em geral insetos e aracnÃ­deos). A estrutura de captura Ã© formada por dois lÃ³bulos unidos pela base e presos na ponta de cada uma das folhas.', '19,99', 12, 'Dioneia', 10, '768eff34f33d21503873ebdbb36bde45.jpeg'),
+(12, 'Nephente Maxima', 'Nepenthaceae Ã© uma famÃ­lia de plantas carnÃ­voras angiospÃ©rmicas (plantas com flor - divisÃ£o Magnoliophyta), pertencente Ã  ordem Caryophyllales. O grupo Ã© monotÃ­pico e conta apenas com um gÃ©nero, Nepenthes, que ocorre nos trÃ³picos do Velho Mundo, nomeadamente no sul da China, IndonÃ©sia e Filipinas, MalÃ¡sia, Madagascar, Ilhas Seychelles, AustrÃ¡lia, Nova CaledÃ³nia, Ãndia e Sri Lanka.', '29,49', 8, 'Nephente', 10, '6f22f62ba90ac766a934bdf764c22b93.jpeg'),
+(13, 'Sarracenia Purpura', 'As plantas deste GÃªnero, sÃ£o carnÃ­voras e/ou insetÃ­voras, pois na grande parte das vezes alimentam-se de insetos. A mesma Ã© natural da parte norte dos EUA e CanadÃ¡.', '59,90', 4, 'Sarracenia', 10, '8e0878f4481dc4d471dc285b587a7579.jpeg'),
+(9, 'MeuCelular', 'sss', '15,85', 12, 'haddddd', 10, '18eb44f0ccfd137e4359f78eb956d560.jpeg');
+
+
+
+DROP TABLE IF EXISTS `testpeform`;
+CREATE TABLE IF NOT EXISTS `testpeform` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(20) NOT NULL,
+  `idade` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `senha` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `usuarios` (`id`, `usuario`, `email`, `senha`) VALUES
+(1, 'stevo', 'stevo@email.com', '$2y$10$YxQ.bn/hN/ZcQCtkcGl2/OOzA41ec1ai56VttFZIqlww7Q6C8me2W'),
+(2, 'cliente', 'cliente@email.com', '$2y$10$YxQ.bn/hN/ZcQCtkcGl2/OOzA41ec1ai56VttFZIqlww7Q6C8me2W');
+COMMIT;
+

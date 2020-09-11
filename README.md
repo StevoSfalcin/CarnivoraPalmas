@@ -2,6 +2,7 @@
 
 Projeto de e-commerce desenvolvida para @carnivorapalmas como forma de aplicar meus conhecimentos em desenvolvimento Back-End PHP 
 
+Link: https://carnivorapalmas.com
 ---
 
 ## 🚀 Tecnologias utilizadas
