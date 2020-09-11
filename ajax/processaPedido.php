@@ -14,8 +14,8 @@ $dadosArray["email"]=EMAIL_PAGSEGURO;
 $dadosArray["token"]=TOKEN_PAGSEGURO;
 
 //************ PROCESSA PRODUTOS A PARTIR DO CARRINHO **********//
-$carrinhoId = $dados['carrinhoId'];
-$dadosCarrinho = \App\Model\carrinho::selecionaIdCarrinho($carrinhoId);
+$idCliente = $_SESSION['user']['id'];
+$dadosCarrinho = \App\Model\carrinho::selecionarIdCliente($idCliente);
 $produto['id'] = $dadosCarrinho->produto_id;
 if(strpos($produto['id'],';') !== true){
     $expProd = explode(';',$produto['id']);
