@@ -17,6 +17,7 @@ $dadosArray["token"]=TOKEN_PAGSEGURO;
 $idCliente = $_SESSION['user']['id'];
 $dadosCarrinho = \App\Model\carrinho::selecionarIdCliente($idCliente);
 $produto['id'] = $dadosCarrinho->produto_id;
+$produto['qnt'] = $dadosCarrinho->quantidade;
 if(strpos($produto['id'],';') !== true){
     $expProd = explode(';',$produto['id']);
     $expquant = explode(';', $produto['qnt']);
