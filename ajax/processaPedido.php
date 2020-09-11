@@ -194,7 +194,7 @@ if(isset($xml->error)){
     $sql->execute();
 
     //RETORNA
-    $retorna = ['erro' => false, 'dados' => $xml];
+    $retorna = ['erro' => 'false', 'dados' => $xml];
     header('Content-Type: application/json');
     echo json_encode($retorna);
 
