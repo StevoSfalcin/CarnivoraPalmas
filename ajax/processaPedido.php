@@ -31,7 +31,6 @@ if(strpos($produto['id'],';') !== true){
     foreach($expProd as $Idproduto){
         $produto = $dadosProduto::selecionarIdProduto($Idproduto);
         $produto->qntCarrinho = $expquant[$i]; 
-        $produto->carrinhoId = $_SESSION['user']['carrinhoId'] ?? '';
 
         //SUBTOTAL DE CADA PRODUTO
         $preco = str_replace(',','.',$produto->preco);

@@ -56,7 +56,9 @@
             <div>-</div>
         </div>
         <hr>
-        <!--CARRINHO !VAZIO-->
+        <!--FORMULARIO DO PEDIDO-->
+        <form name="formPagamento" action="" id="formPagamento">       
+        <!--PRODUTOS-->
         {% else %}
         {% for produto in produtos %}
         <div class="ProdutoCarrinho">
@@ -78,8 +80,8 @@
         {% endif %}
     
     </div>
-    <!--FORMULARIO DO PEDIDO-->
-    <form name="formPagamento" action="" id="formPagamento">
+
+    
     <!--INFORMAÇOES DO PEDIDO-->
     <input type="hidden" name="paymentMethod" id="paymentMethod">    
     <input type="hidden" name="currency" id="currency" value="{{config.moedaPagamento}}">    
