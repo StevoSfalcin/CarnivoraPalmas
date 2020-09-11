@@ -37,4 +37,11 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 
 ---
 
+## 📝 Anotaçoes
+- Projeto ainda em Desenvolvimento
+- Tentei manter o codigo o mais simples possivel para que estudantes possam ter uma melhor compreensão
+- Qualquer duvida entrar em contato, ficarei feliz em ajudar :)
+
+
+
 Desenvolvido por Stevo Sfalcin
