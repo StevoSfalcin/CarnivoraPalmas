@@ -164,7 +164,7 @@ if(isset($xml->error)){
     header('Content-Type: application/json');
     echo json_encode($retorna);
 
-//************ INSERE NO BANCO DE DADOS **********//
+//************ INSERE TRANSACAO NO BANCO DE DADOS **********//
 }else{
     //CREDITO   
     if($xml->paymentMethod->type == 1){
