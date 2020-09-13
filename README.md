@@ -26,7 +26,6 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - Sistema de Busca Dinâmico
 - Integração Correios 
 - Integração PagSeguro Checkout Transparente
-- PHP(BACK-END)
 
 ---
 
